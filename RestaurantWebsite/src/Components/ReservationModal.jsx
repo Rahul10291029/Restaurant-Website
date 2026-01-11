@@ -18,7 +18,6 @@ const ReservationModal = ({
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg max-w-md w-full p-6 relative shadow-xl">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-yellow-500"
@@ -31,54 +30,80 @@ const ReservationModal = ({
         </h2>
 
         <form onSubmit={onSubmit} className="space-y-4">
-          {["name", "email", "phone", "date", "time"].map((field) => (
-            <div key={field}>
-              <input
-                type={
-                  field === "email"
-                    ? "email"
-                    : field === "date"
-                    ? "date"
-                    : field === "time"
-                    ? "time"
-                    : "text"
-                }
-                name={field}
-                value={formData[field]}
-                onChange={onChange}
-                placeholder={t(field)}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400"
-              />
-              {errors[field] && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors[field]}
-                </p>
-              )}
-            </div>
-          ))}
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={onChange}
+            placeholder={t("name")}
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+          {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
 
-          {/* Guests */}
-          <div>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={onChange}
+            placeholder={t("email")}
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+          {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+
+          {/* PHONE */}
+          <div className="flex">
             <select
-              name="guests"
-              value={formData.guests}
+              name="countryCode"
+              value={formData.countryCode}
               onChange={onChange}
-              className="w-full px-3 py-2 border rounded-lg"
+              className="px-3 py-2 border border-r-0 rounded-l-lg bg-white"
             >
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                <option key={n} value={n}>
-                  {n} {t("guests")}
-                </option>
-              ))}
+              <option value="+41">+41</option>
+              <option value="+91">+91</option>
+              <option value="+33">+33</option>
+              <option value="+49">+49</option>
             </select>
-            {errors.guests && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.guests}
-              </p>
-            )}
-          </div>
 
-          {/* Special Requests */}
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={onChange}
+              placeholder={t("phone")}
+              className="w-full px-3 py-2 border border-l-0 rounded-r-lg"
+            />
+          </div>
+          {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={onChange}
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+          {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
+
+          <input
+            type="time"
+            name="time"
+            value={formData.time}
+            onChange={onChange}
+            className="w-full px-3 py-2 border rounded-lg"
+          />
+          {errors.time && <p className="text-red-500 text-sm">{errors.time}</p>}
+
+          <select
+            name="guests"
+            value={formData.guests}
+            onChange={onChange}
+            className="w-full px-3 py-2 border rounded-lg"
+          >
+            {[1,2,3,4,5,6,7,8].map(n => (
+              <option key={n} value={n}>{n} {t("guests")}</option>
+            ))}
+          </select>
+
           <textarea
             name="specialRequests"
             value={formData.specialRequests}
@@ -90,7 +115,7 @@ const ReservationModal = ({
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 disabled:opacity-50"
+            className="w-full py-3 bg-yellow-500 text-white rounded-lg"
           >
             {loading ? t("submitting") : t("confirm")}
           </button>
