@@ -1,14 +1,21 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Reservation = require('../Model/Reservation'); // Your Mongoose model
+const Reservation = require("../Model/Reservation");
 
-router.post('/', async (req, res) => {
+/**
+ * ✅ CREATE A NEW RESERVATION
+ * POST /api/reservations
+ */
+router.post("/", async (req, res) => {
   try {
     const { name, email, phone, date, time, guests, special } = req.body;
 
-    // Optional: basic manual check (can skip if relying on Mongoose)
+    // ✅ Basic validation (extra safety)
     if (!name || !email || !phone || !date || !time || !guests) {
-      return res.status(400).json({ message: 'Please fill all required fields' });
+      return res.status(400).json({
+        success: false,
+        message: "Please fill all required fields",
+      });
     }
 
     const newReservation = new Reservation({
@@ -18,34 +25,63 @@ router.post('/', async (req, res) => {
       date,
       time,
       guests,
-      special
+      special,
     });
 
-    const saved = await newReservation.save();
+    const savedReservation = await newReservation.save();
 
-    res.status(201).json({
-      message: 'Reservation saved successfully',
-      reservation: saved
+    return res.status(201).json({
+      success: true,
+      message: "Reservation saved successfully",
+      reservation: savedReservation,
     });
 
   } catch (error) {
-    console.error('❌ Error saving to DB:', error);
+    console.error("❌ Error saving reservation:", error);
 
-    // ✅ Send detailed validation errors back to the frontend
-    if (error.name === 'ValidationError') {
+    // ✅ Handle Mongoose validation errors properly
+    if (error.name === "ValidationError") {
       const errors = {};
       for (let field in error.errors) {
         errors[field] = error.errors[field].message;
       }
 
       return res.status(400).json({
-        message: 'Validation failed',
-        errors
+        success: false,
+        message: "Validation failed",
+        errors,
       });
     }
 
-    // Generic 500 response fallback
-    res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+});
+
+/**
+ * ✅ GET ALL RESERVATIONS
+ * GET /api/reservations
+ * (For admin panel / browser testing)
+ */
+router.get("/", async (req, res) => {
+  try {
+    const reservations = await Reservation.find().sort({ createdAt: -1 });
+
+    return res.status(200).json({
+      success: true,
+      total: reservations.length,
+      reservations,
+    });
+
+  } catch (error) {
+    console.error("❌ Error fetching reservations:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch reservations",
+    });
   }
 });
 
