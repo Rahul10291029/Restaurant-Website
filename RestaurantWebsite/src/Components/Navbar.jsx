@@ -24,12 +24,11 @@ const iconClass =
 /* ===== COUNTRY PHONE VALIDATION ===== */
 const validatePhoneByCountry = (countryCode, phone) => {
   const digits = phone.replace(/\D/g, "");
-
   switch (countryCode) {
-    case "+91": return digits.length === 10;      // India
-    case "+41": return digits.length === 9;       // Switzerland (CH)
-    case "+33": return digits.length === 9;       // France
-    case "+49": return digits.length >= 10 && digits.length <= 11; // Germany
+    case "+91": return digits.length === 10;
+    case "+41": return digits.length === 9;
+    case "+33": return digits.length === 9;
+    case "+49": return digits.length >= 10 && digits.length <= 11;
     default: return false;
   }
 };
@@ -37,7 +36,6 @@ const validatePhoneByCountry = (countryCode, phone) => {
 /* ===== BASIC FORM VALIDATION ===== */
 const validateForm = (data) => {
   const errors = {};
-
   if (!data.name.trim()) errors.name = "Name is required";
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -48,8 +46,7 @@ const validateForm = (data) => {
   if (!data.phone.trim()) errors.phone = "Phone is required";
   if (!data.date) errors.date = "Date is required";
   if (!data.time) errors.time = "Time is required";
-  if (!data.guests || data.guests < 1)
-    errors.guests = "Select guests";
+  if (!data.guests || data.guests < 1) errors.guests = "Select guests";
 
   return errors;
 };
@@ -65,7 +62,7 @@ const Navbar = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    countryCode: "+41", // CH default
+    countryCode: "+41",
     phone: "",
     date: "",
     time: "",
@@ -85,8 +82,6 @@ const Navbar = () => {
     setErrors({});
 
     const validationErrors = validateForm(formData);
-
-    // 🔥 COUNTRY-AWARE PHONE CHECK
     if (!validatePhoneByCountry(formData.countryCode, formData.phone)) {
       validationErrors.phone = `Invalid phone number for ${formData.countryCode}`;
     }
@@ -104,7 +99,6 @@ const Navbar = () => {
 
     try {
       await createReservation(payload);
-
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
@@ -113,7 +107,6 @@ const Navbar = () => {
       );
 
       alert(t("reservation_success_message"));
-
       setShowReservationModal(false);
       setFormData({
         name: "",
@@ -134,57 +127,106 @@ const Navbar = () => {
 
   return (
     <>
+      {/* ===== NAVBAR ===== */}
       <nav className="fixed top-0 w-full z-50 bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-4">
-  {/* Logo image (icon-style) */}
-  <img
-    src="/Swagatlogo.png"
-    alt="Swagat Logo"
-    className="h-14 w-auto object-contain"
-  />
 
-  {/* Brand text (MAIN FOCUS) */}
-  <div className="flex flex-col leading-tight">
-    <span className="text-3xl font-extrabold tracking-wide text-amber-800">
-      Swagat
-    </span>
-    <span className="text-sm uppercase tracking-widest text-gray-500">
-     An Indian Restaurant
-    </span>
-  </div>
-</Link>
+          {/* LOGO + BRAND */}
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src="/Swagatlogo.png"
+              alt="Swagat Logo"
+              className="h-12 w-auto object-contain"
+            />
+            <span className="font-extrabold tracking-wide text-amber-800
+                             text-lg sm:text-xl md:text-2xl">
+              Kreuz Pintli Swagat
+            </span>
+          </Link>
 
-
-
+          {/* ===== DESKTOP MENU ===== */}
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className={navItem}><Home size={18} className={iconClass} /> {t("nav_home")}</Link>
-            <Link to="/menu" className={navItem}><ShoppingCart size={18} className={iconClass} /> {t("nav_menu")}</Link>
-            <Link to="/about" className={navItem}><Info size={18} className={iconClass} /> {t("nav_about")}</Link>
-            <Link to="/gallery" className={navItem}><GalleryIcon size={18} className={iconClass} /> {t("nav_gallery")}</Link>
-            <Link to="/contact" className={navItem}><Phone size={18} className={iconClass} /> {t("nav_contact")}</Link>
+            <Link to="/" className={navItem}>
+              <Home size={18} className={iconClass} /> {t("nav_home")}
+            </Link>
+            <Link to="/menu" className={navItem}>
+              <ShoppingCart size={18} className={iconClass} /> {t("nav_menu")}
+            </Link>
+            <Link to="/about" className={navItem}>
+              <Info size={18} className={iconClass} /> {t("nav_about")}
+            </Link>
+            <Link to="/gallery" className={navItem}>
+              <GalleryIcon size={18} className={iconClass} /> {t("nav_gallery")}
+            </Link>
+            <Link to="/contact" className={navItem}>
+              <Phone size={18} className={iconClass} /> {t("nav_contact")}
+            </Link>
 
             <select
               value={i18n.language}
               onChange={(e) => i18n.changeLanguage(e.target.value)}
               className="border rounded-md px-3 py-2 text-sm"
             >
-              <option value="en">English</option>
               <option value="de">Deutsch</option>
-              <option value="es">Español</option>
-              <option value="fr">Français</option>
+              <option value="en">English</option>
             </select>
 
             <button
               onClick={() => setShowReservationModal(true)}
-              className="bg-yellow-500 text-white px-6 py-3 rounded-full"
+              className="bg-yellow-500 text-white px-5 py-2 rounded-full"
             >
               {t("book_table")}
+            </button>
+          </div>
+
+          {/* ===== MOBILE MENU BUTTON ===== */}
+          <div className="md:hidden">
+            <button onClick={() => setMobileOpen(!mobileOpen)}>
+              {mobileOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
       </nav>
 
+      {/* ===== MOBILE DROPDOWN MENU (WITH ICONS) ===== */}
+      {mobileOpen && (
+        <div className="fixed top-20 left-0 w-full bg-white shadow-md z-40 md:hidden">
+          <div className="flex flex-col gap-4 px-6 py-6">
+
+            <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
+              <Home size={18} className="text-amber-500" /> {t("nav_home")}
+            </Link>
+
+            <Link to="/menu" onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
+              <ShoppingCart size={18} className="text-amber-500" /> {t("nav_menu")}
+            </Link>
+
+            <Link to="/about" onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
+              <Info size={18} className="text-amber-500" /> {t("nav_about")}
+            </Link>
+
+            <Link to="/gallery" onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
+              <GalleryIcon size={18} className="text-amber-500" /> {t("nav_gallery")}
+            </Link>
+
+            <Link to="/contact" onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
+              <Phone size={18} className="text-amber-500" /> {t("nav_contact")}
+            </Link>
+
+            <button
+              onClick={() => {
+                setMobileOpen(false);
+                setShowReservationModal(true);
+              }}
+              className="mt-4 bg-yellow-500 text-white px-4 py-3 rounded-full"
+            >
+              {t("book_table")}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ===== RESERVATION MODAL ===== */}
       <ReservationModal
         show={showReservationModal}
         onClose={() => setShowReservationModal(false)}

@@ -84,9 +84,9 @@ const Home = () => {
 
   return (
     <div
-      className="relative min-h-screen bg-fixed bg-center bg-cover text-gray-800"
-      style={{ backgroundImage: `url(${BgImg})` }}
-    >
+    className="relative min-h-screen bg-scroll md:bg-fixed bg-center bg-cover text-gray-800"
+    style={{ backgroundImage: `url(${BgImg})` }}
+  >
       {/* ================= HERO ================= */}
       <div className="relative h-[90vh] flex items-center justify-center">
         <motion.div
