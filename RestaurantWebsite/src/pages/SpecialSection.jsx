@@ -7,19 +7,14 @@ const SpecialsSection = () => {
   const { t } = useTranslation();
 
   const images = [
-    '/assets/Mass.webp',
-    '/assets/eggRice.webp',
-    '/assets/Ger.jpg',
-    '/assets/Ger2.jpg',
+    '/gallery/food/food2.jpeg',
+    '/gallery/food/food4.jpeg',
+    '/gallery/food/food5.jpeg',
+    '/gallery/food/food6.jpeg',
   ];
 
   return (
-    <section
-      className="w-full py-24 my-20 px-4"
-      style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.1)', // slight transparency
-      }}
-    >
+    <section className="w-full py-24 my-20 px-4 bg-white/50 backdrop-blur-md">
       <Triangle position="top" isVisible={true} />
 
       <h2 className="text-4xl font-bold mb-12 text-yellow-600 text-center">

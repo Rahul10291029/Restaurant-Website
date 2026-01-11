@@ -136,13 +136,26 @@ const Navbar = () => {
     <>
       <nav className="fixed top-0 w-full z-50 bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-3">
-            <img src="/Swagatlogo.png" alt="Logo" className="h-12 w-16" />
-            <div>
-              <div className="text-2xl font-bold text-amber-800">Swagat</div>
-              <div className="text-sm text-gray-500">Indian Restaurant</div>
-            </div>
-          </Link>
+        <Link to="/" className="flex items-center gap-4">
+  {/* Logo image (icon-style) */}
+  <img
+    src="/Swagatlogo.png"
+    alt="Swagat Logo"
+    className="h-14 w-auto object-contain"
+  />
+
+  {/* Brand text (MAIN FOCUS) */}
+  <div className="flex flex-col leading-tight">
+    <span className="text-3xl font-extrabold tracking-wide text-amber-800">
+      Swagat
+    </span>
+    <span className="text-sm uppercase tracking-widest text-gray-500">
+     An Indian Restaurant
+    </span>
+  </div>
+</Link>
+
+
 
           <div className="hidden md:flex items-center gap-8">
             <Link to="/" className={navItem}><Home size={18} className={iconClass} /> {t("nav_home")}</Link>
