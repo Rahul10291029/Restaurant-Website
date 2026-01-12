@@ -131,15 +131,14 @@ const Navbar = () => {
       <nav className="fixed top-0 w-full z-50 bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
 
-          {/* LOGO + BRAND */}
+          {/* LOGO */}
           <Link to="/" className="flex items-center gap-3">
             <img
               src="/Swagatlogo.png"
               alt="Swagat Logo"
-              className="h-12 w-auto object-contain"
+              className="h-12 w-auto"
             />
-            <span className="font-extrabold tracking-wide text-amber-800
-                             text-lg sm:text-xl md:text-2xl">
+            <span className="font-extrabold text-amber-800 text-lg sm:text-xl md:text-2xl">
               Kreuz Pintli Swagat
             </span>
           </Link>
@@ -162,6 +161,7 @@ const Navbar = () => {
               <Phone size={18} className={iconClass} /> {t("nav_contact")}
             </Link>
 
+            {/* LANGUAGE DESKTOP */}
             <select
               value={i18n.language}
               onChange={(e) => i18n.changeLanguage(e.target.value)}
@@ -179,7 +179,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* ===== MOBILE MENU BUTTON ===== */}
+          {/* ===== MOBILE BUTTON ===== */}
           <div className="md:hidden">
             <button onClick={() => setMobileOpen(!mobileOpen)}>
               {mobileOpen ? <X size={28} /> : <Menu size={28} />}
@@ -188,7 +188,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* ===== MOBILE DROPDOWN MENU (WITH ICONS) ===== */}
+      {/* ===== MOBILE MENU ===== */}
       {mobileOpen && (
         <div className="fixed top-20 left-0 w-full bg-white shadow-md z-40 md:hidden">
           <div className="flex flex-col gap-4 px-6 py-6">
@@ -213,6 +213,16 @@ const Navbar = () => {
               <Phone size={18} className="text-amber-500" /> {t("nav_contact")}
             </Link>
 
+            {/* LANGUAGE MOBILE */}
+            <select
+              value={i18n.language}
+              onChange={(e) => i18n.changeLanguage(e.target.value)}
+              className="border rounded-md px-3 py-2 text-sm"
+            >
+              <option value="de">Deutsch</option>
+              <option value="en">English</option>
+            </select>
+
             <button
               onClick={() => {
                 setMobileOpen(false);
@@ -226,7 +236,7 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* ===== RESERVATION MODAL ===== */}
+      {/* ===== MODAL ===== */}
       <ReservationModal
         show={showReservationModal}
         onClose={() => setShowReservationModal(false)}
