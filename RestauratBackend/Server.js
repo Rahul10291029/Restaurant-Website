@@ -2,7 +2,7 @@
 // Server.js (PRODUCTION READY)
 // ===============================
 
-require("dotenv").config(); // ✅ LOAD .env FIRST
+require("dotenv").config(); // ✅ Load .env first
 
 const express = require("express");
 const cors = require("cors");
@@ -13,7 +13,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 // ===============================
-// ✅ MongoDB Connection (ATLAS)
+// ✅ MongoDB Connection
 // ===============================
 mongoose
   .connect(process.env.MONGO_URI)
@@ -23,11 +23,12 @@ mongoose
   );
 
 // ===============================
-// ✅ CORS CONFIG (UPDATED)
+// ✅ CORS CONFIG (IMPORTANT PART)
 // ===============================
 app.use(
   cors({
     origin: [
+      // Local development
       "http://localhost:5173",
       "http://127.0.0.1:5173",
 
@@ -44,18 +45,17 @@ app.use(
 );
 
 // ===============================
-// ✅ Middleware
+// ✅ Middlewares
 // ===============================
 app.use(express.json());
 
 // ===============================
-// ✅ Static uploads
+// ✅ Static uploads folder
 // ===============================
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ===============================
 // ✅ Health Check Route
-// (fixes "Cannot GET /")
 // ===============================
 app.get("/", (req, res) => {
   res.json({
@@ -76,14 +76,14 @@ app.use("/api/reservations", reservationRoutes);
 app.use("/api/contact", contactRoutes);
 
 // ===============================
-// ✅ Server Start
+// ✅ Start Server
 // ===============================
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 
-  // Create uploads folder if not exists
+  // Ensure uploads folder exists
   const uploadsDir = path.join(__dirname, "uploads");
   if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir);
