@@ -2,7 +2,7 @@
 // Server.js (PRODUCTION READY)
 // ===============================
 
-require("dotenv").config(); // ✅ Load .env first
+require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
@@ -17,25 +17,18 @@ const app = express();
 // ===============================
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Atlas connected successfully"))
-  .catch((err) =>
-    console.error("❌ MongoDB Atlas connection error:", err)
-  );
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB error:", err));
 
 // ===============================
-// ✅ CORS CONFIG (IMPORTANT PART)
+// ✅ CORS CONFIG (FINAL)
 // ===============================
 app.use(
   cors({
     origin: [
-      // Local development
       "http://localhost:5173",
       "http://127.0.0.1:5173",
-
-      // Netlify default domain
       "https://restaurant-web2025.netlify.app",
-
-      // Custom domains
       "https://kreuzpintli-swagat.ch",
       "https://www.kreuzpintli-swagat.ch",
     ],
@@ -45,20 +38,20 @@ app.use(
 );
 
 // ===============================
-// ✅ Middlewares
+// ✅ Middleware
 // ===============================
 app.use(express.json());
 
 // ===============================
-// ✅ Static uploads folder
+// ✅ Static uploads
 // ===============================
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ===============================
-// ✅ Health Check Route
+// ✅ Health check route
 // ===============================
 app.get("/", (req, res) => {
-  res.json({
+  res.status(200).json({
     status: "OK",
     message: "Restaurant backend is running 🚀",
   });
@@ -83,10 +76,9 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 
-  // Ensure uploads folder exists
   const uploadsDir = path.join(__dirname, "uploads");
   if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir);
-    console.log(`📂 'uploads' directory created at: ${uploadsDir}`);
+    console.log("📂 uploads folder created");
   }
 });
