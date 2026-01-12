@@ -84,27 +84,27 @@ const Home = () => {
 
   return (
     <div
-    className="relative min-h-screen bg-scroll md:bg-fixed bg-center bg-cover text-gray-800"
-    style={{ backgroundImage: `url(${BgImg})` }}
-  >
+      className="relative overflow-hidden bg-scroll md:bg-fixed bg-center bg-cover text-gray-800"
+      style={{ backgroundImage: `url(${BgImg})` }}
+    >
       {/* ================= HERO ================= */}
-      <div className="relative h-[90vh] flex items-center justify-center">
+      <div className="relative flex items-center justify-center py-28 sm:py-32 md:py-40">
         <motion.div
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="bg-white/70 backdrop-blur-md px-10 py-14 rounded-2xl shadow-2xl text-center max-w-5xl"
+          className="bg-white/70 backdrop-blur-md px-8 sm:px-10 py-12 sm:py-14 rounded-2xl shadow-2xl text-center max-w-5xl mx-4"
         >
-          <h1 className="text-5xl font-extrabold text-yellow-600">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-yellow-600">
             {t("home_welcome")}
           </h1>
 
-          <h2 className="text-4xl mt-4 font-bold text-yellow-600">
+          <h2 className="text-2xl sm:text-4xl mt-4 font-bold text-yellow-600">
             {t("home_subtitle")}
           </h2>
 
-          <p className="text-lg mt-6 text-gray-700">
+          <p className="text-base sm:text-lg mt-6 text-gray-700">
             {t("home_tagline")}
           </p>
 
@@ -143,7 +143,6 @@ const Home = () => {
             {t("home_philosophy_text")}
           </motion.p>
 
-          {/* FIRST TWO IMAGES — UNCHANGED */}
           <div className="flex flex-col md:flex-row justify-center gap-10">
             <motion.img
               variants={imageVariantsLeft}
@@ -177,10 +176,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= SPECIALS SECTION (ONLY SOURCE OF SPECIAL IMAGES) ================= */}
+      {/* ================= SPECIALS ================= */}
       <div ref={specialsRef}>
         {showSpecials && (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div className="text-center py-20">Loading...</div>}>
             <SpecialsSection />
           </Suspense>
         )}
