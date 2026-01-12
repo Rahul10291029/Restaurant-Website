@@ -176,6 +176,37 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ================= FOOD GALLERY (PUBLIC IMAGES) ================= */}
+      <section className="py-24 bg-white/80 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold text-yellow-600 mb-12">
+            {t("Unsere Spezialitäten")}
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              "/gallery/food/food1.jpeg",
+              "/gallery/food/food3.jpeg",
+              "/gallery/food/food4.jpeg",
+              "/gallery/food/food5.jpeg",
+            ].map((img, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ scale: 1.05 }}
+                className="overflow-hidden rounded-2xl shadow-xl"
+              >
+                <img
+                  src={img}
+                  alt={`Food ${index + 1}`}
+                  className="w-full h-64 object-cover"
+                  loading="lazy"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ================= SPECIALS ================= */}
       <div ref={specialsRef}>
         {showSpecials && (
