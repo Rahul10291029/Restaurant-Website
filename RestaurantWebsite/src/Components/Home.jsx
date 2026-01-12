@@ -84,27 +84,27 @@ const Home = () => {
 
   return (
     <div
-      className="relative overflow-hidden bg-scroll md:bg-fixed bg-center bg-cover text-gray-800"
-      style={{ backgroundImage: `url(${BgImg})` }}
-    >
+    className="relative min-h-screen bg-scroll md:bg-fixed bg-center bg-cover text-gray-800"
+    style={{ backgroundImage: `url(${BgImg})` }}
+  >
       {/* ================= HERO ================= */}
-      <div className="relative flex items-center justify-center py-28 sm:py-32 md:py-40">
+      <div className="relative h-[90vh] flex items-center justify-center">
         <motion.div
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="bg-white/70 backdrop-blur-md px-8 sm:px-10 py-12 sm:py-14 rounded-2xl shadow-2xl text-center max-w-5xl mx-4"
+          className="bg-white/70 backdrop-blur-md px-10 py-14 rounded-2xl shadow-2xl text-center max-w-5xl"
         >
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-yellow-600">
+          <h1 className="text-5xl font-extrabold text-yellow-600">
             {t("home_welcome")}
           </h1>
 
-          <h2 className="text-2xl sm:text-4xl mt-4 font-bold text-yellow-600">
+          <h2 className="text-4xl mt-4 font-bold text-yellow-600">
             {t("home_subtitle")}
           </h2>
 
-          <p className="text-base sm:text-lg mt-6 text-gray-700">
+          <p className="text-lg mt-6 text-gray-700">
             {t("home_tagline")}
           </p>
 
@@ -143,6 +143,7 @@ const Home = () => {
             {t("home_philosophy_text")}
           </motion.p>
 
+          {/* FIRST TWO IMAGES — UNCHANGED */}
           <div className="flex flex-col md:flex-row justify-center gap-10">
             <motion.img
               variants={imageVariantsLeft}
@@ -176,41 +177,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= FOOD GALLERY (PUBLIC IMAGES) ================= */}
-      <section className="py-24 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-yellow-600 mb-12">
-            {t("Unsere Spezialitäten")}
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              "/gallery/food/food1.jpeg",
-              "/gallery/food/food3.jpeg",
-              "/gallery/food/food4.jpeg",
-              "/gallery/food/food5.jpeg",
-            ].map((img, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                className="overflow-hidden rounded-2xl shadow-xl"
-              >
-                <img
-                  src={img}
-                  alt={`Food ${index + 1}`}
-                  className="w-full h-64 object-cover"
-                  loading="lazy"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= SPECIALS ================= */}
+      {/* ================= SPECIALS SECTION (ONLY SOURCE OF SPECIAL IMAGES) ================= */}
       <div ref={specialsRef}>
         {showSpecials && (
-          <Suspense fallback={<div className="text-center py-20">Loading...</div>}>
+          <Suspense fallback={<div>Loading...</div>}>
             <SpecialsSection />
           </Suspense>
         )}
