@@ -23,15 +23,20 @@ mongoose
   );
 
 // ===============================
-// ✅ CORS CONFIG
-// (dev + future production ready)
+// ✅ CORS CONFIG (UPDATED)
 // ===============================
 app.use(
   cors({
     origin: [
-      "http://localhost:5173", // Vite dev
-      "http://127.0.0.1:5173"
-      // later you will add: https://yourdomain.com
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+
+      // Netlify default domain
+      "https://restaurant-web2025.netlify.app",
+
+      // Custom domains
+      "https://kreuzpintli-swagat.ch",
+      "https://www.kreuzpintli-swagat.ch",
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
@@ -47,6 +52,17 @@ app.use(express.json());
 // ✅ Static uploads
 // ===============================
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// ===============================
+// ✅ Health Check Route
+// (fixes "Cannot GET /")
+// ===============================
+app.get("/", (req, res) => {
+  res.json({
+    status: "OK",
+    message: "Restaurant backend is running 🚀",
+  });
+});
 
 // ===============================
 // ✅ Routes
@@ -65,7 +81,7 @@ app.use("/api/contact", contactRoutes);
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 
   // Create uploads folder if not exists
   const uploadsDir = path.join(__dirname, "uploads");
