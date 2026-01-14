@@ -25,11 +25,16 @@ const iconClass =
 const validatePhoneByCountry = (countryCode, phone) => {
   const digits = phone.replace(/\D/g, "");
   switch (countryCode) {
-    case "+91": return digits.length === 10;
-    case "+41": return digits.length === 9;
-    case "+33": return digits.length === 9;
-    case "+49": return digits.length >= 10 && digits.length <= 11;
-    default: return false;
+    case "+91":
+      return digits.length === 10;
+    case "+41":
+      return digits.length === 9;
+    case "+33":
+      return digits.length === 9;
+    case "+49":
+      return digits.length >= 10 && digits.length <= 11;
+    default:
+      return false;
   }
 };
 
@@ -40,8 +45,7 @@ const validateForm = (data) => {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!data.email.trim()) errors.email = "Email is required";
-  else if (!emailRegex.test(data.email))
-    errors.email = "Invalid email format";
+  else if (!emailRegex.test(data.email)) errors.email = "Invalid email format";
 
   if (!data.phone.trim()) errors.phone = "Phone is required";
   if (!data.date) errors.date = "Date is required";
@@ -59,6 +63,9 @@ const Navbar = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
+  // ✅ THIS is the confirmation popup data (success / error)
+  const [reservationStatus, setReservationStatus] = useState(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -70,6 +77,20 @@ const Navbar = () => {
     specialRequests: "",
   });
 
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      countryCode: "+41",
+      phone: "",
+      date: "",
+      time: "",
+      guests: "1",
+      specialRequests: "",
+    });
+    setErrors({});
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -80,6 +101,7 @@ const Navbar = () => {
     e.preventDefault();
     setLoading(true);
     setErrors({});
+    setReservationStatus(null);
 
     const validationErrors = validateForm(formData);
     if (!validatePhoneByCountry(formData.countryCode, formData.phone)) {
@@ -99,6 +121,7 @@ const Navbar = () => {
 
     try {
       await createReservation(payload);
+
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
@@ -106,20 +129,28 @@ const Navbar = () => {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
-      alert(t("reservation_success_message"));
-      setShowReservationModal(false);
-      setFormData({
-        name: "",
-        email: "",
-        countryCode: "+41",
-        phone: "",
-        date: "",
-        time: "",
-        guests: "1",
-        specialRequests: "",
+      // ✅ SHOW SUCCESS MESSAGE INSIDE MODAL
+      setReservationStatus({
+        success: true,
+        message:
+          t("reservation_success_message") ||
+          "✅ Reservation submitted successfully! We will contact you soon.",
       });
+
+      // ✅ close after delay so user can SEE the confirmation
+      setTimeout(() => {
+        setShowReservationModal(false);
+        setReservationStatus(null);
+        resetForm();
+      }, 2000);
     } catch (err) {
-      alert("Something went wrong. Please try again.");
+      // ✅ SHOW ERROR MESSAGE INSIDE MODAL
+      setReservationStatus({
+        success: false,
+        message:
+          t("reservation_error_message") ||
+          "❌ Something went wrong. Please try again.",
+      });
     } finally {
       setLoading(false);
     }
@@ -127,23 +158,17 @@ const Navbar = () => {
 
   return (
     <>
-      {/* ===== NAVBAR ===== */}
       <nav className="fixed top-0 w-full z-50 bg-white shadow-md">
         <div className="max-w-7xl mx-auto px-4 h-20 flex justify-between items-center">
-
           {/* LOGO */}
-          <Link to="/" className="flex items-center gap-3">
-            <img
-              src="/Swagatlogo.png"
-              alt="Swagat Logo"
-              className="h-12 w-auto"
-            />
-            <span className="font-extrabold text-amber-800 text-lg sm:text-xl md:text-2xl">
+          <Link to="/" className="flex items-center gap-2 -ml-1">
+            <img src="/Swagatlogo.png" alt="Swagat Logo" className="h-12 w-auto" />
+            <span className="font-extrabold text-amber-800 text-base sm:text-lg md:text-2xl leading-tight">
               Kreuz Pintli Swagat
             </span>
           </Link>
 
-          {/* ===== DESKTOP MENU ===== */}
+          {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-8">
             <Link to="/" className={navItem}>
               <Home size={18} className={iconClass} /> {t("nav_home")}
@@ -161,7 +186,6 @@ const Navbar = () => {
               <Phone size={18} className={iconClass} /> {t("nav_contact")}
             </Link>
 
-            {/* LANGUAGE DESKTOP */}
             <select
               value={i18n.language}
               onChange={(e) => i18n.changeLanguage(e.target.value)}
@@ -172,14 +196,17 @@ const Navbar = () => {
             </select>
 
             <button
-              onClick={() => setShowReservationModal(true)}
-              className="bg-yellow-500 text-white px-5 py-2 rounded-full"
+              onClick={() => {
+                setReservationStatus(null);
+                setShowReservationModal(true);
+              }}
+              className="bg-yellow-500 hover:bg-yellow-600 transition text-white px-5 py-2 rounded-full"
             >
               {t("book_table")}
             </button>
           </div>
 
-          {/* ===== MOBILE BUTTON ===== */}
+          {/* MOBILE BUTTON */}
           <div className="md:hidden">
             <button onClick={() => setMobileOpen(!mobileOpen)}>
               {mobileOpen ? <X size={28} /> : <Menu size={28} />}
@@ -188,11 +215,10 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* ===== MOBILE MENU ===== */}
+      {/* MOBILE MENU */}
       {mobileOpen && (
         <div className="fixed top-20 left-0 w-full bg-white shadow-md z-40 md:hidden">
           <div className="flex flex-col gap-4 px-6 py-6">
-
             <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-3">
               <Home size={18} className="text-amber-500" /> {t("nav_home")}
             </Link>
@@ -213,7 +239,6 @@ const Navbar = () => {
               <Phone size={18} className="text-amber-500" /> {t("nav_contact")}
             </Link>
 
-            {/* LANGUAGE MOBILE */}
             <select
               value={i18n.language}
               onChange={(e) => i18n.changeLanguage(e.target.value)}
@@ -226,9 +251,10 @@ const Navbar = () => {
             <button
               onClick={() => {
                 setMobileOpen(false);
+                setReservationStatus(null);
                 setShowReservationModal(true);
               }}
-              className="mt-4 bg-yellow-500 text-white px-4 py-3 rounded-full"
+              className="mt-4 bg-yellow-500 hover:bg-yellow-600 transition text-white px-4 py-3 rounded-full"
             >
               {t("book_table")}
             </button>
@@ -236,15 +262,19 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* ===== MODAL ===== */}
+      {/* MODAL */}
       <ReservationModal
         show={showReservationModal}
-        onClose={() => setShowReservationModal(false)}
+        onClose={() => {
+          setShowReservationModal(false);
+          setReservationStatus(null);
+        }}
         formData={formData}
         onChange={handleInputChange}
         onSubmit={handleReservationSubmit}
         errors={errors}
         loading={loading}
+        status={reservationStatus}  // ✅ IMPORTANT
       />
     </>
   );

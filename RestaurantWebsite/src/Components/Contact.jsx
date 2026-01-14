@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import axios from "axios";
+import emailjs from "emailjs-com";
+
+const HERO_IMG = "/Contact.jpg";
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -14,6 +16,17 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  // ✅ For faster hero image display
+  const [heroLoaded, setHeroLoaded] = useState(false);
+
+  useEffect(() => {
+    // Preload hero image
+    const img = new Image();
+    img.src = HERO_IMG;
+    img.onload = () => setHeroLoaded(true);
+    img.onerror = () => setHeroLoaded(true); // even if fail, stop loading state
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +42,19 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      await axios.post("http://localhost:5000/api/contact", formData);
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+      };
+
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+      
 
       setSubmitStatus({
         success: true,
@@ -38,10 +63,10 @@ const Contact = () => {
 
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
+      console.error("EmailJS Error:", error);
       setSubmitStatus({
         success: false,
-        message:
-          error.response?.data?.error || t("contact_form_error"),
+        message: t("contact_form_error"),
       });
     } finally {
       setIsSubmitting(false);
@@ -51,13 +76,19 @@ const Contact = () => {
   return (
     <div className="bg-gradient-to-br from-yellow-50 via-white to-gray-50 text-gray-800 font-sans">
       {/* ================= HERO SECTION ================= */}
-      <div
-        className="relative h-[400px] bg-center bg-cover flex items-center justify-center"
-        style={{ backgroundImage: "url('/Contact.jpg')" }}
-      >
+      <div className="relative h-[400px] flex items-center justify-center overflow-hidden">
+        {/* ✅ Fallback background color while loading */}
+        <div className="absolute inset-0 bg-gray-200" />
+
+        {/* ✅ Background image with smooth fade-in */}
+        <div
+          className={`absolute inset-0 bg-center bg-cover transition-opacity duration-700 ${
+            heroLoaded ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ backgroundImage: `url('${HERO_IMG}')` }}
+        />
+
         <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white text-center p-6">
-          
-          {/* MAIN TITLE */}
           <motion.h1
             className="text-4xl md:text-6xl font-extrabold"
             initial={{ opacity: 0, y: -40 }}
@@ -67,7 +98,6 @@ const Contact = () => {
             {t("contact_hero_title")}
           </motion.h1>
 
-          {/* SUB TITLE */}
           <motion.h2
             className="mt-2 text-2xl md:text-3xl font-bold text-white/90"
             initial={{ opacity: 0, y: -20 }}
@@ -77,7 +107,6 @@ const Contact = () => {
             {t("contact_hero_subtitle")}
           </motion.h2>
 
-          {/* TAGLINE */}
           <motion.p
             className="mt-4 text-lg md:text-2xl"
             initial={{ opacity: 0, y: 30 }}
@@ -92,7 +121,6 @@ const Contact = () => {
       {/* ================= FORM & INFO SECTION ================= */}
       <section className="py-20 px-6 md:px-20">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
-          
           {/* CONTACT FORM */}
           <div className="bg-white p-10 rounded-3xl shadow-xl border border-yellow-100">
             <h2 className="text-3xl font-bold mb-8 border-b pb-4">
@@ -145,7 +173,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-8 py-4 rounded-xl"
+                className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-8 py-4 rounded-xl disabled:opacity-70"
               >
                 {isSubmitting
                   ? t("contact_form_submitting")
