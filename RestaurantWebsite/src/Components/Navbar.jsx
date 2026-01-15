@@ -146,7 +146,7 @@ const Navbar = () => {
     } catch (err) {
       // ✅ SHOW ERROR MESSAGE INSIDE MODAL
       setReservationStatus({
-        success: false,
+        success: false ,
         message:
           t("reservation_error_message") ||
           "❌ Something went wrong. Please try again.",
