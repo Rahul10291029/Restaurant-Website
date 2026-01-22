@@ -1,17 +1,6 @@
-import React from "react";
-import { X, Calendar, Clock, Users, Phone, Mail, User2 } from "lucide-react";
+import React, { useEffect, useRef } from "react";
+import { X } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
-const Field = ({ label, icon: Icon, error, children }) => (
-  <div className="space-y-1.5">
-    <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-      {Icon ? <Icon size={16} className="text-yellow-600" /> : null}
-      {label}
-    </label>
-    {children}
-    {error && <p className="text-red-600 text-xs font-medium">{error}</p>}
-  </div>
-);
 
 const ReservationModal = ({
   show,
@@ -20,197 +9,262 @@ const ReservationModal = ({
   onChange,
   onSubmit,
   errors = {},
-  loading,
-  status, // ✅ NEW (from Navbar)
+  loading = false,
+  status = null,
 }) => {
   const { t } = useTranslation();
+  const scrollRef = useRef(null);
+
+  // ✅ Lock background scroll
+  useEffect(() => {
+    if (!show) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [show]);
+
+  // ✅ Close on ESC
+  useEffect(() => {
+    if (!show) return;
+    const handler = (e) => {
+      if (e.key === "Escape") onClose?.();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [show, onClose]);
+
+  // ✅ Auto scroll to top when status message appears/changes
+  useEffect(() => {
+    if (!show) return;
+    if (status?.message && scrollRef.current) {
+      scrollRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [status, show]);
+
   if (!show) return null;
 
+  // ✅ Safe translation: if key is missing, return fallback instead of showing the key
+  const safeT = (key, fallback = "") => {
+    const val = t(key);
+    return val === key ? fallback : val;
+  };
+
+  const placeholders = {
+    name: safeT("your_name", "Your name"),
+    email: safeT("your_email", "Your email"),
+    phone: safeT("phone_number", "Phone number"),
+    special: safeT("special_requests_optional", "Special requests (optional)"),
+  };
+
   return (
-    <div className="fixed inset-0 z-50">
-      {/* overlay */}
-      <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"
-        onClick={onClose}
-      />
+    <div className="fixed inset-0 z-[999] flex items-center justify-center px-4">
+      {/* backdrop */}
+      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
 
-      {/* modal wrapper */}
-      <div className="relative z-50 flex items-start justify-center p-4 sm:p-6 overflow-y-auto">
-        <div className="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-yellow-100 overflow-hidden mt-10 sm:mt-14">
-          {/* Header */}
-          <div className="relative px-6 py-5 bg-gradient-to-r from-yellow-400 to-amber-500 text-white">
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/20 transition"
-              aria-label="Close"
-              type="button"
-            >
-              <X className="h-5 w-5" />
-            </button>
-
-            <h2 className="text-xl sm:text-2xl font-extrabold leading-tight">
-              🍽️ {t("book_table")}
+      {/* modal */}
+      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
+        {/* header */}
+        <div className="bg-yellow-500 text-white px-6 py-4 flex items-start justify-between">
+          <div>
+            <h2 className="text-2xl font-extrabold">
+              {safeT("book_table", "Book a Table")}
             </h2>
-            <p className="text-white/90 text-sm mt-1">
-              {t("reservation_subtitle") || "We’ll confirm your booking soon."}
-            </p>
+            {/* ✅ subtitle removed if missing */}
           </div>
 
-          {/* Body */}
-          <div className="p-6 max-h-[75vh] overflow-y-auto">
-            {/* ✅ Status message (success/error) */}
-            {status && (
-              <div
-                className={`mb-5 rounded-xl p-4 text-sm font-medium border ${
-                  status.success
-                    ? "bg-green-50 text-green-800 border-green-200"
-                    : "bg-red-50 text-red-800 border-red-200"
+          <button
+            onClick={onClose}
+            className="p-2 rounded-full hover:bg-white/10"
+            aria-label="Close reservation modal"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* body (scrollable) */}
+        <div
+          ref={scrollRef}
+          className="max-h-[72vh] overflow-y-auto px-6 py-5"
+        >
+          {/* status */}
+          {status?.message ? (
+            <div
+              className={`mb-4 p-3 rounded-xl text-sm ${
+                status.success
+                  ? "bg-green-100 text-green-800"
+                  : "bg-red-100 text-red-800"
+              }`}
+            >
+              {status.message}
+            </div>
+          ) : null}
+
+          <form onSubmit={onSubmit} className="space-y-4">
+            {/* Name */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-800 mb-1">
+                {safeT("name", "Name")}
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name || ""}
+                onChange={onChange}
+                placeholder={placeholders.name}
+                className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                  errors.name ? "border-red-500" : "border-gray-200"
+                }`}
+              />
+              {errors.name ? (
+                <p className="text-red-600 text-xs mt-1">{errors.name}</p>
+              ) : null}
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-800 mb-1">
+                {safeT("email", "Email")}
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email || ""}
+                onChange={onChange}
+                placeholder={placeholders.email}
+                className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                  errors.email ? "border-red-500" : "border-gray-200"
+                }`}
+              />
+              {errors.email ? (
+                <p className="text-red-600 text-xs mt-1">{errors.email}</p>
+              ) : null}
+            </div>
+
+            {/* Phone */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-800 mb-1">
+                {safeT("phone", "Phone Number")}
+              </label>
+              <div className="flex gap-3">
+                <select
+                  name="countryCode"
+                  value={formData.countryCode || "+41"}
+                  onChange={onChange}
+                  className="w-28 px-3 py-3 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                >
+                  <option value="+41">+41</option>
+                  <option value="+91">+91</option>
+                  <option value="+49">+49</option>
+                  <option value="+33">+33</option>
+                </select>
+
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone || ""}
+                  onChange={onChange}
+                  placeholder={placeholders.phone}
+                  className={`flex-1 px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                    errors.phone ? "border-red-500" : "border-gray-200"
+                  }`}
+                />
+              </div>
+              {errors.phone ? (
+                <p className="text-red-600 text-xs mt-1">{errors.phone}</p>
+              ) : null}
+            </div>
+
+            {/* Date + Time */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-sm font-semibold text-gray-800 mb-1">
+                  {safeT("date", "Date")}
+                </label>
+                <input
+                  type="date"
+                  name="date"
+                  value={formData.date || ""}
+                  onChange={onChange}
+                  className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                    errors.date ? "border-red-500" : "border-gray-200"
+                  }`}
+                />
+                {errors.date ? (
+                  <p className="text-red-600 text-xs mt-1">{errors.date}</p>
+                ) : null}
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-800 mb-1">
+                  {safeT("time", "Time")}
+                </label>
+                <input
+                  type="time"
+                  name="time"
+                  value={formData.time || ""}
+                  onChange={onChange}
+                  className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                    errors.time ? "border-red-500" : "border-gray-200"
+                  }`}
+                />
+                {errors.time ? (
+                  <p className="text-red-600 text-xs mt-1">{errors.time}</p>
+                ) : null}
+              </div>
+            </div>
+
+            {/* Guests */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-800 mb-1">
+                {safeT("guests", "Guests")}
+              </label>
+              <select
+                name="guests"
+                value={formData.guests || "1"}
+                onChange={onChange}
+                className={`w-full px-4 py-3 border rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                  errors.guests ? "border-red-500" : "border-gray-200"
                 }`}
               >
-                {status.message}
-              </div>
-            )}
+                {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+                  <option key={n} value={String(n)}>
+                    {n}
+                  </option>
+                ))}
+              </select>
+              {errors.guests ? (
+                <p className="text-red-600 text-xs mt-1">{errors.guests}</p>
+              ) : null}
+            </div>
 
-            <form onSubmit={onSubmit} className="space-y-4">
-              {/* NAME */}
-              <Field label={t("name")} icon={User2} error={errors.name}>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={onChange}
-                  placeholder={t("your_name") || "Your name"}
-                  className={`w-full px-4 py-3 rounded-xl text-base outline-none transition
-                    border ${errors.name ? "border-red-400" : "border-gray-200"}
-                    focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400`}
-                />
-              </Field>
+            {/* Special Requests */}
+            <div>
+              <label className="block text-sm font-semibold text-gray-800 mb-1">
+                {safeT("special_requests", "Special Requests")}
+              </label>
+              <input
+                type="text"
+                name="specialRequests"
+                value={formData.specialRequests || ""}
+                onChange={onChange}
+                placeholder={placeholders.special}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              />
+            </div>
 
-              {/* EMAIL */}
-              <Field label={t("email")} icon={Mail} error={errors.email}>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={onChange}
-                  placeholder={t("your_email") || "you@example.com"}
-                  className={`w-full px-4 py-3 rounded-xl text-base outline-none transition
-                    border ${errors.email ? "border-red-400" : "border-gray-200"}
-                    focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400`}
-                />
-              </Field>
-
-              {/* PHONE */}
-              <Field label={t("phone")} icon={Phone} error={errors.phone}>
-                <div className="flex gap-2">
-                  <select
-                    name="countryCode"
-                    value={formData.countryCode}
-                    onChange={onChange}
-                    className="px-3 py-3 rounded-xl border border-gray-200 bg-white outline-none focus:ring-2 focus:ring-yellow-400"
-                  >
-                    <option value="+41">+41</option>
-                    <option value="+49">+49</option>
-                    <option value="+33">+33</option>
-                    <option value="+91">+91</option>
-                  </select>
-
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={onChange}
-                    placeholder={t("phone_placeholder") || "Phone number"}
-                    className={`w-full px-4 py-3 rounded-xl text-base outline-none transition
-                      border ${errors.phone ? "border-red-400" : "border-gray-200"}
-                      focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400`}
-                  />
-                </div>
-              </Field>
-
-              {/* DATE & TIME */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Field label={t("date")} icon={Calendar} error={errors.date}>
-                  <input
-                    type="date"
-                    name="date"
-                    value={formData.date}
-                    onChange={onChange}
-                    className={`w-full px-4 py-3 rounded-xl text-base outline-none transition
-                      border ${errors.date ? "border-red-400" : "border-gray-200"}
-                      focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400`}
-                  />
-                </Field>
-
-                <Field label={t("time")} icon={Clock} error={errors.time}>
-                  <input
-                    type="time"
-                    name="time"
-                    value={formData.time}
-                    onChange={onChange}
-                    className={`w-full px-4 py-3 rounded-xl text-base outline-none transition
-                      border ${errors.time ? "border-red-400" : "border-gray-200"}
-                      focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400`}
-                  />
-                </Field>
-              </div>
-
-              {/* GUESTS */}
-              <Field label={t("guests")} icon={Users} error={errors.guests}>
-                <select
-                  name="guests"
-                  value={formData.guests}
-                  onChange={onChange}
-                  className={`w-full px-4 py-3 rounded-xl text-base outline-none transition bg-white
-                    border ${errors.guests ? "border-red-400" : "border-gray-200"}
-                    focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400`}
-                >
-                  {[1,2,3,4,5,6,7,8].map((n) => (
-                    <option key={n} value={n}>
-                      {n} {n === 1 ? (t("guest") || "Guest") : (t("guests") || "Guests")}
-                    </option>
-                  ))}
-                </select>
-              </Field>
-
-              {/* SPECIAL REQUESTS */}
-              <Field label={t("special_requests")} icon={User2}>
-                <textarea
-                  name="specialRequests"
-                  value={formData.specialRequests}
-                  onChange={onChange}
-                  rows="3"
-                  placeholder={t("special_placeholder") || "Allergies, birthday, window seat..."}
-                  className="w-full px-4 py-3 rounded-xl text-base outline-none transition border border-gray-200 focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 resize-none"
-                />
-              </Field>
-
-              {/* Buttons */}
-              <div className="pt-2 flex gap-3">
-                <button
-                  type="button"
-                  onClick={onClose}
-                  disabled={loading}
-                  className="w-1/3 py-3 rounded-xl border border-gray-200 text-gray-700 font-semibold hover:bg-gray-50 transition disabled:opacity-70"
-                >
-                  {t("cancel") || "Cancel"}
-                </button>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-2/3 py-3 bg-yellow-500 text-white rounded-xl text-base font-bold hover:bg-yellow-600 transition disabled:opacity-70 disabled:cursor-not-allowed shadow-md"
-                >
-                  {loading ? (t("submitting") || "Submitting...") : (t("confirm") || "Confirm")}
-                </button>
-              </div>
-
-              <p className="text-[11px] text-gray-500 pt-1">
-                {t("reservation_note") ||
-                  "We may contact you to confirm your reservation."}
-              </p>
-            </form>
-          </div>
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-4 rounded-xl disabled:opacity-70"
+            >
+              {loading
+                ? safeT("submitting", "Submitting...")
+                : safeT("confirm_reservation", "Confirm Reservation")}
+            </button>
+          </form>
         </div>
       </div>
     </div>

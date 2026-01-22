@@ -119,7 +119,7 @@ const Gallery = () => {
         >
           <div>
             <motion.h3
-              className="text-4xl font-extrabold text-yellow-600 mb-5"
+              className="text-4xl font-extrabold text-amber-800 mb-5"
               initial={{ opacity: 0, y: 20 }}
               animate={footerVisible ? { opacity: 1, y: 0 } : {}}
             >

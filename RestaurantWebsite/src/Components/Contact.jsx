@@ -20,20 +20,34 @@ const Contact = () => {
   // ✅ For faster hero image display
   const [heroLoaded, setHeroLoaded] = useState(false);
 
+  // ✅ Copy status
+  const [copied, setCopied] = useState(false);
+
+  // ✅ Phone number (keep raw and formatted separately)
+  const rawPhone = "+41766298876"; // ✅ call-friendly (no spaces)
+  const displayPhone = "+41 07 66 298876"; // ✅ display version
+
   useEffect(() => {
-    // Preload hero image
     const img = new Image();
     img.src = HERO_IMG;
     img.onload = () => setHeroLoaded(true);
-    img.onerror = () => setHeroLoaded(true); // even if fail, stop loading state
+    img.onerror = () => setHeroLoaded(true);
   }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleCopyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText(rawPhone);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (e) {
+      // fallback
+      alert("Copy not supported. Please copy manually.");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -54,7 +68,6 @@ const Contact = () => {
         templateParams,
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
-      
 
       setSubmitStatus({
         success: true,
@@ -76,22 +89,23 @@ const Contact = () => {
   return (
     <div className="bg-gradient-to-br from-yellow-50 via-white to-gray-50 text-gray-800 font-sans">
       {/* ================= HERO SECTION ================= */}
-      <div className="relative h-[400px] flex items-center justify-center overflow-hidden">
-        {/* ✅ Fallback background color while loading */}
+      <div className="relative h-[260px] sm:h-[320px] md:h-[380px] flex items-center justify-center overflow-hidden">
+        {/* fallback bg while loading */}
         <div className="absolute inset-0 bg-gray-200" />
 
-        {/* ✅ Background image with smooth fade-in */}
+        {/* ✅ hero image */}
         <div
-          className={`absolute inset-0 bg-center bg-cover transition-opacity duration-700 ${
+          className={`absolute inset-0 bg-center bg-cover bg-no-repeat transition-opacity duration-700 ${
             heroLoaded ? "opacity-100" : "opacity-0"
           }`}
           style={{ backgroundImage: `url('${HERO_IMG}')` }}
         />
 
-        <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white text-center p-6">
+        {/* overlay */}
+        <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-white text-center px-5">
           <motion.h1
-            className="text-4xl md:text-6xl font-extrabold"
-            initial={{ opacity: 0, y: -40 }}
+            className="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight"
+            initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
@@ -99,8 +113,8 @@ const Contact = () => {
           </motion.h1>
 
           <motion.h2
-            className="mt-2 text-2xl md:text-3xl font-bold text-white/90"
-            initial={{ opacity: 0, y: -20 }}
+            className="mt-2 text-lg sm:text-xl md:text-3xl font-bold text-white/90"
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
           >
@@ -108,8 +122,8 @@ const Contact = () => {
           </motion.h2>
 
           <motion.p
-            className="mt-4 text-lg md:text-2xl"
-            initial={{ opacity: 0, y: 30 }}
+            className="mt-3 text-sm sm:text-base md:text-xl text-white/90 max-w-2xl"
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
@@ -119,11 +133,11 @@ const Contact = () => {
       </div>
 
       {/* ================= FORM & INFO SECTION ================= */}
-      <section className="py-20 px-6 md:px-20">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+      <section className="py-14 px-5 md:px-16">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
           {/* CONTACT FORM */}
-          <div className="bg-white p-10 rounded-3xl shadow-xl border border-yellow-100">
-            <h2 className="text-3xl font-bold mb-8 border-b pb-4">
+          <div className="bg-white p-7 sm:p-10 rounded-3xl shadow-xl border border-yellow-100">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 border-b pb-4">
               {t("contact_form_title")}
             </h2>
 
@@ -139,14 +153,14 @@ const Contact = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder={t("contact_form_name_placeholder")}
-                className="w-full px-5 py-3 border rounded-xl"
+                className="w-full px-5 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 required
               />
 
@@ -156,7 +170,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder={t("contact_form_email_placeholder")}
-                className="w-full px-5 py-3 border rounded-xl"
+                className="w-full px-5 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 required
               />
 
@@ -166,14 +180,14 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder={t("contact_form_message_placeholder")}
-                className="w-full px-5 py-3 border rounded-xl"
+                className="w-full px-5 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 required
               />
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-8 py-4 rounded-xl disabled:opacity-70"
+                className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-8 py-4 rounded-xl disabled:opacity-70 transition"
               >
                 {isSubmitting
                   ? t("contact_form_submitting")
@@ -183,15 +197,46 @@ const Contact = () => {
           </div>
 
           {/* CONTACT INFO + MAP */}
-          <div className="bg-white p-10 rounded-3xl shadow-xl border border-yellow-100">
-            <h2 className="text-3xl font-bold mb-8 border-b pb-4">
+          <div className="bg-white p-7 sm:p-10 rounded-3xl shadow-xl border border-yellow-100">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-8 border-b pb-4">
               {t("contact_reach_us_title")}
             </h2>
 
-            <div className="space-y-5 text-lg">
+            <div className="space-y-5 text-base sm:text-lg">
               <p>📍 {t("footer_address")}</p>
-              <p>📞 {t("footer_phone")}</p>
-              <p>✉️ {t("footer_email")}</p>
+
+              {/* ✅ CLICK TO CALL + COPY */}
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className="text-lg">📞</span>
+
+                <a
+                  href={`tel:${rawPhone}`}
+                  className="font-semibold text-gray-900 underline underline-offset-4 hover:text-yellow-600 transition"
+                  title="Tap to call"
+                >
+                  {displayPhone}
+                </a>
+
+                <button
+                  onClick={handleCopyPhone}
+                  type="button"
+                  className="px-3 py-1 rounded-lg border text-sm bg-white hover:bg-gray-50 shadow-sm transition"
+                >
+                  {copied ? "Copied ✅" : "Copy"}
+                </button>
+              </div>
+
+              {/* ✅ Email clickable */}
+              <p>
+                ✉️{" "}
+                <a
+                  href={`mailto:${t("footer_email")}`}
+                  className="font-semibold text-gray-900 underline underline-offset-4 hover:text-yellow-600 transition"
+                >
+                  {t("footer_email")}
+                </a>
+              </p>
+
               <p>🕒 {t("contact_hours")}</p>
             </div>
 

@@ -150,7 +150,7 @@ const Menu = () => {
           footerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}>
           <div>
-            <h3 className="text-3xl font-extrabold text-yellow-600 mb-4">
+            <h3 className="text-3xl font-extrabold text-amber-800 mb-4">
               {t("footer_title")}
             </h3>
             <p className="text-gray-600">{t("footer_description")}</p>

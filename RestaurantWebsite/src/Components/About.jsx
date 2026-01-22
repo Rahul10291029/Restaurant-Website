@@ -165,7 +165,7 @@ const About = () => {
 
         <div className={`max-w-7xl mx-auto px-8 py-20 grid grid-cols-1 md:grid-cols-3 gap-12 transition-all duration-700 ${animateFadeUp(footerVisible)}`}>
           <div>
-            <h3 className="text-3xl font-extrabold text-yellow-500 mb-4">
+            <h3 className="text-3xl font-extrabold text-amber-800 mb-4">
               {t('footer_title')}
             </h3>
             <p className="text-gray-600">
