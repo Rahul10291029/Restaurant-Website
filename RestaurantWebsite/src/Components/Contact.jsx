@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 const HERO_IMG = "/Contact.jpg";
 
@@ -24,8 +24,8 @@ const Contact = () => {
   const [copied, setCopied] = useState(false);
 
   // ✅ Phone number (keep raw and formatted separately)
-  const rawPhone = "+41766298876"; // ✅ call-friendly (no spaces)
-  const displayPhone = "+41 07 66 298876"; // ✅ display version
+  const rawPhone = "+41766298876"; // call-friendly
+  const displayPhone = "+41 76 629 8876"; // display-friendly
 
   useEffect(() => {
     const img = new Image();
@@ -45,7 +45,6 @@ const Contact = () => {
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch (e) {
-      // fallback
       alert("Copy not supported. Please copy manually.");
     }
   };
@@ -57,6 +56,7 @@ const Contact = () => {
 
     try {
       const templateParams = {
+        to_email: "contact@kreuzpintli-swagat.ch",
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
@@ -87,13 +87,14 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-yellow-50 via-white to-gray-50 text-gray-800 font-sans">
+    // ✅ pt-20 fixes the hero going behind fixed navbar (h-20)
+    <div className="pt-20 bg-gradient-to-br from-yellow-50 via-white to-gray-50 text-gray-800 font-sans">
       {/* ================= HERO SECTION ================= */}
       <div className="relative h-[260px] sm:h-[320px] md:h-[380px] flex items-center justify-center overflow-hidden">
         {/* fallback bg while loading */}
         <div className="absolute inset-0 bg-gray-200" />
 
-        {/* ✅ hero image */}
+        {/* hero image */}
         <div
           className={`absolute inset-0 bg-center bg-cover bg-no-repeat transition-opacity duration-700 ${
             heroLoaded ? "opacity-100" : "opacity-0"
@@ -157,6 +158,7 @@ const Contact = () => {
               <input
                 type="text"
                 name="name"
+                autoComplete="name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder={t("contact_form_name_placeholder")}
@@ -167,6 +169,7 @@ const Contact = () => {
               <input
                 type="email"
                 name="email"
+                autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder={t("contact_form_email_placeholder")}
@@ -177,6 +180,7 @@ const Contact = () => {
               <textarea
                 rows="6"
                 name="message"
+                autoComplete="off"
                 value={formData.message}
                 onChange={handleChange}
                 placeholder={t("contact_form_message_placeholder")}
@@ -205,7 +209,7 @@ const Contact = () => {
             <div className="space-y-5 text-base sm:text-lg">
               <p>📍 {t("footer_address")}</p>
 
-              {/* ✅ CLICK TO CALL + COPY */}
+              {/* CLICK TO CALL + COPY */}
               <div className="flex items-center gap-3 flex-wrap">
                 <span className="text-lg">📞</span>
 
@@ -226,7 +230,7 @@ const Contact = () => {
                 </button>
               </div>
 
-              {/* ✅ Email clickable */}
+              {/* Email clickable */}
               <p>
                 ✉️{" "}
                 <a

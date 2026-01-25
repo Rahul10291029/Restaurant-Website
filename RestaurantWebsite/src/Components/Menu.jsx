@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import bgImg from "../Images/bgImg.jpg";
 
 /* Triangle Component */
@@ -29,21 +30,81 @@ const Menu = () => {
   }, []);
 
   const menuItems = [
-    { image: "/Menu/Menu1.jpg", titleKey: "menuItem_biryaniRice_title", descriptionKey: "menuItem_biryaniRice_description", tags: ["biryani", "rice", "non_veg"] },
-    { image: "/Menu/Menu2.jpg", titleKey: "menuItem_lamb_title", descriptionKey: "menuItem_lamb_description", tags: ["lamb", "curry", "non_veg"] },
-    { image: "/Menu/Menu3.jpg", titleKey: "menuItem_bread_title", descriptionKey: "menuItem_bread_description", tags: ["bread", "veg"] },
-    { image: "/Menu/Menu4.jpg", titleKey: "menuItem_seafood_title", descriptionKey: "menuItem_seafood_description", tags: ["fish", "prawn", "non_veg"] },
-    { image: "/Menu/Menu5.jpg", titleKey: "menuItem_dessert_title", descriptionKey: "menuItem_dessert_description", tags: ["dessert", "veg"] },
-    { image: "/Menu/Menu6.jpg", titleKey: "menuItem_raita_title", descriptionKey: "menuItem_raita_description", tags: ["raita", "veg"] },
-    { image: "/Menu/Menu7.jpg", titleKey: "menuItem_chicken_title", descriptionKey: "menuItem_chicken_description", tags: ["chicken", "non_veg"] },
-    { image: "/Menu/Menu8.jpg", titleKey: "menuItem_saladStarter_title", descriptionKey: "menuItem_saladStarter_description", tags: ["starter", "veg"] },
-    { image: "/Menu/Menu9.jpg", titleKey: "menuItem_dalBBQ_title", descriptionKey: "menuItem_dalBBQ_description", tags: ["dal", "veg", "non_veg"] },
-    { image: "/Menu/Menu10.jpg", titleKey: "menuItem_platter_title", descriptionKey: "menuItem_platter_description", tags: ["platter", "non_veg"] },
-    { image: "/Menu/Menu11.jpg", titleKey: "menuItem_paneer_title", descriptionKey: "menuItem_paneer_description", tags: ["paneer", "veg"] },
-    { image: "/Menu/Menu12.jpg", titleKey: "menuItem_vegMain_title", descriptionKey: "menuItem_vegMain_description", tags: ["vegetarian", "veg"] },
+    {
+      image: "/Menu/Menu1.jpg",
+      titleKey: "menuItem_biryaniRice_title",
+      descriptionKey: "menuItem_biryaniRice_description",
+      tags: ["biryani", "rice", "non_veg"],
+    },
+    {
+      image: "/Menu/Menu2.jpg",
+      titleKey: "menuItem_lamb_title",
+      descriptionKey: "menuItem_lamb_description",
+      tags: ["lamb", "curry", "non_veg"],
+    },
+    {
+      image: "/Menu/Menu3.jpg",
+      titleKey: "menuItem_bread_title",
+      descriptionKey: "menuItem_bread_description",
+      tags: ["bread", "veg"],
+    },
+    {
+      image: "/Menu/Menu4.jpg",
+      titleKey: "menuItem_seafood_title",
+      descriptionKey: "menuItem_seafood_description",
+      tags: ["fish", "prawn", "non_veg"],
+    },
+    {
+      image: "/Menu/Menu5.jpg",
+      titleKey: "menuItem_dessert_title",
+      descriptionKey: "menuItem_dessert_description",
+      tags: ["dessert", "veg"],
+    },
+    {
+      image: "/Menu/Menu6.jpg",
+      titleKey: "menuItem_raita_title",
+      descriptionKey: "menuItem_raita_description",
+      tags: ["raita", "veg"],
+    },
+    {
+      image: "/Menu/Menu7.jpg",
+      titleKey: "menuItem_chicken_title",
+      descriptionKey: "menuItem_chicken_description",
+      tags: ["chicken", "non_veg"],
+    },
+    {
+      image: "/Menu/Menu8.jpg",
+      titleKey: "menuItem_saladStarter_title",
+      descriptionKey: "menuItem_saladStarter_description",
+      tags: ["starter", "veg"],
+    },
+    {
+      image: "/Menu/Menu9.jpg",
+      titleKey: "menuItem_dalBBQ_title",
+      descriptionKey: "menuItem_dalBBQ_description",
+      tags: ["dal", "veg", "non_veg"],
+    },
+    {
+      image: "/Menu/Menu10.jpg",
+      titleKey: "menuItem_platter_title",
+      descriptionKey: "menuItem_platter_description",
+      tags: ["platter", "non_veg"],
+    },
+    {
+      image: "/Menu/Menu11.jpg",
+      titleKey: "menuItem_paneer_title",
+      descriptionKey: "menuItem_paneer_description",
+      tags: ["paneer", "veg"],
+    },
+    {
+      image: "/Menu/Menu12.jpg",
+      titleKey: "menuItem_vegMain_title",
+      descriptionKey: "menuItem_vegMain_description",
+      tags: ["vegetarian", "veg"],
+    },
   ];
 
-  const filteredMenu = menuItems.filter(item => {
+  const filteredMenu = menuItems.filter((item) => {
     if (activeFilter === "all") return true;
     if (activeFilter === "veg") return item.tags.includes("veg");
     if (activeFilter === "non_veg") return item.tags.includes("non_veg");
@@ -51,7 +112,8 @@ const Menu = () => {
   });
 
   return (
-    <div className="bg-gray-50 overflow-x-hidden">
+    // ✅ pt-20 fixes hero hidden behind fixed navbar (h-20)
+    <div className="pt-20 bg-gray-50 overflow-x-hidden">
       {/* HERO */}
       <div
         className="h-[60vh] bg-cover bg-center flex items-center justify-center relative"
@@ -62,9 +124,8 @@ const Menu = () => {
           <h1 className="text-5xl font-extrabold text-yellow-500 mb-4">
             {t("heroTitle")}
           </h1>
-          <p className="text-xl italic text-white/90">
-            {t("heroSubtitle")}
-          </p>
+          <p className="text-xl italic text-white/90">{t("heroSubtitle")}</p>
+
           <a
             href="/Downlod.pdf"
             download
@@ -77,7 +138,7 @@ const Menu = () => {
 
       {/* FILTERS */}
       <div className="flex justify-center gap-4 my-12 px-4 flex-wrap">
-        {["all", "veg", "non_veg"].map(filter => (
+        {["all", "veg", "non_veg"].map((filter) => (
           <button
             key={filter}
             onClick={() => setActiveFilter(filter)}
@@ -146,9 +207,13 @@ const Menu = () => {
       >
         <Triangle position="top" isVisible={footerVisible} />
 
-        <div className={`max-w-7xl mx-auto px-8 py-20 grid grid-cols-1 md:grid-cols-3 gap-12 transition-all duration-700 ${
-          footerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}>
+        <div
+          className={`max-w-7xl mx-auto px-8 py-20 grid grid-cols-1 md:grid-cols-3 gap-12 transition-all duration-700 ${
+            footerVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
           <div>
             <h3 className="text-3xl font-extrabold text-amber-800 mb-4">
               {t("footer_title")}
@@ -159,10 +224,27 @@ const Menu = () => {
           <div>
             <h4 className="text-xl font-bold mb-4">{t("footer_quick_links")}</h4>
             <ul className="space-y-2">
-              <li><a href="/" className="hover:text-yellow-600">{t("nav_home")}</a></li>
-              <li><a href="/menu" className="hover:text-yellow-600">{t("nav_menu")}</a></li>
-              <li><a href="/about" className="hover:text-yellow-600">{t("nav_about")}</a></li>
-              <li><a href="/contact" className="hover:text-yellow-600">{t("nav_contact")}</a></li>
+              {/* ✅ use Link instead of a href to avoid refresh + 404 */}
+              <li>
+                <Link to="/" className="hover:text-yellow-600">
+                  {t("nav_home")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/menu" className="hover:text-yellow-600">
+                  {t("nav_menu")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-yellow-600">
+                  {t("nav_about")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-yellow-600">
+                  {t("nav_contact")}
+                </Link>
+              </li>
             </ul>
           </div>
 

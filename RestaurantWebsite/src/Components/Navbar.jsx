@@ -150,6 +150,7 @@ const Navbar = () => {
     }
 
     const payload = {
+      to_email: "contact@kreuzpintli-swagat.ch",
       name: formData.name,
       email: formData.email,
       phone: `${formData.countryCode}${formData.phone}`,
