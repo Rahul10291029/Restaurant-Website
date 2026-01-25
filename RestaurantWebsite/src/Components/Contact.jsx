@@ -24,9 +24,16 @@ const Contact = () => {
   const [copied, setCopied] = useState(false);
 
   // ✅ Phone number (keep raw and formatted separately)
-  const rawPhone = "+41766298876"; // call-friendly
+  const rawPhone = "+41766298876"; // call-friendly (no spaces)
   const displayPhone = "+41 76 629 8876"; // display-friendly
 
+  // ✅ init EmailJS once (prevents "user id required" issues)
+  useEffect(() => {
+    const pk = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (pk) emailjs.init(pk);
+  }, []);
+
+  // ✅ preload hero image
   useEffect(() => {
     const img = new Image();
     img.src = HERO_IMG;
@@ -56,22 +63,31 @@ const Contact = () => {
 
     try {
       const templateParams = {
+        // ✅ Optional: only works if your EmailJS template uses {{to_email}}
         to_email: "contact@kreuzpintli-swagat.ch",
+
+        // ✅ these must match your template variables
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
+
+        // ✅ add some fun extras (add these in template if you want)
+        subject: "📩 New message from website",
+        emoji_line: "✨ New Contact Request ✨",
       };
 
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID,
-        templateParams,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        templateParams
+        // ✅ no public key here because we already did emailjs.init()
       );
 
       setSubmitStatus({
         success: true,
-        message: t("contact_form_success"),
+        message:
+          t("contact_form_success") ||
+          "✅ Sent! Thanks for your message — we’ll reply soon 😊",
       });
 
       setFormData({ name: "", email: "", message: "" });
@@ -79,7 +95,9 @@ const Contact = () => {
       console.error("EmailJS Error:", error);
       setSubmitStatus({
         success: false,
-        message: t("contact_form_error"),
+        message:
+          t("contact_form_error") ||
+          "❌ Something went wrong. Please try again 🙏",
       });
     } finally {
       setIsSubmitting(false);
@@ -87,7 +105,7 @@ const Contact = () => {
   };
 
   return (
-    // ✅ pt-20 fixes the hero going behind fixed navbar (h-20)
+    // ✅ pt-20 fixes hero going behind fixed navbar (h-20)
     <div className="pt-20 bg-gradient-to-br from-yellow-50 via-white to-gray-50 text-gray-800 font-sans">
       {/* ================= HERO SECTION ================= */}
       <div className="relative h-[260px] sm:h-[320px] md:h-[380px] flex items-center justify-center overflow-hidden">
@@ -110,7 +128,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {t("contact_hero_title")}
+            {t("contact_hero_title") || "Contact Us 📞"}
           </motion.h1>
 
           <motion.h2
@@ -119,7 +137,7 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
           >
-            {t("contact_hero_subtitle")}
+            {t("contact_hero_subtitle") || "We’d love to hear from you 😊"}
           </motion.h2>
 
           <motion.p
@@ -128,7 +146,8 @@ const Contact = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            {t("contact_hero_tagline")}
+            {t("contact_hero_tagline") ||
+              "Send us a message — we’ll reply as soon as possible ✨"}
           </motion.p>
         </div>
       </div>
@@ -139,7 +158,7 @@ const Contact = () => {
           {/* CONTACT FORM */}
           <div className="bg-white p-7 sm:p-10 rounded-3xl shadow-xl border border-yellow-100">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 border-b pb-4">
-              {t("contact_form_title")}
+              {t("contact_form_title") || "Send Us a Message 💬"}
             </h2>
 
             {submitStatus && (
@@ -161,7 +180,7 @@ const Contact = () => {
                 autoComplete="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder={t("contact_form_name_placeholder")}
+                placeholder={t("contact_form_name_placeholder") || "Your Name"}
                 className="w-full px-5 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 required
               />
@@ -172,7 +191,9 @@ const Contact = () => {
                 autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder={t("contact_form_email_placeholder")}
+                placeholder={
+                  t("contact_form_email_placeholder") || "Your Email"
+                }
                 className="w-full px-5 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 required
               />
@@ -183,7 +204,9 @@ const Contact = () => {
                 autoComplete="off"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder={t("contact_form_message_placeholder")}
+                placeholder={
+                  t("contact_form_message_placeholder") || "Your Message..."
+                }
                 className="w-full px-5 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 required
               />
@@ -194,8 +217,8 @@ const Contact = () => {
                 className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-8 py-4 rounded-xl disabled:opacity-70 transition"
               >
                 {isSubmitting
-                  ? t("contact_form_submitting")
-                  : t("contact_form_button")}
+                  ? t("contact_form_submitting") || "Sending... ✨"
+                  : t("contact_form_button") || "Send Message 🚀"}
               </button>
             </form>
           </div>
@@ -203,7 +226,7 @@ const Contact = () => {
           {/* CONTACT INFO + MAP */}
           <div className="bg-white p-7 sm:p-10 rounded-3xl shadow-xl border border-yellow-100">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 border-b pb-4">
-              {t("contact_reach_us_title")}
+              {t("contact_reach_us_title") || "Reach Us 📍"}
             </h2>
 
             <div className="space-y-5 text-base sm:text-lg">

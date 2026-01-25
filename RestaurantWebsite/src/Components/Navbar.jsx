@@ -11,12 +11,11 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import ReservationModal from "./ReservationModal";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 /* ===== Styles ===== */
 const navItem =
   "group flex items-center gap-2 text-gray-700 hover:text-amber-800 font-medium transition";
-
 const iconClass = "text-amber-500 group-hover:text-amber-700 transition";
 
 /* ===== COUNTRY PHONE VALIDATION ===== */
@@ -68,6 +67,12 @@ const Navbar = () => {
   const [errors, setErrors] = useState({});
   const [reservationStatus, setReservationStatus] = useState(null);
 
+  // ✅ init emailjs once (important!)
+  useEffect(() => {
+    const pk = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (pk) emailjs.init(pk);
+  }, []);
+
   const initialFormRef = useRef({
     name: "",
     email: "",
@@ -81,12 +86,10 @@ const Navbar = () => {
 
   const [formData, setFormData] = useState(initialFormRef.current);
 
-  // ✅ Close mobile menu when route changes
   useEffect(() => {
     setMobileOpen(false);
   }, [location.pathname]);
 
-  // ✅ Current page label for mobile (next to hamburger)
   const routeLabelMap = {
     "/": t("nav_home"),
     "/menu": t("nav_menu"),
@@ -115,7 +118,7 @@ const Navbar = () => {
   const closeReservation = () => {
     setShowReservationModal(false);
     setReservationStatus(null);
-    resetForm(); // ✅ refresh when closing
+    resetForm();
   };
 
   const handleInputChange = (e) => {
@@ -124,7 +127,6 @@ const Navbar = () => {
     setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
-  // ✅ EMAILJS ONLY SUBMIT (backend removed)
   const handleReservationSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -164,8 +166,8 @@ const Navbar = () => {
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        payload,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        payload
+        // ✅ public key not needed here because we used emailjs.init()
       );
 
       setReservationStatus({
@@ -194,11 +196,8 @@ const Navbar = () => {
   return (
     <>
       <nav className="fixed top-0 w-full z-50 bg-white shadow-md">
-        {/* ✅ changed max width + padding for better spacing */}
         <div className="max-w-[1400px] mx-auto px-10 h-20 flex justify-between items-center">
-          {/* ✅ MOBILE TOP BAR */}
           <div className="flex items-center w-full md:hidden justify-between">
-            {/* LEFT: Hamburger + Page Name */}
             <div className="flex items-center gap-3 min-w-0">
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
@@ -213,7 +212,6 @@ const Navbar = () => {
               </span>
             </div>
 
-            {/* RIGHT: Language dropdown */}
             <div className="flex items-center">
               <select
                 value={i18n.language}
@@ -227,22 +225,13 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* ✅ DESKTOP: LOGO + NAME (more LEFT) */}
-          <Link
-            to="/"
-            className="hidden md:flex items-center gap-2 -ml-6"
-          >
-            <img
-              src="/Swagatlogo.png"
-              alt="Swagat Logo"
-              className="h-12 w-auto"
-            />
+          <Link to="/" className="hidden md:flex items-center gap-2 -ml-6">
+            <img src="/Swagatlogo.png" alt="Swagat Logo" className="h-12 w-auto" />
             <span className="font-extrabold text-amber-800 text-base sm:text-lg md:text-2xl leading-tight whitespace-nowrap">
               Kreuz Pintli Swagat
             </span>
           </Link>
 
-          {/* ✅ DESKTOP MENU (more RIGHT) */}
           <div className="hidden md:flex items-center gap-10 ml-10">
             <Link to="/" className={navItem}>
               <Home size={18} className={iconClass} /> {t("nav_home")}
@@ -279,28 +268,21 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* ✅ MOBILE MENU */}
       {mobileOpen && (
         <div className="fixed top-20 left-0 w-full bg-white shadow-md z-40 md:hidden">
           <div className="flex flex-col gap-4 px-6 py-6">
             <Link to="/" className="flex items-center gap-3">
               <Home size={18} className="text-amber-500" /> {t("nav_home")}
             </Link>
-
             <Link to="/menu" className="flex items-center gap-3">
-              <ShoppingCart size={18} className="text-amber-500" />{" "}
-              {t("nav_menu")}
+              <ShoppingCart size={18} className="text-amber-500" /> {t("nav_menu")}
             </Link>
-
             <Link to="/about" className="flex items-center gap-3">
               <Info size={18} className="text-amber-500" /> {t("nav_about")}
             </Link>
-
             <Link to="/gallery" className="flex items-center gap-3">
-              <GalleryIcon size={18} className="text-amber-500" />{" "}
-              {t("nav_gallery")}
+              <GalleryIcon size={18} className="text-amber-500" /> {t("nav_gallery")}
             </Link>
-
             <Link to="/contact" className="flex items-center gap-3">
               <Phone size={18} className="text-amber-500" /> {t("nav_contact")}
             </Link>
@@ -318,7 +300,6 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* ✅ MODAL */}
       <ReservationModal
         show={showReservationModal}
         onClose={closeReservation}
