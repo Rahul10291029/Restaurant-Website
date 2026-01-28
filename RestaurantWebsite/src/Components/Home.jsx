@@ -250,8 +250,25 @@ const Home = () => {
               </h4>
               <ul className="space-y-3">
                 <li>📍 {t("footer_address")}</li>
-                <li>📞 {t("footer_phone")}</li>
-                <li>✉️ {t("footer_email")}</li>
+                <li>
+  📞{" "}
+  <a
+    href={`tel:${t("footer_phone")}`}
+    className="font-semibold text-amber-700 hover:text-amber-900 hover:underline"
+  >
+    {t("footer_phone")}
+  </a>
+</li>
+
+<li>
+  ✉️{" "}
+  <a
+    href={`mailto:${t("footer_email")}`}
+    className="font-semibold text-amber-700 hover:text-amber-900 hover:underline"
+  >
+    {t("footer_email")}
+  </a>
+</li>
                 <li>🕒 {t("footer_hours")}</li>
               </ul>
             </div>

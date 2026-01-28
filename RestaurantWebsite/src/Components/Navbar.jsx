@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Cookies from "js-cookie";
 import { Link, useLocation } from "react-router-dom";
 import {
   Menu,
@@ -59,7 +60,10 @@ const validateForm = (data, t) => {
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
-
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    Cookies.set("lang", lang, { expires: 365 });
+  };
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showReservationModal, setShowReservationModal] = useState(false);
 
@@ -215,18 +219,21 @@ const Navbar = () => {
             <div className="flex items-center">
               <select
                 value={i18n.language}
-                onChange={(e) => i18n.changeLanguage(e.target.value)}
-                className="border rounded-md px-2 py-1 text-sm bg-white"
-                aria-label="Select language"
+                onChange={(e) => changeLanguage(e.target.value)}
+                className="border rounded-md px-3 py-2 text-sm"
               >
-                <option value="de">DE</option>
-                <option value="en">EN</option>
+                <option value="de">Deutsch</option>
+                <option value="en">English</option>
               </select>
             </div>
           </div>
 
           <Link to="/" className="hidden md:flex items-center gap-2 -ml-6">
-            <img src="/Swagatlogo.png" alt="Swagat Logo" className="h-12 w-auto" />
+            <img
+              src="/Swagatlogo.png"
+              alt="Swagat Logo"
+              className="h-12 w-auto"
+            />
             <span className="font-extrabold text-amber-800 text-base sm:text-lg md:text-2xl leading-tight whitespace-nowrap">
               Kreuz Pintli Swagat
             </span>
@@ -251,7 +258,7 @@ const Navbar = () => {
 
             <select
               value={i18n.language}
-              onChange={(e) => i18n.changeLanguage(e.target.value)}
+              onChange={(e) =>changeLanguage(e.target.value)}
               className="border rounded-md px-3 py-2 text-sm"
             >
               <option value="de">Deutsch</option>
@@ -275,13 +282,15 @@ const Navbar = () => {
               <Home size={18} className="text-amber-500" /> {t("nav_home")}
             </Link>
             <Link to="/menu" className="flex items-center gap-3">
-              <ShoppingCart size={18} className="text-amber-500" /> {t("nav_menu")}
+              <ShoppingCart size={18} className="text-amber-500" />{" "}
+              {t("nav_menu")}
             </Link>
             <Link to="/about" className="flex items-center gap-3">
               <Info size={18} className="text-amber-500" /> {t("nav_about")}
             </Link>
             <Link to="/gallery" className="flex items-center gap-3">
-              <GalleryIcon size={18} className="text-amber-500" /> {t("nav_gallery")}
+              <GalleryIcon size={18} className="text-amber-500" />{" "}
+              {t("nav_gallery")}
             </Link>
             <Link to="/contact" className="flex items-center gap-3">
               <Phone size={18} className="text-amber-500" /> {t("nav_contact")}
