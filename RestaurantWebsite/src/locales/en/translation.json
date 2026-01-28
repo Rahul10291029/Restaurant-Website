@@ -28,7 +28,9 @@
   "home_special_description": "A delightful blend of fresh ingredients and aromatic spices, perfect for a memorable meal.",
   "home_view_specials": "View Full Menu",
 
-  "heroTitle": "Kreuz Pintli Swagat An Indian Restaurant",
+"heroTitleMain": "Kreuz Pintli Swagat",
+"heroTitleSub": "An Indian Restaurant"
+,
   "heroSubtitle": "Experience Authentic Indian Cuisine — A Culinary Journey",
   "heroText": "Delight your senses with our exquisite selection of traditional Indian dishes.",
   "download_menu_pdf": "Download Menu ",
@@ -154,13 +156,19 @@
   "contact_reach_us_title": "Reach Us",
   "contact_hours": "Open Daily: 11:00 AM – 10:00 PM",
 
-  "footer_title": " Kreuz Pintli Swagat",
-  "footer_description": "Experience the heart of Indian cuisine with warm hospitality and timeless flavors since 1998.",
-  "footer_quick_links": "Quick Links",
-  "footer_visit_us": "Visit Us",
-  "footer_address": "Beitenwil 59, 3113 Rubigen, Switzerland",
-  "footer_phone": "+41 07 66 298876",
-  "footer_email": "contact@kreuzpintli-swagat.ch",
-  "footer_hours": "Daily: 11:00 AM - 10:00 PM",
-  "footer_rights": "All rights reserved."
+  
+    "footer_title": "Kreuz Pintli Swagat",
+    "footer_description": "Experience the heart of Indian cuisine with warm hospitality and timeless flavors since 1998.",
+    "footer_quick_links": "Quick Links",
+    "footer_visit_us": "Visit Us",
+    "footer_address": "Beitenwil 59, 3113 Rubigen, Switzerland",
+  
+    "footer_phone": "+41 07 66 298876",
+    "footer_phone_raw": "+410766298876",
+  
+    "footer_email": "contact@kreuzpintli-swagat.ch",
+    "footer_hours": "Daily: 11:00 AM - 10:00 PM",
+    "footer_rights": "All rights reserved."
+  
+  
 }

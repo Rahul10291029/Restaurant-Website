@@ -28,7 +28,9 @@
   "home_special_description": "Eine köstliche Mischung aus frischen Zutaten und aromatischen Gewürzen, perfekt für ein unvergessliches Essen.",
   "home_view_specials": "Gesamte Speisekarte anzeigen",
 
-  "heroTitle": "Kreuz Pintli Swagat Ein Indisches Restaurant",
+"heroTitleMain": "Kreuz Pintli Swagat",
+"heroTitleSub": "Ein Indisches Restaurant",
+
   "heroSubtitle": "Erleben Sie authentische indische Küche — eine kulinarische Reise",
   "heroText": "Verwöhnen Sie Ihre Sinne mit unserer exquisiten Auswahl an traditionellen indischen Gerichten.",
   "download_menu_pdf": "Menü herunterladen",

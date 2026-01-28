@@ -162,72 +162,105 @@ const About = () => {
 
       {/* ================= FOOTER ================= */}
       <footer
-        ref={footerRef}
-        className="mt-20 bg-gradient-to-t from-yellow-50 to-white shadow-inner text-gray-800 rounded-t-3xl"
-      >
-        <Triangle position="top" isVisible={footerVisible} />
+  ref={footerRef}
+  className="mt-20 bg-gradient-to-t from-yellow-50 to-white shadow-inner rounded-t-3xl overflow-hidden"
+>
+  <Triangle position="top" isVisible={footerVisible} />
 
-        <div
-          className={`max-w-7xl mx-auto px-8 py-20 grid grid-cols-1 md:grid-cols-3 gap-12 transition-all duration-700 ${animateFadeUp(
-            footerVisible
-          )}`}
-        >
-          <div>
-            <h3 className="text-3xl font-extrabold text-amber-800 mb-4">
-              {t("footer_title")}
-            </h3>
-            <p className="text-gray-600">{t("footer_description")}</p>
-          </div>
+  <div
+    className={`max-w-7xl mx-auto px-8 py-20 grid grid-cols-1 md:grid-cols-3 gap-12 transition-all duration-700 ${
+      footerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+    }`}
+  >
+    {/* LEFT */}
+    <div>
+      <h3 className="text-3xl font-extrabold text-amber-800 mb-4">
+        {t("footer_title")}
+      </h3>
+      <p className="text-gray-600">
+        {t("footer_description")}
+      </p>
+    </div>
 
-          {/* ✅ FIXED: React Router Links */}
-          <div>
-            <h4 className="text-xl font-bold mb-4">{t("footer_quick_links")}</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link className="hover:text-yellow-600" to="/">
-                  {t("nav_home")}
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-yellow-600" to="/menu">
-                  {t("nav_menu")}
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-yellow-600" to="/about">
-                  {t("nav_about")}
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-yellow-600" to="/gallery">
-                  {t("nav_gallery")}
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-yellow-600" to="/contact">
-                  {t("nav_contact")}
-                </Link>
-              </li>
-            </ul>
-          </div>
+    {/* CENTER */}
+    <div>
+      <h4 className="text-xl font-bold mb-4">
+        {t("footer_quick_links")}
+      </h4>
+      <ul className="space-y-2">
+        <li>
+          <Link to="/" className="hover:text-yellow-600">
+            {t("nav_home")}
+          </Link>
+        </li>
+        <li>
+          <Link to="/menu" className="hover:text-yellow-600">
+            {t("nav_menu")}
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" className="hover:text-yellow-600">
+            {t("nav_about")}
+          </Link>
+        </li>
+        <li>
+          <Link to="/contact" className="hover:text-yellow-600">
+            {t("nav_contact")}
+          </Link>
+        </li>
+      </ul>
+    </div>
 
-          <div>
-            <h4 className="text-xl font-bold mb-4">{t("footer_visit_us")}</h4>
-            <ul className="space-y-2">
-              <li>📍 {t("footer_address")}</li>
-              <li>📞 {t("footer_phone")}</li>
-              <li>✉️ {t("footer_email")}</li>
-              <li>🕒 {t("footer_hours")}</li>
-            </ul>
-          </div>
-        </div>
+    {/* RIGHT */}
+    <div>
+      <h4 className="text-xl font-bold mb-4">
+        {t("footer_visit_us")}
+      </h4>
 
-        <div className="text-center py-5 text-sm border-t">
-          © {new Date().getFullYear()} {t("footer_title")} · {t("footer_rights")}
-        </div>
+      <ul className="space-y-3">
+        {/* Address */}
+        <li className="flex gap-2">
+          📍 <span>{t("footer_address")}</span>
+        </li>
 
-        <Triangle position="bottom" isVisible={footerVisible} />
-      </footer>
+        {/* Phone – clickable dialer */}
+        <li className="flex items-center gap-2">
+          📞
+          <a
+            href={`tel:${t("footer_phone_raw")}`}
+            className="font-semibold text-amber-700 text-lg hover:underline"
+          >
+            {t("footer_phone")}
+          </a>
+        </li>
+
+        {/* Email – clickable mail app */}
+        <li className="flex items-center gap-2">
+          ✉️
+          <a
+            href={`mailto:${t("footer_email")}`}
+            className="font-semibold text-amber-700 hover:underline"
+          >
+            {t("footer_email")}
+          </a>
+        </li>
+
+        {/* Hours */}
+        <li className="flex gap-2">
+          🕒 <span>{t("footer_hours")}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  {/* COPYRIGHT */}
+  <div className="text-center py-5 text-sm border-t">
+    © {new Date().getFullYear()} {t("footer_title")} · {t("footer_rights")}
+  </div>
+
+  <Triangle position="bottom" isVisible={footerVisible} />
+</footer>
+
     </div>
   );
 };
