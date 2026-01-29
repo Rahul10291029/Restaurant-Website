@@ -149,7 +149,7 @@ const Navbar = () => {
       setErrors(validationErrors);
       setReservationStatus({
         success: false,
-        message: t("reservation_fix_errors") || "Please fix the errors .",
+        message: t("reservation_fix_errors") || "Please fix the errors above.",
       });
       setLoading(false);
       return;

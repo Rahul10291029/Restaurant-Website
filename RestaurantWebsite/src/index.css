@@ -1,5 +1,7 @@
 @import "tailwindcss";
 /* ===== GLOBAL RESET ===== */
-
+html, body {
+    overflow-x: hidden;
+  }
 
   

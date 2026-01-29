@@ -84,9 +84,8 @@ const Home = () => {
 
   return (
     // ✅ Keep page clean (no full background image). Hero will have bg image.
-    <div className="bg-white text-gray-800 font-sans">
-      {/* ✅ Fix white line / overlap due to fixed navbar */}
-      <div className="pt-20">
+    <div className="bg-white text-gray-800 font-sans overflow-x-hidden">
+  <div className="pt-20">
         {/* ================= HERO (Contact style, ONLY hero has bg image) ================= */}
         <section className="relative">
           <div className="relative h-[420px] md:h-[520px] flex items-center justify-center overflow-hidden">
