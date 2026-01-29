@@ -218,12 +218,7 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center">
-            <nav className="fixed top-0 w-full z-50 bg-white shadow-md">
-  <div className="flex justify-between items-center px-4 py-3">
-    <MenuIcon />
-    <LanguageSwitcher />
-  </div>
-</nav>
+            <LanguageSwitcher />
             </div>
           </div>
 

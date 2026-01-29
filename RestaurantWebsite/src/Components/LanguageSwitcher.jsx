@@ -1,55 +1,63 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-export default function LanguageSwitcher() {
+const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const [open, setOpen] = useState(false);
-  const ref = useRef(null);
+  const wrapperRef = useRef(null);
 
-  const changeLang = (lang) => {
+  // ✅ FIX: normalize language (de-DE → de)
+  const currentLang = i18n.language?.split("-")[0];
+
+  const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     setOpen(false);
   };
 
-  // Close on outside click
   useEffect(() => {
-    const handler = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) {
+    const handleClickOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
         setOpen(false);
       }
     };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <div ref={ref} className="relative">
-      {/* Button */}
+    <div ref={wrapperRef} className="relative">
       <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-3 py-2 border rounded-md bg-white shadow-sm text-sm"
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-2 border rounded-md px-3 py-1 text-sm bg-white hover:bg-gray-50"
       >
-        {i18n.language.toUpperCase()}
-        <span>▾</span>
+        {currentLang.toUpperCase()}
+        <span className="text-xs">▾</span>
       </button>
 
-      {/* Dropdown */}
       {open && (
-        <div className="absolute right-0 mt-2 w-32 bg-white border rounded-md shadow-lg z-50">
-          <button
-            onClick={() => changeLang("en")}
-            className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-          >
-            English
-          </button>
-          <button
-            onClick={() => changeLang("de")}
-            className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+        <div className="absolute right-0 mt-2 w-28 rounded-md border bg-white shadow-lg z-50">
+             <button
+            onClick={() => changeLanguage("de")}
+            className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${
+              currentLang === "de" ? "bg-gray-100 font-semibold" : ""
+            }`}
           >
             Deutsch
           </button>
+          <button
+            onClick={() => changeLanguage("en")}
+            className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${
+              currentLang === "en" ? "bg-gray-100 font-semibold" : ""
+            }`}
+          >
+            English
+          </button>
+       
         </div>
       )}
     </div>
   );
-}
+};
+
+export default LanguageSwitcher;
