@@ -172,4 +172,17 @@
   "footer_email": "contact@kreuzpintli-swagat.ch",
   "footer_hours": "Täglich: 11:00 - 22:00 Uhr",
   "footer_rights": "Alle Rechte vorbehalten."
+,
+  "reservation_fix_errors": "Bitte korrigieren Sie die unten markierten Felder.",
+
+  "name_required": "Bitte geben Sie Ihren Namen ein.",
+  "email_required": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
+  "invalid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+
+  "phone_required": "Bitte geben Sie Ihre Telefonnummer ein.",
+  "invalid_phone": "Bitte geben Sie eine gültige Telefonnummer ein.",
+
+  "date_required": "Bitte wählen Sie ein Datum aus.",
+  "time_required": "Bitte wählen Sie eine Uhrzeit aus.",
+  "guests_required": "Bitte wählen Sie die Anzahl der Gäste aus."
 }
