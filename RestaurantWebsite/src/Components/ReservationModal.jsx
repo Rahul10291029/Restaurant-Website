@@ -15,7 +15,15 @@ const ReservationModal = ({
   const { t } = useTranslation();
   const scrollRef = useRef(null);
 
-  // ✅ Lock background scroll
+  /* ================= SAFE TRANSLATION ================= */
+  const safeT = (key, fallback) => {
+    const val = t(key);
+    return val === key ? fallback : val;
+  };
+
+  /* ================= EFFECTS ================= */
+
+  // Lock background scroll
   useEffect(() => {
     if (!show) return;
     const prev = document.body.style.overflow;
@@ -25,7 +33,7 @@ const ReservationModal = ({
     };
   }, [show]);
 
-  // ✅ Close on ESC
+  // Close on ESC
   useEffect(() => {
     if (!show) return;
     const handler = (e) => {
@@ -35,61 +43,54 @@ const ReservationModal = ({
     return () => window.removeEventListener("keydown", handler);
   }, [show, onClose]);
 
-  // ✅ Auto scroll to top when status message appears/changes
+  // Scroll to top on status change
   useEffect(() => {
-    if (!show) return;
     if (status?.message && scrollRef.current) {
       scrollRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [status, show]);
+  }, [status]);
 
   if (!show) return null;
 
-  // ✅ Safe translation: if key is missing, return fallback instead of showing the key
-  const safeT = (key, fallback = "") => {
-    const val = t(key);
-    return val === key ? fallback : val;
-  };
-
+  /* ================= PLACEHOLDERS (CLEAN) ================= */
   const placeholders = {
-    name: safeT("your_name", "Your name"),
-    email: safeT("your_email", "Your email"),
+    name: safeT("your_name", "Your full name"),
+    email: safeT("your_email", "your@email.com"),
     phone: safeT("phone_number", "Phone number"),
-    special: safeT("special_requests_optional", "Special requests (optional)"),
+    special: safeT(
+      "special_requests_optional",
+      "Any special requests (optional)"
+    ),
   };
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center px-4">
-      {/* backdrop */}
+      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
 
-      {/* modal */}
+      {/* Modal */}
       <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
-        {/* header */}
-        <div className="bg-yellow-500 text-white px-6 py-4 flex items-start justify-between">
-          <div>
-            <h2 className="text-2xl font-extrabold">
-              {safeT("book_table", "Book a Table")}
-            </h2>
-            {/* ✅ subtitle removed if missing */}
-          </div>
-
+        {/* Header */}
+        <div className="bg-yellow-500 text-white px-6 py-4 flex justify-between items-center">
+          <h2 className="text-2xl font-extrabold">
+            {safeT("book_table", "Book a Table")}
+          </h2>
           <button
             onClick={onClose}
             className="p-2 rounded-full hover:bg-white/10"
-            aria-label="Close reservation modal"
+            aria-label="Close"
           >
             <X size={20} />
           </button>
         </div>
 
-        {/* body (scrollable) */}
+        {/* Body */}
         <div
           ref={scrollRef}
           className="max-h-[72vh] overflow-y-auto px-6 py-5"
         >
-          {/* status */}
-          {status?.message ? (
+          {/* Status Message */}
+          {status?.message && (
             <div
               className={`mb-4 p-3 rounded-xl text-sm ${
                 status.success
@@ -99,12 +100,12 @@ const ReservationModal = ({
             >
               {status.message}
             </div>
-          ) : null}
+          )}
 
           <form onSubmit={onSubmit} className="space-y-4">
             {/* Name */}
             <div>
-              <label className="block text-sm font-semibold text-gray-800 mb-1">
+              <label className="block text-sm font-semibold mb-1">
                 {safeT("name", "Name")}
               </label>
               <input
@@ -113,18 +114,18 @@ const ReservationModal = ({
                 value={formData.name || ""}
                 onChange={onChange}
                 placeholder={placeholders.name}
-                className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                className={`w-full px-4 py-3 border rounded-xl ${
                   errors.name ? "border-red-500" : "border-gray-200"
                 }`}
               />
-              {errors.name ? (
+              {errors.name && (
                 <p className="text-red-600 text-xs mt-1">{errors.name}</p>
-              ) : null}
+              )}
             </div>
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-semibold text-gray-800 mb-1">
+              <label className="block text-sm font-semibold mb-1">
                 {safeT("email", "Email")}
               </label>
               <input
@@ -133,18 +134,18 @@ const ReservationModal = ({
                 value={formData.email || ""}
                 onChange={onChange}
                 placeholder={placeholders.email}
-                className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                className={`w-full px-4 py-3 border rounded-xl ${
                   errors.email ? "border-red-500" : "border-gray-200"
                 }`}
               />
-              {errors.email ? (
+              {errors.email && (
                 <p className="text-red-600 text-xs mt-1">{errors.email}</p>
-              ) : null}
+              )}
             </div>
 
             {/* Phone */}
             <div>
-              <label className="block text-sm font-semibold text-gray-800 mb-1">
+              <label className="block text-sm font-semibold mb-1">
                 {safeT("phone", "Phone Number")}
               </label>
               <div className="flex gap-3">
@@ -152,7 +153,7 @@ const ReservationModal = ({
                   name="countryCode"
                   value={formData.countryCode || "+41"}
                   onChange={onChange}
-                  className="w-28 px-3 py-3 border border-gray-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  className="w-28 px-3 py-3 border rounded-xl bg-white"
                 >
                   <option value="+41">+41</option>
                   <option value="+91">+91</option>
@@ -166,20 +167,20 @@ const ReservationModal = ({
                   value={formData.phone || ""}
                   onChange={onChange}
                   placeholder={placeholders.phone}
-                  className={`flex-1 px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                  className={`flex-1 px-4 py-3 border rounded-xl ${
                     errors.phone ? "border-red-500" : "border-gray-200"
                   }`}
                 />
               </div>
-              {errors.phone ? (
+              {errors.phone && (
                 <p className="text-red-600 text-xs mt-1">{errors.phone}</p>
-              ) : null}
+              )}
             </div>
 
-            {/* Date + Time */}
+            {/* Date & Time */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-sm font-semibold text-gray-800 mb-1">
+                <label className="block text-sm font-semibold mb-1">
                   {safeT("date", "Date")}
                 </label>
                 <input
@@ -187,17 +188,17 @@ const ReservationModal = ({
                   name="date"
                   value={formData.date || ""}
                   onChange={onChange}
-                  className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                  className={`w-full px-4 py-3 border rounded-xl ${
                     errors.date ? "border-red-500" : "border-gray-200"
                   }`}
                 />
-                {errors.date ? (
+                {errors.date && (
                   <p className="text-red-600 text-xs mt-1">{errors.date}</p>
-                ) : null}
+                )}
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-gray-800 mb-1">
+                <label className="block text-sm font-semibold mb-1">
                   {safeT("time", "Time")}
                 </label>
                 <input
@@ -205,26 +206,26 @@ const ReservationModal = ({
                   name="time"
                   value={formData.time || ""}
                   onChange={onChange}
-                  className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                  className={`w-full px-4 py-3 border rounded-xl ${
                     errors.time ? "border-red-500" : "border-gray-200"
                   }`}
                 />
-                {errors.time ? (
+                {errors.time && (
                   <p className="text-red-600 text-xs mt-1">{errors.time}</p>
-                ) : null}
+                )}
               </div>
             </div>
 
             {/* Guests */}
             <div>
-              <label className="block text-sm font-semibold text-gray-800 mb-1">
+              <label className="block text-sm font-semibold mb-1">
                 {safeT("guests", "Guests")}
               </label>
               <select
                 name="guests"
                 value={formData.guests || "1"}
                 onChange={onChange}
-                className={`w-full px-4 py-3 border rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-yellow-400 ${
+                className={`w-full px-4 py-3 border rounded-xl bg-white ${
                   errors.guests ? "border-red-500" : "border-gray-200"
                 }`}
               >
@@ -234,14 +235,14 @@ const ReservationModal = ({
                   </option>
                 ))}
               </select>
-              {errors.guests ? (
+              {errors.guests && (
                 <p className="text-red-600 text-xs mt-1">{errors.guests}</p>
-              ) : null}
+              )}
             </div>
 
             {/* Special Requests */}
             <div>
-              <label className="block text-sm font-semibold text-gray-800 mb-1">
+              <label className="block text-sm font-semibold mb-1">
                 {safeT("special_requests", "Special Requests")}
               </label>
               <input
@@ -250,7 +251,7 @@ const ReservationModal = ({
                 value={formData.specialRequests || ""}
                 onChange={onChange}
                 placeholder={placeholders.special}
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="w-full px-4 py-3 border rounded-xl border-gray-200"
               />
             </div>
 

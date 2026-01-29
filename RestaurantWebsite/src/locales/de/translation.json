@@ -107,14 +107,31 @@
 
   "about_hero_alt": "Restaurant-Interieur",
   
-    "about_hero_title": "Willkommen bei Kreuz Pintli Swagat",
+    "about_hero_title": "Kreuz Pintli Swagat",
     "about_hero_subtitle": "Ein indisches Restaurant",
     "about_hero_tagline": "Eine Reise des Geschmacks, der Tradition und des Miteinanders"
   ,  
-  "about_story_title": "Unsere Geschichte",
-  "about_story_text": "Das Swagat Indisches Restaurant entstand aus einer Leidenschaft für authentische indische Aromen und dem Engagement, unvergessliche kulinarische Erlebnisse zu schaffen. Von unseren bescheidenen Anfängen bis hin zu einer beliebten kulinarischen Destination haben wir immer daran geglaubt, Speisen mit Herz, Geschichte und den besten Zutaten zu servieren.",
-   
-
+  
+    "about_story_title": "Unsere Geschichte",
+    "about_story_text": "Das Swagat Indian Restaurant entstand aus der Leidenschaft für authentische indische Aromen und dem Wunsch, unvergessliche kulinarische Erlebnisse zu schaffen. Von unseren bescheidenen Anfängen bis hin zu einem geschätzten kulinarischen Treffpunkt haben wir stets daran geglaubt, Speisen mit Herz, Tradition und den besten Zutaten zu servieren.",
+  
+    "about_why_choose_us_title": "Warum Sie uns wählen sollten",
+    "about_why_choose_us_subtitle": "Wir verbinden Tradition und Innovation in jedem Gericht, das wir servieren",
+  
+    "about_value_authentic_title": "Authentischer Geschmack",
+    "about_value_authentic_desc": "Wir verwenden traditionelle Rezepte und frische Zutaten, um Ihnen echte indische Aromen zu bieten.",
+  
+    "about_value_ambience_title": "Gemütliches Ambiente",
+    "about_value_ambience_desc": "Genießen Sie herzliche Gastfreundschaft und eine ruhige Atmosphäre – ideal für jeden Anlass.",
+  
+    "about_value_service_title": "Hervorragender Service",
+    "about_value_service_desc": "Unser Team setzt alles daran, Ihren Besuch angenehm und unvergesslich zu gestalten.",
+  
+    "about_atmosphere_title": "Unsere Atmosphäre",
+    "about_atmosphere_img1_alt": "Restaurant-Essbereich",
+    "about_atmosphere_img2_alt": "Gemütlicher Sitzbereich im Restaurant",
+    "about_atmosphere_text": "Treten Sie ein ins Swagat Indian Restaurant und erleben Sie ein Ambiente, das klassische Eleganz mit gemütlichem Komfort verbindet. Ob ein entspanntes Essen oder eine besondere Feier – unser einladender Raum macht jeden Moment unvergesslich."
+  ,  
   "gallery_title": "Unsere Galerie",
 
   "gallery_outdoor_title": "Außenbereich Restaurant",
@@ -130,7 +147,7 @@
 
 
   
-    "contact_hero_title": "Kontaktieren Sie Kreuz Pintli Swagat",
+    "contact_hero_title": "Kreuz Pintli Swagat",
     "contact_hero_subtitle": "Ein indisches Restaurant",
     "contact_hero_tagline": "Wir freuen uns, von Ihnen zu hören"
   ,
