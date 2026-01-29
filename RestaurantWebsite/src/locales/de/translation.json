@@ -6,10 +6,7 @@
   "nav_gallery": "Galerie",
   "book_table": "Tisch reservieren",
   "full_name": "Vollständiger Name",
-  "email": "E-Mail",
-  "phone": "Telefonnummer",
-  "guests": "Gäste",
-  "special_requests": "Sonderwünsche",
+
   "confirm": "Reservierung bestätigen",
   "thank_you": "Vielen Dank",
   "table_booked": "Ihr Tisch wurde gebucht für den",
@@ -172,17 +169,31 @@
   "footer_email": "contact@kreuzpintli-swagat.ch",
   "footer_hours": "Täglich: 11:00 - 22:00 Uhr",
   "footer_rights": "Alle Rechte vorbehalten."
+
 ,
-  "reservation_fix_errors": "Bitte korrigieren Sie die unten markierten Felder.",
+  "reservation_title": "Tisch reservieren",
+  "name": "Name",
+  "email": "E-Mail",
+  "phone": "Telefonnummer",
+  "date": "Datum",
+  "time": "Uhrzeit",
+  "guests": "Gäste",
+  "special_requests": "Sonderwünsche",
 
-  "name_required": "Bitte geben Sie Ihren Namen ein.",
-  "email_required": "Bitte geben Sie Ihre E-Mail-Adresse ein.",
-  "invalid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+  "placeholder_name": "Ihr Name",
+  "placeholder_email": "Ihre E-Mail-Adresse",
+  "placeholder_phone": "Telefonnummer",
+  "placeholder_special_requests": "Besondere Wünsche (optional)",
 
-  "phone_required": "Bitte geben Sie Ihre Telefonnummer ein.",
-  "invalid_phone": "Bitte geben Sie eine gültige Telefonnummer ein.",
+  "confirm_reservation": "Reservierung bestätigen",
 
-  "date_required": "Bitte wählen Sie ein Datum aus.",
-  "time_required": "Bitte wählen Sie eine Uhrzeit aus.",
-  "guests_required": "Bitte wählen Sie die Anzahl der Gäste aus."
+  "name_required": "Name ist erforderlich",
+  "email_required": "E-Mail ist erforderlich",
+  "invalid_email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+  "phone_required": "Telefonnummer ist erforderlich",
+  "invalid_phone": "Bitte geben Sie eine gültige Telefonnummer ein",
+  "date_required": "Bitte wählen Sie ein Datum aus",
+  "time_required": "Bitte wählen Sie eine Uhrzeit aus",
+  "guests_required": "Bitte Anzahl der Gäste auswählen",
+  "reservation_fix_errors": "Bitte korrigieren Sie die untenstehenden Fehler"
 }
