@@ -57,7 +57,7 @@ const ReservationModal = ({
   /* ================= PLACEHOLDERS (CLEAN) ================= */
   const placeholders = {
     name: safeT("your_name", "Your full name"),
-    email: safeT("your_email", "your@email.com"),
+    email: safeT("your_email", "your email"),
     phone: safeT("phone_number", "Phone number"),
     special: safeT(
       "special_requests_optional",

@@ -30,18 +30,19 @@ const Menu = () => {
   }, []);
 
   const menuItems = [
-    { image: "/Menu/Menu1.jpg", titleKey: "menuItem_biryaniRice_title", descriptionKey: "menuItem_biryaniRice_description", tags: ["biryani", "rice", "non_veg"] },
-    { image: "/Menu/Menu2.jpg", titleKey: "menuItem_lamb_title", descriptionKey: "menuItem_lamb_description", tags: ["lamb", "curry", "non_veg"] },
-    { image: "/Menu/Menu3.jpg", titleKey: "menuItem_bread_title", descriptionKey: "menuItem_bread_description", tags: ["bread", "veg"] },
-    { image: "/Menu/Menu4.jpg", titleKey: "menuItem_seafood_title", descriptionKey: "menuItem_seafood_description", tags: ["fish", "prawn", "non_veg"] },
-    { image: "/Menu/Menu5.jpg", titleKey: "menuItem_dessert_title", descriptionKey: "menuItem_dessert_description", tags: ["dessert", "veg"] },
-    { image: "/Menu/Menu6.jpg", titleKey: "menuItem_raita_title", descriptionKey: "menuItem_raita_description", tags: ["raita", "veg"] },
-    { image: "/Menu/Menu7.jpg", titleKey: "menuItem_chicken_title", descriptionKey: "menuItem_chicken_description", tags: ["chicken", "non_veg"] },
-    { image: "/Menu/Menu8.jpg", titleKey: "menuItem_saladStarter_title", descriptionKey: "menuItem_saladStarter_description", tags: ["starter", "veg"] },
-    { image: "/Menu/Menu9.jpg", titleKey: "menuItem_dalBBQ_title", descriptionKey: "menuItem_dalBBQ_description", tags: ["dal", "veg", "non_veg"] },
-    { image: "/Menu/Menu10.jpg", titleKey: "menuItem_platter_title", descriptionKey: "menuItem_platter_description", tags: ["platter", "non_veg"] },
-    { image: "/Menu/Menu11.jpg", titleKey: "menuItem_paneer_title", descriptionKey: "menuItem_paneer_description", tags: ["paneer", "veg"] },
-    { image: "/Menu/Menu12.jpg", titleKey: "menuItem_vegMain_title", descriptionKey: "menuItem_vegMain_description", tags: ["vegetarian", "veg"] },
+   
+    { image: "/Menu/Menu2.jpg", titleKey: "menuItem_lamb_title", descriptionKey: "menuItem_lamb_description", tags: [, "non_veg"] },
+    { image: "/Menu/Menu3.jpg", titleKey: "menuItem_bread_title", descriptionKey: "menuItem_bread_description", tags: ["veg"] },
+    { image: "/Menu/Menu4.jpg", titleKey: "menuItem_seafood_title", descriptionKey: "menuItem_seafood_description", tags: ["non_veg"] },
+    { image: "/Menu/Menu5.jpg", titleKey: "menuItem_dessert_title", descriptionKey: "menuItem_dessert_description", tags: [ "veg"] },
+    { image: "/Menu/Menu6.jpg", titleKey: "menuItem_raita_title", descriptionKey: "menuItem_raita_description", tags: ["veg"] },
+    { image: "/Menu/Menu7.jpg", titleKey: "menuItem_chicken_title", descriptionKey: "menuItem_chicken_description", tags: ["non_veg"] },
+    { image: "/Menu/Menu8.jpg", titleKey: "menuItem_saladStarter_title", descriptionKey: "menuItem_saladStarter_description", tags: ["veg"] },
+    { image: "/Menu/Menu9.jpg", titleKey: "menuItem_dalBBQ_title", descriptionKey: "menuItem_dalBBQ_description", tags: [ "veg",] },
+    { image: "/Menu/Menu10.jpg", titleKey: "menuItem_platter_title", descriptionKey: "menuItem_platter_description", tags: ["non_veg"] },
+    { image: "/Menu/Menu11.jpg", titleKey: "menuItem_paneer_title", descriptionKey: "menuItem_paneer_description", tags: ["veg"] },
+    { image: "/Menu/Menu12.jpg", titleKey: "menuItem_vegMain_title", descriptionKey: "menuItem_vegMain_description", tags: ["veg"] },
+    { image: "/Menu/Menu1.jpg", titleKey: "menuItem_biryaniRice_title", descriptionKey: "menuItem_biryaniRice_description", tags: [ "veg","non_veg"] },
   ];
 
   const filteredMenu = menuItems.filter((item) => {
