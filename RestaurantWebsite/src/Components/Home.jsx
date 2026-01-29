@@ -84,11 +84,12 @@ const Home = () => {
 
   return (
  
-    <div className="bg-white text-gray-800 font-sans overflow-x-hidden">
+    <div className="bg-white text-gray-800 font-sans">
   <div className="pt-20">
         {/* ================= HERO (Contact style, ONLY hero has bg image) ================= */}
         <section className="relative">
-        <div className="relative min-h-[420px] md:h-[520px] flex items-center justify-center">
+        <div className="relative min-h-[420px] md:min-h-[520px] flex items-center justify-center overflow-hidden">
+
 
             <div
               className="absolute inset-0 bg-center bg-cover"
@@ -196,7 +197,7 @@ const Home = () => {
         </section>
 
         {/* ================= SPECIALS SECTION (we will update only its heading + bg) ================= */}
-        <div ref={specialsRef}>
+        <div ref={specialsRef} className="min-h-[400px]">
           {showSpecials && (
             <Suspense fallback={<div>Loading...</div>}>
               <SpecialsSection />

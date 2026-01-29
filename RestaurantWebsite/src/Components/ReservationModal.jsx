@@ -5,13 +5,14 @@ import { useTranslation } from "react-i18next";
 const ReservationModal = ({
   show,
   onClose,
-  formData,
-  onChange,
-  onSubmit,
+  formData = {},        // ✅ DEFAULT VALUE (THIS FIXES ERROR)
+  onChange = () => {},  // ✅ SAFE DEFAULT
+  onSubmit = () => {},  // ✅ SAFE DEFAULT
   errors = {},
   loading = false,
   status = null,
 }) => {
+
   const { t } = useTranslation();
   const scrollRef = useRef(null);
 
@@ -27,18 +28,12 @@ const ReservationModal = ({
   useEffect(() => {
     if (!show) return;
   
-    const prevOverflow = document.body.style.overflow;
-    const prevPadding = document.body.style.paddingRight;
-  
-    document.body.style.overflow = "hidden";
-    document.body.style.paddingRight = "0px"; // 🔥 THIS FIXES WHITE LINE
+    document.body.classList.add("modal-open");
   
     return () => {
-      document.body.style.overflow = prevOverflow;
-      document.body.style.paddingRight = prevPadding;
+      document.body.classList.remove("modal-open");
     };
   }, [show]);
-  
 
   // Close on ESC
   useEffect(() => {
