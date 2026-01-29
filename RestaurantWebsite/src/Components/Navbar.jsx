@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Cookies from "js-cookie";
 import { Link, useLocation } from "react-router-dom";
+import LanguageSwitcher from "./LanguageSwitcher";
 import {
   Menu,
   X,
@@ -217,14 +218,12 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center">
-              <select
-                value={i18n.language}
-                onChange={(e) => changeLanguage(e.target.value)}
-                className="border rounded-md px-3 py-2 text-sm"
-              >
-                <option value="de">Deutsch</option>
-                <option value="en">English</option>
-              </select>
+            <nav className="fixed top-0 w-full z-50 bg-white shadow-md">
+  <div className="flex justify-between items-center px-4 py-3">
+    <MenuIcon />
+    <LanguageSwitcher />
+  </div>
+</nav>
             </div>
           </div>
 
