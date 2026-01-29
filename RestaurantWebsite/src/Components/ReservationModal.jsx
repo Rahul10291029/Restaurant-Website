@@ -52,13 +52,13 @@ const ReservationModal = ({
 
   if (!show) return null;
 
-  /* ================= PLACEHOLDERS (LOCALIZED) ================= */
+  /* ================= PLACEHOLDERS (CLEAN) ================= */
   const placeholders = {
-    name: safeT("placeholder_name", "Your full name"),
-    email: safeT("placeholder_email", "your@email.com"),
-    phone: safeT("placeholder_phone", "Phone number"),
+    name: safeT("your_name", "Your full name"),
+    email: safeT("your_email", "your@email.com"),
+    phone: safeT("phone_number", "Phone number"),
     special: safeT(
-      "placeholder_special_requests",
+      "special_requests_optional",
       "Any special requests (optional)"
     ),
   };
@@ -73,7 +73,7 @@ const ReservationModal = ({
         {/* Header */}
         <div className="bg-yellow-500 text-white px-6 py-4 flex justify-between items-center">
           <h2 className="text-2xl font-extrabold">
-            {safeT("reservation_title", "Book a Table")}
+            {safeT("book_table", "Book a Table")}
           </h2>
           <button
             onClick={onClose}
@@ -146,7 +146,7 @@ const ReservationModal = ({
             {/* Phone */}
             <div>
               <label className="block text-sm font-semibold mb-1">
-                {safeT("phone", "Phone number")}
+                {safeT("phone", "Phone Number")}
               </label>
               <div className="flex gap-3">
                 <select
@@ -243,7 +243,7 @@ const ReservationModal = ({
             {/* Special Requests */}
             <div>
               <label className="block text-sm font-semibold mb-1">
-                {safeT("special_requests", "Special requests")}
+                {safeT("special_requests", "Special Requests")}
               </label>
               <input
                 type="text"

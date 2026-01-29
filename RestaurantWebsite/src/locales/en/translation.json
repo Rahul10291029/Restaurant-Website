@@ -198,8 +198,11 @@
     
       "reservation_fix_errors": "Please fix the errors below",
       "reservation_success_message": "Reservation sent successfully! We will contact you soon.",
-      "reservation_error_message": "Could not send reservation. Please try again."
-    
+      "reservation_error_message": "Could not send reservation. Please try again.",
+      "your_name": "Your full name",
+  "your_email": "your@email.com",
+  "phone_number": "Phone number",
+  "special_requests_optional": "Any special requests (optional)"
     
         
   
