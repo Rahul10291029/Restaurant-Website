@@ -1,15 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import Cookies from "js-cookie";
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef(null);
 
-  // ✅ FIX: normalize language (de-DE → de)
   const currentLang = i18n.language?.split("-")[0];
 
   const changeLanguage = (lang) => {
+    Cookies.set("lang", lang, { expires: 365 }); // ✅ FIX
     i18n.changeLanguage(lang);
     setOpen(false);
   };
@@ -37,7 +38,7 @@ const LanguageSwitcher = () => {
 
       {open && (
         <div className="absolute right-0 mt-2 w-28 rounded-md border bg-white shadow-lg z-50">
-             <button
+          <button
             onClick={() => changeLanguage("de")}
             className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${
               currentLang === "de" ? "bg-gray-100 font-semibold" : ""
@@ -53,7 +54,6 @@ const LanguageSwitcher = () => {
           >
             English
           </button>
-       
         </div>
       )}
     </div>
