@@ -7,20 +7,24 @@ import de from "../locales/de/translation.json";
 import fr from "../locales/fr/translation.json";
 import es from "../locales/es/translation.json";
 
-const savedLang = Cookies.get("lang") || "de"; // ✅ cookie first
+// Get language from cookie
+const savedLang = Cookies.get("lang");
 
 i18n.use(initReactI18next).init({
-  initImmediate: false, // ✅ important with Vite
+  initImmediate: false, // Important for Vite
 
   resources: {
+    de: { translation: de }, // German first
     en: { translation: en },
-    de: { translation: de },
     fr: { translation: fr },
     es: { translation: es },
   },
 
-  lng: savedLang,
-  fallbackLng: "de",
+  // If cookie exists use it, otherwise German
+  lng: savedLang ? savedLang : "de",
+
+  // If something missing, fallback to German then English
+  fallbackLng: ["de", "en"],
 
   interpolation: {
     escapeValue: false,

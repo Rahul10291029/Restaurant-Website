@@ -64,7 +64,7 @@ const Navbar = () => {
     Cookies.set("lang", lang, { expires: 365 });
     i18n.changeLanguage(lang);
   };
-  
+  const [langOpen, setLangOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showReservationModal, setShowReservationModal] = useState(false);
 
@@ -218,14 +218,39 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center">
-            <select
-  value={i18n.resolvedLanguage}
-  onChange={(e) => changeLanguage(e.target.value)}
-  className="border rounded-md px-3 py-2 text-sm"
->
-  <option value="de">Deutsch</option>
-  <option value="en">English</option>
-</select>
+            <div className="relative">
+  <button
+    onClick={() => setLangOpen(!langOpen)}
+    className="border rounded-md px-3 py-2 text-sm bg-white"
+  >
+    {i18n.resolvedLanguage === "de" ? "Deutsch" : "English"}
+  </button>
+
+  {langOpen && (
+    <div className="absolute right-0 mt-2 bg-white shadow-lg rounded-md w-32 z-50">
+      <button
+        onClick={() => {
+          changeLanguage("de");
+          setLangOpen(false);
+        }}
+        className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+      >
+        Deutsch
+      </button>
+
+      <button
+        onClick={() => {
+          changeLanguage("en");
+          setLangOpen(false);
+        }}
+        className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+      >
+        English
+      </button>
+    </div>
+  )}
+</div>
+
 
             </div>
           </div>
