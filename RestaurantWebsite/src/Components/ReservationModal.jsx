@@ -66,12 +66,16 @@ const ReservationModal = ({
   };
 
   return (
-    <div className="fixed inset-0 z-[999] flex items-center justify-center px-4">
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-
-      {/* Modal */}
-      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
+    <div
+    className="fixed inset-0 z-[999] flex items-center justify-center px-4"
+    onClick={onClose}
+  >
+    <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+  
+    <div
+      className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl"
+      onClick={(e) => e.stopPropagation()}
+    >
         {/* Header */}
         <div className="bg-yellow-500 text-white px-6 py-4 flex justify-between items-center">
           <h2 className="text-2xl font-extrabold">
