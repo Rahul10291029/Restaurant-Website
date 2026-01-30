@@ -7,27 +7,29 @@ import de from "../locales/de/translation.json";
 import fr from "../locales/fr/translation.json";
 import es from "../locales/es/translation.json";
 
-// Get language from cookie
+// Always default to German unless user explicitly saved something
 const savedLang = Cookies.get("lang");
 
 i18n.use(initReactI18next).init({
-  initImmediate: false, // Important for Vite
+  initImmediate: false,
 
   resources: {
-    de: { translation: de }, // German first
+    de: { translation: de },
     en: { translation: en },
     fr: { translation: fr },
     es: { translation: es },
   },
 
-  // If cookie exists use it, otherwise German
-  lng: savedLang ? savedLang : "de",
-
-  // If something missing, fallback to German then English
-  fallbackLng: ["de", "en"],
+  lng: savedLang || "de", // German default
+  fallbackLng: "de",
 
   interpolation: {
     escapeValue: false,
+  },
+
+  // 🔥 VERY IMPORTANT
+  detection: {
+    order: [], // disables browser language detection
   },
 });
 
