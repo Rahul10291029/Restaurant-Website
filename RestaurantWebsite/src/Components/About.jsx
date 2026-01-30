@@ -36,44 +36,52 @@ const About = () => {
   return (
     <div className="bg-white text-gray-800">
       {/* ================= HERO SECTION ================= */}
-      <div className="relative">
-        <img
-          src={"/BGIMG.jpg"}
-          alt={t("about_hero_alt")}
-          className="w-full h-[400px] object-cover brightness-75"
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
-          {/* TITLE */}
-          <motion.h1
-            className="text-4xl md:text-6xl font-extrabold drop-shadow-lg"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-          >
-            {t("about_hero_title")}
-          </motion.h1>
+   {/* ================= HERO SECTION ================= */}
+<section className="relative">
+  <div className="relative h-[400px] flex items-center justify-center">
 
-          {/* SUBTITLE */}
-          <motion.h2
-            className="mt-2 text-2xl md:text-3xl font-bold text-white/90"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            {t("about_hero_subtitle")}
-          </motion.h2>
+    {/* Background */}
+    <div className="absolute inset-0 overflow-hidden">
+      <img
+        src={"/BGIMG.jpg"}
+        alt={t("about_hero_alt")}
+        className="w-full h-full object-cover brightness-75"
+      />
+    </div>
 
-          {/* TAGLINE */}
-          <motion.p
-            className="mt-4 text-lg md:text-xl text-white/80 drop-shadow-md"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-          >
-            {t("about_hero_tagline")}
-          </motion.p>
-        </div>
-      </div>
+    {/* Content */}
+    <div className="relative z-10 flex flex-col items-center justify-center text-white text-center px-6">
+      <motion.h1
+        className="text-4xl md:text-6xl font-extrabold drop-shadow-lg"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        {t("about_hero_title")}
+      </motion.h1>
+
+      <motion.h2
+        className="mt-2 text-2xl md:text-3xl font-bold text-white/90"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+      >
+        {t("about_hero_subtitle")}
+      </motion.h2>
+
+      <motion.p
+        className="mt-4 text-lg md:text-xl text-white/80 drop-shadow-md"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.4 }}
+      >
+        {t("about_hero_tagline")}
+      </motion.p>
+    </div>
+
+  </div>
+</section>
+
 
       {/* ================= OUR STORY ================= */}
       <section className="px-6 md:px-20 py-16 bg-gray-50">

@@ -61,9 +61,10 @@ const Navbar = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang);
     Cookies.set("lang", lang, { expires: 365 });
+    i18n.changeLanguage(lang);
   };
+  
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showReservationModal, setShowReservationModal] = useState(false);
 
@@ -217,14 +218,15 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center">
-              <select
-                value={i18n.language}
-                onChange={(e) => changeLanguage(e.target.value)}
-                className="border rounded-md px-3 py-2 text-sm"
-              >
-                <option value="de">Deutsch</option>
-                <option value="en">English</option>
-              </select>
+            <select
+  value={i18n.resolvedLanguage}
+  onChange={(e) => changeLanguage(e.target.value)}
+  className="border rounded-md px-3 py-2 text-sm"
+>
+  <option value="de">Deutsch</option>
+  <option value="en">English</option>
+</select>
+
             </div>
           </div>
 
@@ -257,13 +259,14 @@ const Navbar = () => {
             </Link>
 
             <select
-              value={i18n.language}
-              onChange={(e) =>changeLanguage(e.target.value)}
-              className="border rounded-md px-3 py-2 text-sm"
-            >
-              <option value="de">Deutsch</option>
-              <option value="en">English</option>
-            </select>
+  value={i18n.resolvedLanguage}
+  onChange={(e) => changeLanguage(e.target.value)}
+  className="border rounded-md px-3 py-2 text-sm"
+>
+  <option value="de">Deutsch</option>
+  <option value="en">English</option>
+</select>
+
 
             <button
               onClick={openReservation}

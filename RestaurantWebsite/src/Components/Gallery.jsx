@@ -24,7 +24,7 @@ const Gallery = () => {
   return (
     <>
       {/* ================= GALLERY ================= */}
-      <section className="pt-36 pb-24 bg-white">
+      <section className="pt-10 pb-24 bg-white min-h-screen">
         <div className="max-w-7xl mx-auto px-4 space-y-32">
 
           {/* ================= SECTION 1 : OUTDOOR ================= */}

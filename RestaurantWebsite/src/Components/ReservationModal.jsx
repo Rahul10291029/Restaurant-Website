@@ -26,15 +26,17 @@ const ReservationModal = ({
 
   // Lock background scroll
   useEffect(() => {
-    if (!show) return;
-  
-    document.body.classList.add("modal-open");
+    if (show) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
   
     return () => {
       document.body.classList.remove("modal-open");
     };
   }, [show]);
-
+  
   // Close on ESC
   useEffect(() => {
     if (!show) return;

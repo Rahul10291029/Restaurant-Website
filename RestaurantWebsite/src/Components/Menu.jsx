@@ -31,7 +31,7 @@ const Menu = () => {
 
   const menuItems = [
    
-    { image: "/Menu/Menu2.jpg", titleKey: "menuItem_lamb_title", descriptionKey: "menuItem_lamb_description", tags: [, "non_veg"] },
+    { image: "/Menu/Menu2.jpg", titleKey: "menuItem_lamb_title", descriptionKey: "menuItem_lamb_description", tags: [ "non_veg"] },
     { image: "/Menu/Menu3.jpg", titleKey: "menuItem_bread_title", descriptionKey: "menuItem_bread_description", tags: ["veg"] },
     { image: "/Menu/Menu4.jpg", titleKey: "menuItem_seafood_title", descriptionKey: "menuItem_seafood_description", tags: ["non_veg"] },
     { image: "/Menu/Menu5.jpg", titleKey: "menuItem_dessert_title", descriptionKey: "menuItem_dessert_description", tags: [ "veg"] },
@@ -53,37 +53,48 @@ const Menu = () => {
   });
 
   return (
-    <div className="pt-20 bg-gray-50 overflow-x-hidden">
+    <div className="bg-gray-50 overflow-x-hidden">
 
       {/* HERO – SAME AS HOME */}
+    {/* HERO */}
+<section className="relative">
+  <div className="relative min-h-[60vh] flex items-center justify-center">
+
+    {/* Background */}
+    <div className="absolute inset-0 overflow-hidden">
       <div
-        className="relative h-[60vh] bg-cover bg-center flex items-center justify-center"
+        className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${bgImg})` }}
+      />
+      <div className="absolute inset-0 bg-black/50" />
+    </div>
+
+    {/* Content */}
+    <div className="relative z-10 text-center px-4">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-lg">
+        {t("heroTitleMain")}
+      </h1>
+
+      <p className="mt-2 text-lg md:text-xl text-white/90 tracking-wide">
+        {t("heroTitleSub")}
+      </p>
+
+      <p className="mt-4 text-white/80 max-w-xl mx-auto">
+        {t("heroText")}
+      </p>
+
+      <a
+        href="/Downlod.pdf"
+        download
+        className="inline-block mt-6 bg-yellow-600 hover:bg-yellow-700 px-6 py-3 rounded-lg font-bold transition"
       >
-        <div className="absolute inset-0 bg-black/50"></div>
+        {t("download_menu_pdf")}
+      </a>
+    </div>
 
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-lg">
-            {t("heroTitleMain")}
-          </h1>
+  </div>
+</section>
 
-          <p className="mt-2 text-lg md:text-xl text-white/90 tracking-wide">
-            {t("heroTitleSub")}
-          </p>
-
-          <p className="mt-4 text-white/80 max-w-xl mx-auto">
-            {t("heroText")}
-          </p>
-
-          <a
-            href="/Downlod.pdf"
-            download
-            className="inline-block mt-6 bg-yellow-600 hover:bg-yellow-700 px-6 py-3 rounded-lg font-bold transition"
-          >
-            {t("download_menu_pdf")}
-          </a>
-        </div>
-      </div>
 
       {/* FILTERS */}
       <div className="flex justify-center gap-4 my-12 px-4 flex-wrap">

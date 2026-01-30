@@ -201,7 +201,7 @@
       "reservation_success_message": "Reservation sent successfully! We will contact you soon.",
       "reservation_error_message": "Could not send reservation. Please try again.",
       "your_name": "Your full name",
-  "your_email": "your email",
+  "your_email": "Your email",
   "phone_number": "Phone number",
   "special_requests_optional": "Any special requests (optional)"
     

@@ -105,10 +105,11 @@ const Contact = () => {
   };
 
   return (
-    // ✅ pt-20 fixes hero going behind fixed navbar (h-20)
-    <div className="pt-20 bg-gradient-to-br from-yellow-50 via-white to-gray-50 text-gray-800 font-sans">
+    
+    <div className=" bg-gradient-to-br from-yellow-50 via-white to-gray-50 text-gray-800 font-sans">
       {/* ================= HERO SECTION ================= */}
-      <div className="relative h-[260px] sm:h-[320px] md:h-[380px] flex items-center justify-center overflow-hidden">
+      <div className="relative h-[260px] sm:h-[320px] md:h-[380px] flex items-center justify-center">
+
         {/* fallback bg while loading */}
         <div className="absolute inset-0 bg-gray-200" />
 

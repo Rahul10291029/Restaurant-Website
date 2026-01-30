@@ -85,58 +85,63 @@ const Home = () => {
   return (
  
     <div className="bg-white text-gray-800 font-sans">
-  <div className="pt-20">
         {/* ================= HERO (Contact style, ONLY hero has bg image) ================= */}
-        <section className="relative">
-        <div className="relative min-h-[420px] md:min-h-[520px] flex items-center justify-center overflow-hidden">
+       {/* ================= HERO ================= */}
+<section className="relative">
+  <div className="relative min-h-[420px] md:min-h-[520px] flex items-center justify-center">
 
+    {/* Background wrapper */}
+    <div className="absolute inset-0 overflow-hidden">
+      <div
+        className="absolute inset-0 bg-center bg-cover"
+        style={{ backgroundImage: `url(${BgImg})` }}
+      />
+      <div className="absolute inset-0 bg-black/60" />
+    </div>
 
-            <div
-              className="absolute inset-0 bg-center bg-cover"
-              style={{ backgroundImage: `url(${BgImg})` }}
-            />
-            <div className="absolute inset-0 bg-black/60" />
+    {/* Content layer (OUTSIDE overflow-hidden) */}
+    <div className="relative z-10 text-center px-6">
+      <motion.h1
+        className="text-4xl md:text-6xl font-extrabold text-white"
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        {t("home_welcome")}
+      </motion.h1>
 
-            <div className="relative z-10 text-center px-6">
-              <motion.h1
-                className="text-4xl md:text-6xl font-extrabold text-white"
-                initial={{ opacity: 0, y: -40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                {t("home_welcome")}
-              </motion.h1>
+      <motion.h2
+        className="mt-2 text-2xl md:text-3xl font-bold text-white/90"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.15 }}
+      >
+        {t("home_subtitle")}
+      </motion.h2>
 
-              <motion.h2
-                className="mt-2 text-2xl md:text-3xl font-bold text-white/90"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.15 }}
-              >
-                {t("home_subtitle")}
-              </motion.h2>
+      <motion.p
+        className="mt-4 text-lg md:text-2xl text-white/90 max-w-3xl mx-auto"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
+        {t("home_tagline")}
+      </motion.p>
 
-              <motion.p
-                className="mt-4 text-lg md:text-2xl text-white/90 max-w-3xl mx-auto"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                {t("home_tagline")}
-              </motion.p>
+      <Link to="/menu">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="mt-8 px-10 py-4 bg-yellow-500 hover:bg-yellow-600 text-white rounded-xl text-lg font-semibold shadow-xl ring-1 ring-white/20"
+        >
+          {t("home_discover_menu")}
+        </motion.button>
+      </Link>
+    </div>
 
-              <Link to="/menu">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-8 px-10 py-4 bg-yellow-500 hover:bg-yellow-600 text-white rounded-xl text-lg font-semibold shadow-xl ring-1 ring-white/20"
-                >
-                  {t("home_discover_menu")}
-                </motion.button>
-              </Link>
-            </div>
-          </div>
-        </section>
+  </div>
+</section>
+
 
         {/* ================= PHILOSOPHY (YOUR ORIGINAL LAYOUT + MOTION + IMAGES) ================= */}
         <section className="py-24 bg-white/60 backdrop-blur-sm">
@@ -280,7 +285,7 @@ const Home = () => {
           </div>
         </footer>
       </div>
-    </div>
+   
   );
 };
 

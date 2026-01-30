@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 /* ===== GLOBAL RESET ===== */
 html,
 body {
@@ -7,7 +8,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 🔥 VERY IMPORTANT */
+/* Vertical scroll enabled normally */
 html {
   overflow-y: auto;
 }
@@ -15,6 +16,8 @@ html {
 body {
   overflow-y: auto;
 }
+
+/* Lock scroll when modal is open */
 body.modal-open {
-  overflow: auto !important;
+  overflow: hidden !important;
 }
