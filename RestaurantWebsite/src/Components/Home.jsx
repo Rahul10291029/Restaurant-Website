@@ -85,7 +85,6 @@ const Home = () => {
   return (
  
     <div className="bg-white text-gray-800 font-sans">
-        {/* ================= HERO (Contact style, ONLY hero has bg image) ================= */}
        {/* ================= HERO ================= */}
 <section className="relative">
   <div className="relative min-h-[420px] md:min-h-[520px] flex items-center justify-center">
