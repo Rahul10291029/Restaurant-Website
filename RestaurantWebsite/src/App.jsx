@@ -14,7 +14,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ContentEditor from "./pages/ContentEditor";
 import TranslationEditor from "./pages/TranslationEditor";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./Components/ProtectedRoute";
 import { ContentProvider } from "./context/ContentContext";
 
 const App = () => {
