@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import bgImg from "../Images/RestaurantInterior.jpg";
+import bgImg from "../Images/bgImg.jpg";
 import DynamicMenuCard from "./DynamicMenuCard";
 
 /* ── Triangle decorator ── */
@@ -137,7 +137,7 @@ const Menu = () => {
       {/* ═══ SECTION INTRO ═══ */}
       <div className="text-center pt-16 pb-4 px-4">
         <p className="text-amber-600 font-semibold tracking-widest uppercase text-sm mb-2">
-          — Explore Our —
+          — Explore The —
         </p>
         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800">
           Authentic Indian Menu

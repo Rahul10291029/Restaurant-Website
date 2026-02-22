@@ -24,6 +24,11 @@
   "home_special_dish": "Spezialgericht",
   "home_special_description": "Eine köstliche Mischung aus frischen Zutaten und aromatischen Gewürzen, perfekt für ein unvergessliches Essen.",
   "home_view_specials": "Gesamte Speisekarte anzeigen",
+  "news_title": "Aktuelle Neuigkeiten",
+  "news_subtitle": "Bleiben Sie auf dem Laufenden mit unseren neuesten Ankündigungen und kulinarischen Reisen",
+  "news_article_title": "Indian Yaadein – Exzellenz in Bern",
+  "news_article_text": "Wir freuen uns, Indian Yaadein vorzustellen, unser Partnerrestaurant im Herzen von Bern. Erleben Sie eine authentische kulinarische Reise voller traditioneller Aromen und moderner Eleganz. Besuchen Sie uns zum Mittagessen, Abendessen oder für private Feiern.",
+  "news_article_cta": "Indian Yaadein Entdecken",
 
 "heroTitleMain": "Kreuz Pintli Swagat",
 "heroTitleSub": "Ein Indisches Restaurant",
@@ -114,9 +119,7 @@
         { "nameKey": "item_chicken_bbq_salad", "price": "9 CHF", "type": "non_veg", "description": "Kalte Würfel von Hähnchen serviert mit Gurke, Tomate, Salatblätter mit Dressing" },
         { "nameKey": "item_veg_samosa", "price": "8 CHF", "type": "veg", "description": "Knusprig gebratene Teigtaschen gefüllt mit Kartoffeln, grünen Erbsen, Paneer und Gewürzen." },
         { "nameKey": "item_veg_pakora", "price": "10 CHF", "type": "veg", "description": "Frittierte Küchlein aus Zwiebeln, Spinat und Kartoffeln in Kichererbsenmehl." },
-        { "nameKey": "item_paneer_tikka", "price": "14 CHF", "type": "veg", "description": "Paneer-Würfel in Sahne und milden Gewürzen mariniert, dann im BBQ gegrillt." },
         { "nameKey": "item_chicken_tikka", "price": "16 CHF", "type": "non_veg", "description": "Entbeintes Hähnchen in Gewürzen mariniert und im BBQ gegrillt." },
-        { "nameKey": "item_chicken_wings", "price": "15 CHF", "type": "non_veg", "description": "Hähnchenflügel in Knoblauch und Gewürzen mariniert und gegrillt." },
         { "nameKey": "item_seekh_kebab", "price": "17 CHF", "type": "non_veg", "description": "Hackfleisch mit Kräutern und Gewürzen gemischt, aufgespießt und über Holzkohle gegrillt." }
       ]
     },
@@ -249,7 +252,7 @@
       "items": [
         { "nameKey": "item_amritsari_chana", "price": "20 CHF", "description": "Ein Kichererbsengericht in Sauce mit Tomaten, Zwiebeln, Ingwer und Knoblauch" },
         { "nameKey": "item_rajma_masala", "price": "20 CHF", "description": "Rote Kidney-Bohnen sind in gekochter Zwiebel- und Tomatensauce" },
-        { "nameKey": "item_dal_tadka", "price": "17 CHF", "description": "Perfekt gekochte Linsen, garniert mit einer bruzzelnden Ghee-Tadka aus Kreuzkümmel, Knoblauch und Gewürzen." }
+        { "nameKey": "item_dal_tadka", "price": "20 CHF", "description": "Perfekt gekochte Linsen, garniert mit einer bruzzelnden Ghee-Tadka aus Kreuzkümmel, Knoblauch und Gewürzen." }
       ]
     },
     {
@@ -304,9 +307,7 @@
   "item_malai_paneer_tikka": "Malai Paneer Tikka (BBQ)",
   "item_veg_samosa": "Gemüse Samosa (2 Stück)",
   "item_veg_pakora": "Gemüse Pakora",
-  "item_paneer_tikka": "Paneer Tikka",
   "item_chicken_tikka": "Hähnchen Tikka",
-  "item_chicken_wings": "Hähnchen Flügel",
   "item_seekh_kebab": "Seekh Kebab",
   "item_chilli_chicken": "Chilli Chicken",
   "item_bbq_basil_chicken_tikka": "BBQ Basilikum Chicken Tikka",

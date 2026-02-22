@@ -97,6 +97,7 @@ const Home = () => {
         : BgImg
     }
     alt="Restaurant exterior"
+    fetchpriority="high"
     className="w-full h-full object-cover"
     style={{ objectPosition: 'center 30%' }}
   />
@@ -178,6 +179,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 src={content?.home?.philosophy?.image1?.startsWith('data:') ? content.home.philosophy.image1 : Biryani1}
                 alt="Dish"
+                loading="lazy"
                 className="rounded-3xl shadow-xl w-full md:w-1/2 h-72 object-cover border-4 border-yellow-100"
               />
               <motion.img
@@ -187,6 +189,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 src={content?.home?.philosophy?.image2?.startsWith('data:') ? content.home.philosophy.image2 : ButterChicken}
                 alt="Interior"
+                loading="lazy"
                 className="rounded-3xl shadow-xl w-full md:w-1/2 h-72 object-cover border-4 border-yellow-100"
               />
             </div>
@@ -203,6 +206,7 @@ const Home = () => {
             </Link>
           </div>
         </section>
+
 
         {/* ================= SPECIALS SECTION (we will update only its heading + bg) ================= */}
         <div ref={specialsRef} className="min-h-[400px]">

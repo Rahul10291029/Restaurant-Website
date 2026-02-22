@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import NewsSection from "./NewsSection";
 
 const About = () => {
   const { t } = useTranslation();
@@ -45,6 +46,7 @@ const About = () => {
       <img
         src={"/BGIMG.jpg"}
         alt={t("about_hero_alt")}
+        fetchpriority="high"
         className="w-full h-full object-cover brightness-75"
       />
     </div>
@@ -133,6 +135,9 @@ const About = () => {
         </div>
       </section>
 
+      {/* ================= NEWS SECTION ================= */}
+      <NewsSection />
+
       {/* ================= ATMOSPHERE ================= */}
       <section className="py-16 px-6 md:px-20 bg-gray-50">
         <div className="max-w-6xl mx-auto">
@@ -144,6 +149,7 @@ const About = () => {
             <motion.img
               src="/Platter.jpg"
               alt={t("about_atmosphere_img1_alt")}
+              loading="lazy"
               className="w-full h-80 object-cover rounded-xl shadow-lg"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -154,6 +160,7 @@ const About = () => {
             <motion.img
               src="/Platter2.jpg"
               alt={t("about_atmosphere_img2_alt")}
+              loading="lazy"
               className="w-full h-80 object-cover rounded-xl shadow-lg"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}

@@ -23,13 +23,18 @@
   "home_special_dish": "Special Dish",
   "home_special_description": "A delightful blend of fresh ingredients and aromatic spices, perfect for a memorable meal.",
   "home_view_specials": "View Full Menu",
+  "news_title": "Latest News",
+  "news_subtitle": "Stay updated with our latest announcements and culinary journeys",
+  "news_article_title": "Indian Yaadein – Excellence in Bern",
+  "news_article_text": "We are thrilled to introduce Indian Yaadein, our sister concern in the heart of Bern. Experience an authentic culinary journey filled with traditional flavors and modern elegance. Join us for lunch, dinner, or private celebrations.",
+  "news_article_cta": "Discover Indian Yaadein",
 
 "heroTitleMain": "Kreuz Pintli Swagat",
 "heroTitleSub": "An Indian Restaurant"
 ,
   "heroSubtitle": "Experience Authentic Indian Cuisine — A Culinary Journey",
   "heroText": "Delight your senses with our exquisite selection of traditional Indian dishes.",
-  "download_menu_pdf": "Download Menu ",
+  "download_menu_pdf": "Download the Menu ",
 
   "menuItem_biryaniRice_title": "Biryani & Rice Menu",
   "menuItem_biryaniRice_description": "Our selection of fragrant Biryanis and delectable rice preparations, perfect as a main course or side.",
@@ -112,9 +117,7 @@
         { "nameKey": "item_chicken_bbq_salad", "price": "9 CHF", "type": "non_veg", "description": "Cold chicken cubes served with cucumber, tomato, and salad leaves with dressing." },
         { "nameKey": "item_veg_samosa", "price": "8 CHF", "type": "veg", "description": "Crispy fried pastry filled with potatoes, green peas, paneer, and spices." },
         { "nameKey": "item_veg_pakora", "price": "10 CHF", "type": "veg", "description": "Deep-fried fritters made with onions, spinach, and potatoes in gram flour." },
-        { "nameKey": "item_paneer_tikka", "price": "14 CHF", "type": "veg", "description": "Paneer cubes marinated in cream and mild spices, then grilled in BBQ." },
         { "nameKey": "item_chicken_tikka", "price": "16 CHF", "type": "non_veg", "description": "Boneless chicken marinated in spices and grilled in BBQ." },
-        { "nameKey": "item_chicken_wings", "price": "15 CHF", "type": "non_veg", "description": "Chicken wings marinated with garlic and spices and grilled." },
         { "nameKey": "item_seekh_kebab", "price": "17 CHF", "type": "non_veg", "description": "Minced lamb mixed with herbs and spices, skewered and grilled over charcoal." }
       ]
     },
@@ -247,7 +250,7 @@
       "items": [
         { "nameKey": "item_amritsari_chana", "price": "20 CHF", "description": "A chickpea dish in sauce with tomatoes, onions, ginger, and garlic." },
         { "nameKey": "item_rajma_masala", "price": "20 CHF", "description": "Red kidney beans cooked in a rich onion and tomato sauce." },
-        { "nameKey": "item_dal_tadka", "price": "17 CHF", "description": "Perfectly cooked lentils garnished with a sizzling ghee tadka of cumin, garlic, and spices." }
+        { "nameKey": "item_dal_tadka", "price": "20 CHF", "description": "Perfectly cooked lentils garnished with a sizzling ghee tadka of cumin, garlic, and spices." }
       ]
     },
     {
@@ -302,9 +305,7 @@
   "item_malai_paneer_tikka": "Malai Paneer Tikka (BBQ)",
   "item_veg_samosa": "Veg Samosa (2 pcs)",
   "item_veg_pakora": "Veg Pakora",
-  "item_paneer_tikka": "Paneer Tikka",
   "item_chicken_tikka": "Chicken Tikka",
-  "item_chicken_wings": "Chicken Wings",
   "item_seekh_kebab": "Seekh Kebab",
   "item_chilli_chicken": "Chilli Chicken",
   "item_bbq_basil_chicken_tikka": "BBQ Basil Chicken Tikka",

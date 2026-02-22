@@ -45,6 +45,7 @@ const Gallery = () => {
                   <img
                     src={`/gallery/outdoor/${i}.jpeg`}
                     alt="Outdoor Restaurant"
+                    loading="lazy"
                     className="w-full h-full object-cover hover:scale-105 transition duration-500"
                   />
                 </div>
@@ -70,6 +71,7 @@ const Gallery = () => {
                   <img
                     src={`/gallery/indoor/${i}.jpeg`}
                     alt="Indoor Restaurant"
+                    loading="lazy"
                     className="w-full h-full object-cover hover:scale-105 transition duration-500"
                   />
                 </div>
@@ -96,6 +98,7 @@ const Gallery = () => {
                     <img
                       src={`/gallery/food/food${i}.jpeg`}
                       alt="Indian Food"
+                      loading="lazy"
                       className="w-full h-full object-cover hover:scale-110 transition duration-700"
                     />
                   </div>
