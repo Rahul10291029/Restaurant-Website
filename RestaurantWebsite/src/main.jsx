@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import "./Components/i18n";
+import "./components/i18n";
 
 // 🔥 Disable browser automatic scroll restoration
 if ("scrollRestoration" in window.history) {
