@@ -7,14 +7,16 @@ import React, {
 } from "react";
 import { Link } from "react-router-dom";
 import BgImg from "../Images/View.jpg";
-import German1 from "../Images/German1.jpg";
-import German2 from "../Images/German2.jpg";
+const Biryani1 = "/Biryani1.jpg";
+const ButterChicken = "/ButterChicken.jpg";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import SpecialsSection from "../pages/SpecialSection";
+import { useContent } from "../context/ContentContext";
 
 const Home = () => {
   const { t } = useTranslation();
+  const { content } = useContent();
 
   const specialsRef = useRef(null);
   const footerRef = useRef(null);
@@ -86,58 +88,60 @@ const Home = () => {
  
     <div className="bg-white text-gray-800 font-sans">
        {/* ================= HERO ================= */}
-<section className="relative">
-  <div className="relative min-h-[420px] md:min-h-[520px] flex items-center justify-center">
+<section className="relative h-[420px] overflow-hidden">
+  {/* Fixed-height hero — shows only the top portion of the image */}
+  <img
+    src={
+      content?.home?.hero?.backgroundImage?.startsWith('data:')
+        ? content.home.hero.backgroundImage
+        : BgImg
+    }
+    alt="Restaurant exterior"
+    className="w-full h-full object-cover"
+    style={{ objectPosition: 'center 30%' }}
+  />
 
-    {/* Background wrapper */}
-    <div className="absolute inset-0 overflow-hidden">
-      <div
-        className="absolute inset-0 bg-center bg-cover"
-        style={{ backgroundImage: `url(${BgImg})` }}
-      />
-      <div className="absolute inset-0 bg-black/60" />
-    </div>
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-black/55" />
 
-    {/* Content layer (OUTSIDE overflow-hidden) */}
-    <div className="relative z-10 text-center px-6">
-      <motion.h1
-        className="text-4xl md:text-6xl font-extrabold text-white"
-        initial={{ opacity: 0, y: -40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+  {/* Centered text content */}
+  <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+    <motion.h1
+      className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-xl"
+      initial={{ opacity: 0, y: -40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
+      {t("home_welcome")}
+    </motion.h1>
+
+    <motion.h2
+      className="mt-2 text-2xl md:text-3xl font-bold text-white/90"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.15 }}
+    >
+      {t("home_subtitle")}
+    </motion.h2>
+
+    <motion.p
+      className="mt-4 text-lg md:text-2xl text-white/90 max-w-3xl mx-auto"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.3 }}
+    >
+      {t("home_tagline")}
+    </motion.p>
+
+    <Link to="/menu">
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="mt-8 px-10 py-4 bg-yellow-500 hover:bg-yellow-600 text-white rounded-xl text-lg font-semibold shadow-xl ring-1 ring-white/20"
       >
-        {t("home_welcome")}
-      </motion.h1>
-
-      <motion.h2
-        className="mt-2 text-2xl md:text-3xl font-bold text-white/90"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.15 }}
-      >
-        {t("home_subtitle")}
-      </motion.h2>
-
-      <motion.p
-        className="mt-4 text-lg md:text-2xl text-white/90 max-w-3xl mx-auto"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-      >
-        {t("home_tagline")}
-      </motion.p>
-
-      <Link to="/menu">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="mt-8 px-10 py-4 bg-yellow-500 hover:bg-yellow-600 text-white rounded-xl text-lg font-semibold shadow-xl ring-1 ring-white/20"
-        >
-          {t("home_discover_menu")}
-        </motion.button>
-      </Link>
-    </div>
-
+        {t("home_discover_menu")}
+      </motion.button>
+    </Link>
   </div>
 </section>
 
@@ -172,7 +176,7 @@ const Home = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                src={German1}
+                src={content?.home?.philosophy?.image1?.startsWith('data:') ? content.home.philosophy.image1 : Biryani1}
                 alt="Dish"
                 className="rounded-3xl shadow-xl w-full md:w-1/2 h-72 object-cover border-4 border-yellow-100"
               />
@@ -181,7 +185,7 @@ const Home = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                src={German2}
+                src={content?.home?.philosophy?.image2?.startsWith('data:') ? content.home.philosophy.image2 : ButterChicken}
                 alt="Interior"
                 className="rounded-3xl shadow-xl w-full md:w-1/2 h-72 object-cover border-4 border-yellow-100"
               />
@@ -274,7 +278,16 @@ const Home = () => {
     {t("footer_email")}
   </a>
 </li>
-                <li>🕒 {t("footer_hours")}</li>
+                <li className="mt-1">
+                  <span className="font-semibold text-amber-800">🕒 Opening Hours</span>
+                  <ul className="mt-1 ml-6 space-y-0.5 text-sm text-gray-700">
+                    <li className="font-medium">{t("footer_hours_weekdays")}</li>
+                    <li>{t("footer_hours_lunch")}</li>
+                    <li>{t("footer_hours_dinner")}</li>
+                    <li className="mt-1 font-medium">{t("footer_hours_sunday")}</li>
+                    <li className="text-red-500 font-semibold">{t("footer_hours_sunday_status")}</li>
+                  </ul>
+                </li>
               </ul>
             </div>
           </div>

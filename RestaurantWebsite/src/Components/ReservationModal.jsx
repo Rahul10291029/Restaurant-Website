@@ -75,11 +75,11 @@ const ReservationModal = ({
     <div className="absolute inset-0 bg-black/60 pointer-events-none" />
   
     <div
-      className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl"
+      className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden"
       onClick={(e) => e.stopPropagation()}
     >
         {/* Header */}
-        <div className="bg-yellow-500 text-white px-6 py-4 flex justify-between items-center">
+        <div className="bg-yellow-500 text-white px-6 py-4 flex justify-between items-center rounded-t-2xl">
           <h2 className="text-2xl font-extrabold">
             {safeT("book_table", "Book a Table")}
           </h2>

@@ -153,16 +153,28 @@ const Gallery = () => {
               {t("footer_visit_us")}
             </h4>
             <ul className="space-y-3 text-gray-700">
-              {["footer_address", "footer_phone", "footer_email", "footer_hours"].map(
-                (key, i) => (
-                  <li key={key} className="flex items-center">
-                    <span className="mr-3">
-                      {["📍", "📞", "✉️", "🕒"][i]}
-                    </span>
-                    {t(key)}
-                  </li>
-                )
-              )}
+              <li className="flex items-start">
+                <span className="mr-3">📍</span>
+                {t("footer_address")}
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3">📞</span>
+                {t("footer_phone")}
+              </li>
+              <li className="flex items-center">
+                <span className="mr-3">✉️</span>
+                {t("footer_email")}
+              </li>
+              <li className="mt-1">
+                <span className="font-semibold text-amber-800">🕒 Opening Hours</span>
+                <ul className="mt-1 ml-6 space-y-0.5 text-sm text-gray-700">
+                  <li className="font-medium">{t("footer_hours_weekdays")}</li>
+                  <li>{t("footer_hours_lunch")}</li>
+                  <li>{t("footer_hours_dinner")}</li>
+                  <li className="mt-1 font-medium">{t("footer_hours_sunday")}</li>
+                  <li className="text-red-500 font-semibold">{t("footer_hours_sunday_status")}</li>
+                </ul>
+              </li>
             </ul>
           </div>
         </div>

@@ -136,7 +136,7 @@
   "contact_form_error": "Algo salió mal. Por favor, inténtalo de nuevo más tarde.",
   "contact_form_submitting": "Enviando mensaje...",
   "contact_reach_us_title": "Contáctanos",
-  "contact_hours": "Abierto todos los días: 11:00 – 22:00",
+  "contact_hours": "Lun–Sáb: 10:00–14:00 & 17:00–22:00 | Domingo: Cerrado",
 
   "footer_title": "Kreuz Pintli Swagat",
   "footer_description": "Experimente el corazón de la cocina india con una cálida hospitalidad y sabores atemporales desde 1998.",
@@ -145,6 +145,11 @@
   "footer_address": "Beitenwil 59, 3113 Rubigen, Suiza",
   "footer_phone": "+41 07 66 298876",
   "footer_email": "swagatindianrestaurant.in",
-  "footer_hours": "Diario: 11:00 - 22:00",
+  "footer_hours": "Lun–Sáb: 10:00–14:00 & 17:00–22:00",
+  "footer_hours_weekdays": "Lunes – Sábado",
+  "footer_hours_lunch": "10:00 – 14:00",
+  "footer_hours_dinner": "17:00 – 22:00",
+  "footer_hours_sunday": "Domingo",
+  "footer_hours_sunday_status": "Cerrado",
   "footer_rights": "Todos los derechos reservados."
 }

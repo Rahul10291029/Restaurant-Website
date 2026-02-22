@@ -103,6 +103,300 @@
     "vegetables": "Gemüse"
   },
 
+  "menuCategories": [
+
+    {
+      "id": "starters",
+      "titleKey": "menu_starters_title",
+      "type": "both",
+      "items": [
+        { "nameKey": "item_indian_green_salad", "price": "8 CHF", "type": "veg", "description": "Mischung aus verschiedenen erfrischenden und knusprigen Grünen und Gemüse" },
+        { "nameKey": "item_chicken_bbq_salad", "price": "9 CHF", "type": "non_veg", "description": "Kalte Würfel von Hähnchen serviert mit Gurke, Tomate, Salatblätter mit Dressing" },
+        { "nameKey": "item_veg_samosa", "price": "8 CHF", "type": "veg", "description": "Knusprig gebratene Teigtaschen gefüllt mit Kartoffeln, grünen Erbsen, Paneer und Gewürzen." },
+        { "nameKey": "item_veg_pakora", "price": "10 CHF", "type": "veg", "description": "Frittierte Küchlein aus Zwiebeln, Spinat und Kartoffeln in Kichererbsenmehl." },
+        { "nameKey": "item_paneer_tikka", "price": "14 CHF", "type": "veg", "description": "Paneer-Würfel in Sahne und milden Gewürzen mariniert, dann im BBQ gegrillt." },
+        { "nameKey": "item_chicken_tikka", "price": "16 CHF", "type": "non_veg", "description": "Entbeintes Hähnchen in Gewürzen mariniert und im BBQ gegrillt." },
+        { "nameKey": "item_chicken_wings", "price": "15 CHF", "type": "non_veg", "description": "Hähnchenflügel in Knoblauch und Gewürzen mariniert und gegrillt." },
+        { "nameKey": "item_seekh_kebab", "price": "17 CHF", "type": "non_veg", "description": "Hackfleisch mit Kräutern und Gewürzen gemischt, aufgespießt und über Holzkohle gegrillt." }
+      ]
+    },
+    {
+      "id": "veg_starters",
+      "titleKey": "menu_veg_starters_title",
+      "type": "veg",
+      "items": [
+        { "nameKey": "item_hari_bhari_tikki", "price": "8 CHF", "description": "Indische Vorspeise hergestellt mit Spinat, Kartoffeln, Kichererbsen, grünen Erbsen und Gewürzen" },
+        { "nameKey": "item_punjabi_samosa", "price": "8 CHF", "description": "Gebratenes Gebäck mit grüner Erbsenfüllung, Paneer und Kartoffeln, Granatapfel" },
+        { "nameKey": "item_chilli_paneer", "price": "10 CHF", "description": "Würfel von gebratenem knusprigem Paneer werden in einer würzigen Sauce aus Gewürzen, Knoblauch und Chilis gewürzt" },
+        { "nameKey": "item_paneer_pakora", "price": "10 CHF", "description": "Frische Kartoffeln, frittiert in einem Grammteig" }
+      ]
+    },
+    {
+      "id": "non_veg_starters",
+      "titleKey": "menu_non_veg_starters_title",
+      "type": "non_veg",
+      "items": [
+        { "nameKey": "item_chilli_chicken", "price": "10 CHF", "description": "Ein süßes, würziges und sauer knuspriges Hähnchen mit Pfeffer, Knoblauch, Ingwer und Gewürzen" },
+        { "nameKey": "item_bbq_chicken_tikka", "price": "12 CHF", "description": "Zarte Stücke Hähnchen, mariniert in einer rauchigen Gewürzmischung, perfekt gegrillt und serviert mit einer würzigen Barbecuesauce" },
+        { "nameKey": "item_fried_fish", "price": "12 CHF", "description": "4 Stück inkl. krosse, goldbraune Fischfilets, leicht in Teig gehüllt und perfekt frittiert, serviert mit einem würzigen Dip" },
+        { "nameKey": "item_jhinga_pakora", "price": "12 CHF", "description": "4 Stück inkl. kleine Garnelen frittiert in Grammmehl" },
+        { "nameKey": "item_chicken_pakora", "price": "10 CHF", "description": "4 Stück inkl. Chicken frittiert in Grammmehl" }
+      ]
+    },
+    {
+      "id": "veg_main",
+      "titleKey": "menu_veg_main_title",
+      "type": "veg",
+      "items": [
+        { "nameKey": "item_mix_veg", "price": "20 CHF", "description": "Frische Mischung aus knackigem grünen Salat und Gemüse, leicht und erfrischend." },
+        { "nameKey": "item_aloo_gobhi", "price": "20 CHF", "description": "Klassisches Trockengemüsegericht mit Kartoffeln und Blumenkohl, verfeinert mit Kreuzkümmel und Gewürzen." },
+        { "nameKey": "item_aloo_zeera", "price": "20 CHF", "description": "Kartoffeln gebraten mit Kreuzkümmelsamen, grünen Chilis und frischem Koriander." },
+        { "nameKey": "item_methi_malai", "price": "22 CHF", "description": "Bockshornkleebllätter und Pilze in einer cremigen, mild gewürzten Soße." },
+        { "nameKey": "item_baingan_bharta", "price": "20 CHF", "description": "Geräucherte gegrillte Aubergine, zerdrückt und mit Tomaten, Zwiebeln und Gewürzen gekocht." },
+        { "nameKey": "item_aloo_palak", "price": "20 CHF", "description": "Zarte Kartoffeln in einer frisch pürierten Spinat-Gewürz-Soße." },
+        { "nameKey": "item_bhindi_masala", "price": "20 CHF", "description": "Knusprige Okraschoten gebraten mit Zwiebeln, Tomaten und indischen Gewürzen." },
+        { "nameKey": "item_aloo_matter", "price": "20 CHF", "description": "Hausgemachtes Curry mit Kartoffeln und grünen Erbsen in einer würzigen Tomatensoße." }
+      ]
+    },
+    {
+      "id": "paneer",
+      "titleKey": "menu_paneer_title",
+      "type": "veg",
+      "items": [
+        { "nameKey": "item_kadai_paneer", "price": "25 CHF", "description": "Paneer-Würfel gekocht in Zwiebel-Tomaten-Sauce mit Kadai-Masala" },
+        { "nameKey": "item_palak_paneer", "price": "25 CHF", "description": "Indische Köstlichkeit: Paneer-Würfel werden in püriertem Spinat und Gewürzen gekocht" },
+        { "nameKey": "item_paneer_makhani", "price": "25 CHF", "description": "Paneer-Stücke, gekocht auf einer Basis aus Butter, Tomaten, Sahne und mit Kasoori Methi" },
+        { "nameKey": "item_matar_paneer", "price": "25 CHF", "description": "Grüne Erbsen und Paneer in einer Basis aus Zwiebeln, Tomaten und Cashewnüssen" },
+        { "nameKey": "item_paneer_korma", "price": "25 CHF", "description": "Paneer, gekocht in cremig-butteriger Korma-Sauce" }
+      ]
+    },
+    {
+      "id": "chicken",
+      "titleKey": "menu_chicken_title",
+      "type": "non_veg",
+      "items": [
+        { "nameKey": "item_butter_chicken", "price": "26 CHF", "description": "Gegrillte, knochenlose Hühnerbrust in butteriger und cremiger Tomatensauce" },
+        { "nameKey": "item_chicken_tikka_masala", "price": "26 CHF", "description": "Knochenlose Hühnerstücke mariniert in Gewürzen und Joghurt, in einer cremigen Zwiebel-Tomatensauce gekocht" },
+        { "nameKey": "item_chicken_kadai", "price": "26 CHF", "description": "Hühnerwürfel ohne Knochen, gekocht mit Zwiebeln, Paprika, Tomatenpüree, Chilis und gerösteten Gewürzen" },
+        { "nameKey": "item_chicken_palak", "price": "26 CHF", "description": "Hähnchen ohne Knochen und Spinatpüree in Zwiebel-Tomatensauce mit Gewürzen" },
+        { "nameKey": "item_chicken_coconut", "price": "26 CHF", "description": "Hühnerwürfel ohne Knochen in einer Tomaten- und Kokosnusssauce mit milden Gewürzen" },
+        { "nameKey": "item_chicken_vindaloo", "price": "26 CHF", "description": "Hühnchen, gegart in würziger Vindaloo-Sauce" }
+      ]
+    },
+    {
+      "id": "lamb",
+      "titleKey": "menu_lamb_title",
+      "type": "non_veg",
+      "items": [
+        { "nameKey": "item_lamb_curry", "price": "29 CHF", "description": "Langsam gegarter zarter Lamm in einer tief gewürzten, aromatischen indischen Currysоße." },
+        { "nameKey": "item_lamb_rogan_josh", "price": "29 CHF", "description": "Knochenloses Lammcurry mit Joghurt und einer aromatischen Mischung traditioneller Gewürze." },
+        { "nameKey": "item_lamb_kadai", "price": "29 CHF", "description": "Langsam gegarte Lammstücke in einer Zwiebel-Tomaten-Sauce und mit Kadai-Masala." },
+        { "nameKey": "item_lamb_korma", "price": "29 CHF", "description": "Lammstücke werden in einer leicht gewürzten, cremigen Curry-Sauce gekocht." },
+        { "nameKey": "item_lamb_vindaloo", "price": "29 CHF", "description": "Lammstücke gekocht in würziger Sauce." },
+        { "nameKey": "item_lamb_bhuna", "price": "29 CHF", "description": "Langsam gegarte Lammstücke in einer dicken, reichhaltigen Bhuna-Soße mit karamellisierten Zwiebeln, Tomaten, Ingwer und Knoblauch, verfeinert mit aromatischen Gewürzen für ein tiefes, kräftiges Aroma." }
+      ]
+    },
+    {
+      "id": "biryani_rice",
+      "titleKey": "menu_biryani_rice_title",
+      "type": "both",
+      "items": [
+        { "nameKey": "item_veg_biryani", "price": "24 CHF", "type": "veg", "description": "Hergestellt aus Basmati-Reis, gekocht mit Gemüse und Biryani-Gewürzen, gebratenen Safran-Zwiebeln" },
+        { "nameKey": "item_paneer_biryani", "price": "26 CHF", "type": "veg", "description": "Paneer-Stücke, zusammen gekocht mit Basmati-Reis, Gewürzen und Safran, garniert mit gebratenen Zwiebeln" },
+        { "nameKey": "item_chicken_tikka_biryani", "price": "28 CHF", "type": "non_veg", "description": "Hähnchen ohne Knochen, gekocht mit Basmati-Reis und Safran, Gewürzen, garniert mit gebratenen Zwiebeln" },
+        { "nameKey": "item_lamb_biryani", "price": "29 CHF", "type": "non_veg", "description": "Lamm gekocht mit Basmati-Reis und Gewürzen, Safran, garniert mit gebratenen Zwiebeln" },
+        { "nameKey": "item_prawn_biryani", "price": "30 CHF", "type": "non_veg", "description": "Marinierte Garnelen, gekocht mit Basmati-Reis, Safranmilch und Gewürzmischung" },
+        { "nameKey": "item_fish_biryani", "price": "30 CHF", "type": "non_veg", "description": "Basmati-Reis mit gewürztem Fisch und aromatischen Gewürzen" },
+        { "nameKey": "item_jeera_matar_pulao", "price": "6 CHF", "type": "veg", "description": "Basmati-Reis mit Kreuzkümmel und grünen Erbsen – aromatisch und leicht." },
+        { "nameKey": "item_egg_fried_rice", "price": "7 CHF", "type": "non_veg", "description": "Reis in Rührei und Sojasauce gewürzt" },
+        { "nameKey": "item_garlic_rice", "price": "7 CHF", "type": "veg", "description": "Duftender Reis, in aromatischem Knoblauch gebraten und perfekt zubereitet für ein schmackhaftes und zufriedenstellendes Gericht" },
+        { "nameKey": "item_mushroom_rice", "price": "7 CHF", "type": "veg", "description": "Duftender Reis, gekocht mit zarten Pilzen, gewürzt mit Kräutern und Gewürzen für ein herzhaftes und aromatisches Gericht" }
+      ]
+    },
+    {
+      "id": "bread",
+      "titleKey": "menu_bread_title",
+      "type": "veg",
+      "items": [
+        { "nameKey": "item_plain_naan", "price": "4 CHF", "description": "Gesäuertes, im Ofen gebackenes, leichtes und flauschiges Fladenbrot" },
+        { "nameKey": "item_garlic_naan", "price": "5 CHF", "description": "Indisches, im Ofen gebackenes Fladenbrot, gewürzt mit Knoblauch und Butter" },
+        { "nameKey": "item_aloo_kulcha", "price": "6 CHF", "description": "Weiches, säuerliches Fladenbrot gefüllt mit Kartoffelpurefüllungen und milden Gewürzen" },
+        { "nameKey": "item_cheese_naan", "price": "7 CHF", "description": "Fladenbrot, gefüllt mit geriebenem Käse" },
+        { "nameKey": "item_paneer_kulcha", "price": "6 CHF", "description": "Weiches, säuerliches Fladenbrot gefüllt mit gewürfeltem Paneer, Ingwer und einer Mischung aus gerösteten Gewürzen" },
+        { "nameKey": "item_cheese_chilli_naan", "price": "6 CHF", "description": "Ein Sauerteig-Tandoor-Fladenbrot mit Käsefüllungen, gekocht" },
+        { "nameKey": "item_chilli_garlic_naan", "price": "6 CHF", "description": "Ein Sauerteig-Tandoor-Fladenbrot, bedeckt mit würzigen grünen Chilis und gehacktem Knoblauch, gekocht" },
+        { "nameKey": "item_roti", "price": "4 CHF", "description": "Traditionelles und leckeres nordindisches Fladenbrot aus Weizenmehl, im Tandoor gebacken" },
+        { "nameKey": "item_lachha_paratha", "price": "5 CHF", "description": "\"Laccha\" bedeutet Schichten, diese schichtigen Fladenbrote werden aus Vollweizenmehl hergestellt" },
+        { "nameKey": "item_pudina_paratha", "price": "4 CHF", "description": "Knuspriges, flockiges, geschichtetes Minz-Fladenbrot aus Vollweizen mit Minzgeschmack" },
+        { "nameKey": "item_methi_paratha", "price": "4 CHF", "description": "Traditionelles indisches Fladenbrot aus Vollweizenmehl, Gewürzen und Bockshornkleeblattern" }
+      ]
+    },
+    {
+      "id": "seafood",
+      "titleKey": "menu_seafood_title",
+      "type": "non_veg",
+      "items": [
+        { "nameKey": "item_goan_prawn_curry", "price": "27.50 CHF", "description": "Zarte Garnelen, gekocht in einer reichen und geschmackvollen Currysauce aus Kokosmilch, Tamarinde und einer Mischung aus Goanischen Gewürzen, die ein würziges und aromatisches Gericht ergibt" },
+        { "nameKey": "item_bhuna_prawn", "price": "27.50 CHF", "description": "Zarte Garnelen, gekocht in einer dicken Sauce aus einer Gewürzmischung, die ein reichhaltiges und geschmackvolles Gericht ergibt" },
+        { "nameKey": "item_prawn_coconut", "price": "27.50 CHF", "description": "Zarte Garnelen, gekocht in einer cremigen, aromatischen Kokossauce, perfekt gewürzt für einen reichen und genussvollen Geschmack" },
+        { "nameKey": "item_fish_curry", "price": "27.50 CHF", "description": "Fisch, gekocht in einer mild bis mittelscharfen Currysauce." }
+      ]
+    },
+    {
+      "id": "dal",
+      "titleKey": "menu_dal_title",
+      "type": "veg",
+      "items": [
+        { "nameKey": "item_amritsari_chana", "price": "20 CHF", "description": "Ein Kichererbsengericht in Sauce mit Tomaten, Zwiebeln, Ingwer und Knoblauch" },
+        { "nameKey": "item_rajma_masala", "price": "20 CHF", "description": "Rote Kidney-Bohnen sind in gekochter Zwiebel- und Tomatensauce" },
+        { "nameKey": "item_dal_tadka", "price": "17 CHF", "description": "Perfekt gekochte Linsen, garniert mit einer bruzzelnden Ghee-Tadka aus Kreuzkümmel, Knoblauch und Gewürzen." }
+      ]
+    },
+    {
+      "id": "desserts",
+      "titleKey": "menu_desserts_title",
+      "type": "veg",
+      "items": [
+        { "nameKey": "item_gulab_jamun", "price": "6 CHF", "description": "Gebratene Bälle von Milchpulverteig eingeweicht in einen aromatischen Sirup, gewürzt mit Rosenwasser, Safran und mehr" },
+        { "nameKey": "item_ice_vanilla", "price": "5.80 CHF", "description": "Klassisches Vanilleeis" },
+        { "nameKey": "item_ice_strawberry", "price": "5.80 CHF", "description": "Erdbeereis" },
+        { "nameKey": "item_ice_chocolate", "price": "5.80 CHF", "description": "Schokoladeneis" },
+        { "nameKey": "item_ice_mix", "price": "5.80 CHF", "description": "Vanille, Erdbeere und Schokolade" },
+        { "nameKey": "item_mango_kulfi_pista", "price": "7 CHF", "description": "Frisches Mango-Pulp, Cashew-Nuss und Creme" },
+        { "nameKey": "item_mango_cream", "price": "7 CHF", "description": "Cremiges Mangodessert, hergestellt aus frischer Mango und Sahne" },
+        { "nameKey": "item_pista_kulfi", "price": "7 CHF", "description": "Cremiges indisches Eis mit Pistazien." }
+      ]
+    },
+    {
+      "id": "raita_sides",
+      "titleKey": "menu_raita_sides_title",
+      "type": "veg",
+      "items": [
+        { "nameKey": "item_mix_raita", "price": "4 CHF", "description": "Joghurt mit einer Mischung aus frischem Gemüse und milden Gewürzen" },
+        { "nameKey": "item_garlic_raita", "price": "4 CHF", "description": "Joghurt mit frischem Knoblauch und milden indischen Gewürzen" },
+        { "nameKey": "item_plain_yogurt", "price": "4 CHF", "description": "Frischer, cremiger Naturjoghurt" }
+      ]
+    }
+  ],
+
+  "menu_veg_main_title": "Vegetarische Hauptgerichte",
+  "menu_paneer_title": "Paneer Gerichte",
+  "menu_chicken_title": "Hähnchen Spezialitäten",
+  "menu_lamb_title": "Lamm Delikatessen",
+  "menu_biryani_rice_title": "Biryani & Reis",
+  "menu_bread_title": "Indische Brote",
+  "menu_seafood_title": "Meeresfrüchte Köstlichkeiten",
+  "menu_salads_title": "Salate",
+  "menu_veg_starters_title": "Vegetarische Vorspeisen",
+  "menu_starters_title": "Vorspeisen & Appetithäppchen",
+  "menu_non_veg_starters_title": "Nicht-Vegetarische Vorspeisen",
+  "menu_dal_title": "Dal & Linsen",
+  "menu_desserts_title": "Desserts & Süßigkeiten",
+  "menu_raita_sides_title": "Raita & Beilagen",
+
+  "item_indian_green_salad": "Indischer Grüner Salat",
+  "item_chicken_bbq_salad": "Chicken BBQ Salat",
+  "item_hari_bhari_tikki": "Hari Bhari Tikki",
+  "item_punjabi_samosa": "Punjabi Samosa",
+  "item_mix_pakora": "Mix Pakora",
+  "item_chilli_paneer": "Chilli Paneer",
+  "item_paneer_pakora": "Paneer Pakora",
+  "item_malai_paneer_tikka": "Malai Paneer Tikka (BBQ)",
+  "item_veg_samosa": "Gemüse Samosa (2 Stück)",
+  "item_veg_pakora": "Gemüse Pakora",
+  "item_paneer_tikka": "Paneer Tikka",
+  "item_chicken_tikka": "Hähnchen Tikka",
+  "item_chicken_wings": "Hähnchen Flügel",
+  "item_seekh_kebab": "Seekh Kebab",
+  "item_chilli_chicken": "Chilli Chicken",
+  "item_bbq_basil_chicken_tikka": "BBQ Basilikum Chicken Tikka",
+  "item_drums_of_heaven": "Drums of Heaven",
+  "item_bbq_chicken_tikka": "Chicken Tikka",
+  "item_bbq_chicken_wings": "BBQ Hähnchen Flügel",
+  "item_fried_fish": "Gebratener Fisch",
+  "item_jhinga_pakora": "Jhinga Pakora",
+  "item_chicken_pakora": "Chicken Pakora",
+  "item_mix_veg": "Gemischtes Gemüse",
+  "item_aloo_gobhi": "Aloo Gobhi",
+  "item_aloo_zeera": "Aloo Zeera",
+  "item_methi_malai": "Methi Malai Matar Pilze",
+  "item_baingan_bharta": "Baingan Matar Bharta",
+  "item_aloo_palak": "Aloo Palak",
+  "item_bhindi_masala": "Bhindi Masala",
+  "item_aloo_matter": "Aloo Matter",
+  "item_veg_jalfrezi": "Gemüse Jalfrezi",
+  "item_kadai_paneer": "Kadai Paneer",
+  "item_paneer_tikka_masala": "Paneer Tikka Masala",
+  "item_palak_paneer": "Palak Paneer",
+  "item_paneer_makhani": "Paneer Makhani",
+  "item_matar_paneer": "Matar Paneer",
+  "item_paneer_korma": "Paneer Korma",
+  "item_paneer_jalfrezi": "Paneer Jalfrezi",
+  "item_paneer_madras": "Paneer Madras",
+  "item_shabnam_paneer": "Shabnam Paneer",
+  "item_paneer_pasanda": "Paneer Pasanda",
+  "item_butter_chicken": "Butter Chicken",
+  "item_chicken_tikka_masala": "Chicken Tikka Masala",
+  "item_chicken_kadai": "Chicken Kadai",
+  "item_chicken_chettinad": "Chicken Chettinad",
+  "item_chicken_palak": "Chicken Palak",
+  "item_chicken_coconut": "Chicken Coconut",
+  "item_chicken_vindaloo": "Chicken Vindaloo",
+  "item_murg_pudina": "Murg Pudina",
+  "item_lamb_curry": "Lamm Curry",
+  "item_lamb_rogan_josh": "Lamm Rogan Josh",
+  "item_lamb_kadai": "Lamm Kadai",
+  "item_lamb_vindaloo": "Lamm Vindaloo",
+  "item_lamb_korma": "Lamm Korma",
+  "item_pudina_gosht": "Pudina Gosht",
+  "item_lamb_bhuna": "Lamm Bhuna",
+  "item_lamb_lassoni": "Lamm Lassoni",
+  "item_veg_biryani": "Veg Biryani",
+  "item_paneer_biryani": "Paneer Biryani",
+  "item_chicken_tikka_biryani": "Chicken Tikka Biryani",
+  "item_lamb_biryani": "Lamm Biryani",
+  "item_prawn_biryani": "Garnelen Biryani",
+  "item_fish_biryani": "Fisch Biryani",
+  "item_jeera_matar_pulao": "Jeera Matar Pulao",
+  "item_egg_fried_rice": "Egg Fried Rice",
+  "item_garlic_rice": "Knoblauch Reis",
+  "item_mushroom_rice": "Pilz Reis",
+  "item_plain_naan": "Plain Naan",
+  "item_garlic_naan": "Knoblauch Naan",
+  "item_aloo_kulcha": "Aloo Kulcha",
+  "item_cheese_naan": "Käse Naan",
+  "item_paneer_kulcha": "Paneer Kulcha",
+  "item_cheese_chilli_naan": "Cheese Chilli Naan",
+  "item_chilli_garlic_naan": "Chilli Knoblauch Naan",
+  "item_roti": "Roti",
+  "item_lachha_paratha": "Lachha Paratha",
+  "item_pudina_paratha": "Pudina Paratha",
+  "item_methi_paratha": "Methi Paratha",
+  "item_fish_malai_masala": "Fish Malai Masala",
+  "item_goan_prawn_curry": "Goan Prawn Curry",
+  "item_bhuna_prawn": "Bhuna Prawn",
+  "item_prawn_coconut": "Prawn Coconut",
+  "item_fish_curry": "Fish Curry",
+  "item_amritsari_chana": "Amritsari Chana",
+  "item_rajma_masala": "Rajma Masala",
+  "item_dal_makhani": "Dal Makhani",
+  "item_dal_tadka": "Tadka Dal",
+  "item_gulab_jamun": "Gulab Jamun",
+  "item_gajar_halwa": "Gajar Halwa",
+  "item_ice_vanilla": "Vanille",
+  "item_ice_strawberry": "Erdbeere",
+  "item_ice_chocolate": "Schokolade",
+  "item_ice_mix": "Mix Eis",
+  "item_mango_kulfi_pista": "Mango Kulfi mit Pista",
+  "item_mango_cream": "Mango Creme",
+  "item_pista_kulfi": "Pista Kulfi",
+  "item_mix_raita": "Mix Raita",
+  "item_garlic_raita": "Knoblauch Raita",
+  "item_boondi_raita": "Boondi Raita",
+  "item_plain_yogurt": "Naturjoghurt",
+  "item_pineapple_raita": "Ananas Raita",
+  "item_papad": "Papad (2 Stück)",
+
   "about_hero_alt": "Restaurant-Interieur",
   
     "about_hero_title": "Kreuz Pintli Swagat",
@@ -158,7 +452,7 @@
     "contact_form_error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.",
     "contact_form_submitting": "Ihre Nachricht wird gesendet...",
     "contact_reach_us_title": "So erreichen Sie uns",
-    "contact_hours": "Täglich geöffnet: 11:00 – 22:00 Uhr"
+    "contact_hours": "Mo–Sa: 10:00–14:00 & 17:00–22:00 | Sonntag: Geschlossen"
 ,  
 
   "footer_title": "Kreuz Pintli Swagat",
@@ -168,7 +462,12 @@
   "footer_address": "Beitenwil 59, 3113 Rubigen, Schweiz",
   "footer_phone": "+41 07 66 298876",
   "footer_email": "contact@kreuzpintli-swagat.ch",
-  "footer_hours": "Täglich: 11:00 - 22:00 Uhr",
+  "footer_hours": "Mo–Sa: 10:00–14:00 & 17:00–22:00",
+  "footer_hours_weekdays": "Montag – Samstag",
+  "footer_hours_lunch": "10:00 – 14:00",
+  "footer_hours_dinner": "17:00 – 22:00",
+  "footer_hours_sunday": "Sonntag",
+  "footer_hours_sunday_status": "Geschlossen",
   "footer_rights": "Alle Rechte vorbehalten."
 
 ,

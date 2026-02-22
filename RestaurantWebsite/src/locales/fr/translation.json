@@ -136,7 +136,7 @@
   "contact_form_error": "Une erreur s’est produite. Veuillez réessayer plus tard.",
   "contact_form_submitting": "Envoi en cours...",
   "contact_reach_us_title": "Nous contacter",
-  "contact_hours": "Ouvert tous les jours : 11h00 – 22h00",
+  "contact_hours": "Lun–Sam: 10h00–14h00 & 17h00–22h00 | Dimanche: Fermé",
 
   "footer_title": "Swagat Restaurant Indien",
   "footer_description": "Découvrez le cœur de la cuisine indienne avec une hospitalité chaleureuse et des saveurs intemporelles depuis 1998.",
@@ -145,6 +145,11 @@
   "footer_address": "Beitenwil 59, 3113 Rubigen, Suisse",
   "footer_phone": "+41 07 66 298876",
   "footer_email": "swagatindianrestaurant.in",
-  "footer_hours": "Tous les jours : 11h00 - 22h00",
+  "footer_hours": "Lun–Sam: 10h00–14h00 & 17h00–22h00",
+  "footer_hours_weekdays": "Lundi – Samedi",
+  "footer_hours_lunch": "10:00 – 14:00",
+  "footer_hours_dinner": "17:00 – 22:00",
+  "footer_hours_sunday": "Dimanche",
+  "footer_hours_sunday_status": "Fermé",
   "footer_rights": "Tous droits réservés."
 }

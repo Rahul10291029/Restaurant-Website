@@ -10,10 +10,16 @@ import Contact from "./Components/Contact";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Gallery from "./Components/Gallery";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import ContentEditor from "./pages/ContentEditor";
+import TranslationEditor from "./pages/TranslationEditor";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { ContentProvider } from "./context/ContentContext";
 
 const App = () => {
   return (
-    <>
+    <ContentProvider>
       <ScrollToTop />
       <Navbar />
 
@@ -27,9 +33,36 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/gallery" element={<Gallery />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route 
+            path="/admin/dashboard" 
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/admin/content" 
+            element={
+              <ProtectedRoute>
+                <ContentEditor />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/admin/translations" 
+            element={
+              <ProtectedRoute>
+                <TranslationEditor />
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
       </div>
-    </>
+    </ContentProvider>
   );
 };
 

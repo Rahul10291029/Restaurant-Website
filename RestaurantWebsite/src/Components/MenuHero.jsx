@@ -1,5 +1,5 @@
 import React from 'react';
-import bgImage from '../Images/bgImg.jpg';
+import bgImage from '../Images/RestaurantInterior.jpg';
 
 const HeroSection = ({
   title = "Our Menu.",

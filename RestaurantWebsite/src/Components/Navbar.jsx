@@ -7,7 +7,7 @@ import {
   Phone,
   Home,
   Info,
-  ShoppingCart,
+  Utensils,
   Image as GalleryIcon,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -201,7 +201,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="fixed top-0 w-full z-50 bg-white shadow-md">
-        <div className="max-w-[1400px] mx-auto px-10 h-20 flex justify-between items-center">
+        <div className="max-w-[1400px] mx-auto px-10 h-20 flex items-center justify-between">
           <div className="flex items-center w-full md:hidden justify-between">
             <div className="flex items-center gap-3 min-w-0">
               <button
@@ -255,7 +255,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          <Link to="/" className="hidden md:flex items-center gap-2 -ml-6">
+          <Link to="/" className="hidden md:flex items-center gap-3 flex-shrink-0">
             <img
               src="/Swagatlogo.png"
               alt="Swagat Logo"
@@ -266,12 +266,12 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-10 ml-10">
+          <div className="hidden md:flex items-center gap-6">
             <Link to="/" className={navItem}>
               <Home size={18} className={iconClass} /> {t("nav_home")}
             </Link>
             <Link to="/menu" className={navItem}>
-              <ShoppingCart size={18} className={iconClass} /> {t("nav_menu")}
+              <Utensils size={18} className={iconClass} /> {t("nav_menu")}
             </Link>
             <Link to="/about" className={navItem}>
               <Info size={18} className={iconClass} /> {t("nav_about")}
@@ -310,7 +310,7 @@ const Navbar = () => {
               <Home size={18} className="text-amber-500" /> {t("nav_home")}
             </Link>
             <Link to="/menu" className="flex items-center gap-3">
-              <ShoppingCart size={18} className="text-amber-500" />{" "}
+              <Utensils size={18} className="text-amber-500" />{" "}
               {t("nav_menu")}
             </Link>
             <Link to="/about" className="flex items-center gap-3">
