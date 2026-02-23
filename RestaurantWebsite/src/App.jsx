@@ -1,4 +1,4 @@
-// src/App.jsx
+// src/App.jsx - v1.0.1 (Deployment Trigger)
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
