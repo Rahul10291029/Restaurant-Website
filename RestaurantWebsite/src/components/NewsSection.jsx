@@ -11,24 +11,14 @@ const NewsSection = () => {
 
   const newsItems = [
     {
-      id: 2,
-      title: t("news_article_2_title"),
-      text: t("news_article_2_text"),
-      cta: t("news_article_2_cta"),
-      image: newsImg2,
-      link: "https://www.derbund.ch/beitenwil-restaurant-swagat-bringt-indische-currys-nach-rubigen-230162455898",
-      date: t("news_article_2_date"),
-      featured: true,
-    },
-    {
       id: 1,
       title: t("news_article_title"),
       text: t("news_article_text"),
       cta: t("news_article_cta"),
       image: newsImg1,
-      link: "https://share.google/ZWgA0UTS7j64tXOj9",
-      date: "February 2026",
-      featured: false,
+      link: "https://www.derbund.ch/beitenwil-restaurant-swagat-bringt-indische-currys-nach-rubigen-230162455898",
+      date: t("news_article_date"),
+      featured: true,
     },
   ];
 

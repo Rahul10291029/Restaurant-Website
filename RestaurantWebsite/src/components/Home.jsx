@@ -12,6 +12,7 @@ const ButterChicken = "/ButterChicken.jpg";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import SpecialsSection from "../pages/SpecialSection";
+import NewsSection from "./NewsSection";
 import { useContent } from "../context/ContentContext";
 
 const Home = () => {
@@ -217,6 +218,9 @@ const Home = () => {
           )}
         </div>
 
+        {/* ================= NEWS SECTION ================= */}
+        <NewsSection />
+
         {/* ================= FOOTER (YOUR ORIGINAL - UNCHANGED) ================= */}
         <footer
           ref={footerRef}
@@ -263,15 +267,25 @@ const Home = () => {
               </h4>
               <ul className="space-y-3">
                 <li>📍 {t("footer_address")}</li>
-                <li>
-  📞{" "}
-  <a
-    href={`tel:${t("footer_phone")}`}
-    className="font-semibold text-amber-700 hover:text-amber-900 hover:underline"
-  >
-    {t("footer_phone")}
-  </a>
-</li>
+                <li className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2">
+                    📞
+                    <a
+                      href={`tel:${t("footer_phone_1_raw")}`}
+                      className="font-semibold text-amber-700 text-lg hover:underline"
+                    >
+                      {t("footer_phone_1")}
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-2 ml-7">
+                    <a
+                      href={`tel:${t("footer_phone_2_raw")}`}
+                      className="font-semibold text-amber-700 text-lg hover:underline"
+                    >
+                      {t("footer_phone_2")}
+                    </a>
+                  </div>
+                </li>
 
 <li>
   ✉️{" "}

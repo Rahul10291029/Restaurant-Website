@@ -1,20 +1,20 @@
 // src/App.jsx
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import ScrollToTop from "./components/ScrollToTop";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Menu from "./components/Menu";
-import About from "./components/About";
-import Contact from "./components/Contact";
+import ScrollToTop from "./Components/ScrollToTop";
+import Navbar from "./Components/Navbar";
+import Home from "./Components/Home";
+import Menu from "./Components/Menu";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Gallery from "./components/Gallery";
+import Gallery from "./Components/Gallery";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import ContentEditor from "./pages/ContentEditor";
 import TranslationEditor from "./pages/TranslationEditor";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./Components/ProtectedRoute";
 import { ContentProvider } from "./context/ContentContext";
 
 const App = () => {

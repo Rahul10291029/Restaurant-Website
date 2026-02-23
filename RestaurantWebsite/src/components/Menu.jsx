@@ -244,14 +244,24 @@ const Menu = () => {
               <li className="flex gap-2">
                 📍 <span>{t("footer_address")}</span>
               </li>
-              <li className="flex items-center gap-2">
-                📞
-                <a
-                  href={`tel:${t("footer_phone_raw")}`}
-                  className="font-semibold text-amber-700 text-lg hover:underline"
-                >
-                  {t("footer_phone")}
-                </a>
+              <li className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  📞
+                  <a
+                    href={`tel:${t("footer_phone_1_raw")}`}
+                    className="font-semibold text-amber-700 text-lg hover:underline"
+                  >
+                    {t("footer_phone_1")}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 ml-7">
+                  <a
+                    href={`tel:${t("footer_phone_2_raw")}`}
+                    className="font-semibold text-amber-700 text-lg hover:underline"
+                  >
+                    {t("footer_phone_2")}
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-2">
                 ✉️

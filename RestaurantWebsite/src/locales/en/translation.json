@@ -25,13 +25,10 @@
   "home_view_specials": "View Full Menu",
   "news_title": "Latest News",
   "news_subtitle": "Stay updated with our latest announcements and culinary journeys",
-  "news_article_title": "Indian Yaadein – Excellence in Bern",
-  "news_article_text": "We are thrilled to introduce Indian Yaadein, our sister concern in the heart of Bern. Experience an authentic culinary journey filled with traditional flavors and modern elegance. Join us for lunch, dinner, or private celebrations.",
-  "news_article_cta": "Discover Indian Yaadein",
-  "news_article_2_title": "Restaurant Swagat brings Indian currys to Rubigen",
-  "news_article_2_text": "In the former Kreuz-Pintli in the municipality of Rubigen, Indian food is now being cooked. However, the chef remains cautious with the chili.",
-  "news_article_2_cta": "Read Article",
-  "news_article_2_date": "February 2026",
+  "news_article_title": "Restaurant Swagat brings Indian currys to Rubigen",
+  "news_article_text": "In the former Kreuz-Pintli in the municipality of Rubigen, Indian food is now being cooked. However, the chef remains cautious with the chili.",
+  "news_article_cta": "Read Article",
+  "news_article_date": "February 2026",
 
 "heroTitleMain": "Kreuz Pintli Swagat",
 "heroTitleSub": "An Indian Restaurant"
@@ -418,7 +415,7 @@
   "about_atmosphere_title": "Our Atmosphere",
   "about_atmosphere_img1_alt": "Restaurant dining area",
   "about_atmosphere_img2_alt": "Cozy restaurant seating",
-  "about_atmosphere_text": "Step into Swagat Indian Restaurant and immerse yourself in an ambiance that combines classic elegance with cozy comfort. Whether it's a casual meal or a special celebration, our inviting space is designed to make every moment memorable.",
+  "about_atmosphere_text": "Step into Swagat Indian Restaurant and immerse yourself in an ambiance that combines classic elegance with cozy comfort. Whether it's a casual meal or a special celebration, our inviting space is designed to make every moment memorable. Live it or Live it.",
 
   "gallery_title": "Our Gallery",
 
@@ -452,13 +449,17 @@
 
   
     "footer_title": "Kreuz Pintli Swagat",
-    "footer_description": "Experience the heart of Indian cuisine with warm hospitality and timeless flavors since 1998.",
+    "footer_description": "Experience the heart of Indian cuisine with warm hospitality and timeless flavors since 1998. Live it or Live it.",
     "footer_quick_links": "Quick Links",
     "footer_visit_us": "Visit Us",
     "footer_address": "Beitenwil 59, 3113 Rubigen, Switzerland",
   
     "footer_phone": "+41 76 629 88 76 / 031 839 24 40",
+    "footer_phone_1": "+41 76 629 88 76",
+    "footer_phone_2": "031 839 24 40",
     "footer_phone_raw": "+41766298876",
+    "footer_phone_1_raw": "+41766298876",
+    "footer_phone_2_raw": "+41318392440",
   
     "footer_email": "contact@kreuzpintli-swagat.ch",
     "footer_hours": "Monday - Saturday\n10:00 – 14:00\n17:00 – 22:00\n\nSunday\nClosed",

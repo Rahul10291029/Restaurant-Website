@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
@@ -20,6 +21,10 @@ const Contact = () => {
   // ✅ For faster hero image display
   const [heroLoaded, setHeroLoaded] = useState(false);
 
+  // ✅ Footer state
+  const footerRef = useRef(null);
+  const [footerVisible, setFooterVisible] = useState(false);
+
   // ✅ Copy status
   const [copied, setCopied] = useState(false);
 
@@ -33,6 +38,18 @@ const Contact = () => {
   useEffect(() => {
     const pk = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
     if (pk) emailjs.init(pk);
+  }, []);
+
+  // ✅ Footer observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setFooterVisible(true);
+      },
+      { threshold: 0.1 }
+    );
+    if (footerRef.current) observer.observe(footerRef.current);
+    return () => observer.disconnect();
   }, []);
 
   // ✅ preload hero image
@@ -289,6 +306,97 @@ const Contact = () => {
           </div>
         </div>
       </section>
+      {/* ================= FOOTER ================= */}
+      <footer
+        ref={footerRef}
+        className="mt-20 bg-gradient-to-t from-yellow-50 to-white shadow-inner rounded-t-3xl overflow-hidden"
+      >
+        <div
+          className={`max-w-7xl mx-auto px-8 py-20 grid grid-cols-1 md:grid-cols-3 gap-12 transition-all duration-700 ${
+            footerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          {/* LEFT */}
+          <div>
+            <h3 className="text-3xl font-extrabold text-amber-800 mb-4">
+              {t("footer_title")}
+            </h3>
+            <p className="text-gray-600">{t("footer_description")}</p>
+          </div>
+
+          {/* CENTER */}
+          <div>
+            <h4 className="text-xl font-bold mb-4">{t("footer_quick_links")}</h4>
+            <ul className="space-y-2">
+              {[
+                { label: t("nav_home"), path: "/" },
+                { label: t("nav_menu"), path: "/menu" },
+                { label: t("nav_about"), path: "/about" },
+                { label: t("nav_contact"), path: "/contact" },
+              ].map((link) => (
+                <li key={link.path}>
+                  <Link to={link.path} className="hover:text-amber-600 transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* RIGHT */}
+          <div>
+            <h4 className="text-xl font-bold mb-4">{t("footer_visit_us")}</h4>
+            <ul className="space-y-3">
+              <li className="flex gap-2">
+                📍 <span>{t("footer_address")}</span>
+              </li>
+
+              {/* Phone numbers on separate rows */}
+              <li className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  📞
+                  <a
+                    href={`tel:${t("footer_phone_1_raw")}`}
+                    className="font-semibold text-amber-700 text-lg hover:underline"
+                  >
+                    {t("footer_phone_1")}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2 ml-7">
+                  <a
+                    href={`tel:${t("footer_phone_2_raw")}`}
+                    className="font-semibold text-amber-700 text-lg hover:underline"
+                  >
+                    {t("footer_phone_2")}
+                  </a>
+                </div>
+              </li>
+
+              <li className="flex items-center gap-2">
+                ✉️
+                <a
+                  href={`mailto:${t("footer_email")}`}
+                  className="font-semibold text-amber-700 hover:underline"
+                >
+                  {t("footer_email")}
+                </a>
+              </li>
+
+              <li className="mt-1">
+                <span className="font-semibold text-amber-800">🕒 Opening Hours</span>
+                <p className="mt-1 ml-6 whitespace-pre-line text-sm text-gray-700">
+                  {t("footer_hours")}
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* COPYRIGHT */}
+        <div className="text-center py-5 text-sm border-t border-amber-100">
+          © {new Date().getFullYear()} {t("footer_title")} · {t("footer_rights")}
+        </div>
+      </footer>
     </div>
   );
 };

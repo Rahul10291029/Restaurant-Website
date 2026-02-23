@@ -160,9 +160,24 @@ const Gallery = () => {
                 <span className="mr-3">📍</span>
                 {t("footer_address")}
               </li>
-              <li className="flex items-center">
-                <span className="mr-3">📞</span>
-                {t("footer_phone")}
+              <li className="flex flex-col gap-1">
+                <div className="flex items-center">
+                  <span className="mr-3">📞</span>
+                  <a
+                    href={`tel:${t("footer_phone_1_raw")}`}
+                    className="font-semibold text-amber-700 text-lg hover:underline"
+                  >
+                    {t("footer_phone_1")}
+                  </a>
+                </div>
+                <div className="flex items-center ml-7">
+                  <a
+                    href={`tel:${t("footer_phone_2_raw")}`}
+                    className="font-semibold text-amber-700 text-lg hover:underline"
+                  >
+                    {t("footer_phone_2")}
+                  </a>
+                </div>
               </li>
               <li className="flex items-center">
                 <span className="mr-3">✉️</span>

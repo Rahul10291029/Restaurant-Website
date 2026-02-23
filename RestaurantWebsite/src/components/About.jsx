@@ -147,7 +147,7 @@ const About = () => {
 
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <motion.img
-              src="/Platter.jpg"
+              src="/gallery/food/food1.jpeg"
               alt={t("about_atmosphere_img1_alt")}
               loading="lazy"
               className="w-full h-80 object-cover rounded-xl shadow-lg"
@@ -158,7 +158,7 @@ const About = () => {
             />
 
             <motion.img
-              src="/Platter2.jpg"
+              src="/gallery/food/food2.jpeg"
               alt={t("about_atmosphere_img2_alt")}
               loading="lazy"
               className="w-full h-80 object-cover rounded-xl shadow-lg"
@@ -239,14 +239,24 @@ const About = () => {
         </li>
 
         {/* Phone – clickable dialer */}
-        <li className="flex items-center gap-2">
-          📞
-          <a
-            href={`tel:${t("footer_phone_raw")}`}
-            className="font-semibold text-amber-700 text-lg hover:underline"
-          >
-            {t("footer_phone")}
-          </a>
+        <li className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            📞
+            <a
+              href={`tel:${t("footer_phone_1_raw")}`}
+              className="font-semibold text-amber-700 text-lg hover:underline"
+            >
+              {t("footer_phone_1")}
+            </a>
+          </div>
+          <div className="flex items-center gap-2 ml-7">
+            <a
+              href={`tel:${t("footer_phone_2_raw")}`}
+              className="font-semibold text-amber-700 text-lg hover:underline"
+            >
+              {t("footer_phone_2")}
+            </a>
+          </div>
         </li>
 
         {/* Email – clickable mail app */}
