@@ -12,7 +12,7 @@ const ButterChicken = "/ButterChicken.jpg";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import SpecialsSection from "../pages/SpecialSection";
-import NewsSection from "./NewsSection";
+
 import { useContent } from "../context/ContentContext";
 
 const Home = () => {
@@ -218,8 +218,7 @@ const Home = () => {
           )}
         </div>
 
-        {/* ================= NEWS SECTION ================= */}
-        <NewsSection />
+
 
         {/* ================= FOOTER (YOUR ORIGINAL - UNCHANGED) ================= */}
         <footer
