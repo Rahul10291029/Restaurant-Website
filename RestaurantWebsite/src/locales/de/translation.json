@@ -123,8 +123,7 @@
         { "nameKey": "item_chicken_bbq_salad", "price": "9 CHF", "type": "non_veg", "description": "Kalte Würfel von Hähnchen serviert mit Gurke, Tomate, Salatblätter mit Dressing" },
         { "nameKey": "item_veg_samosa", "price": "8 CHF", "type": "veg", "description": "Knusprig gebratene Teigtaschen gefüllt mit Kartoffeln, grünen Erbsen, Paneer und Gewürzen." },
         { "nameKey": "item_veg_pakora", "price": "10 CHF", "type": "veg", "description": "Frittierte Küchlein aus Zwiebeln, Spinat und Kartoffeln in Kichererbsenmehl." },
-        { "nameKey": "item_chicken_tikka", "price": "16 CHF", "type": "non_veg", "description": "Entbeintes Hähnchen in Gewürzen mariniert und im BBQ gegrillt." },
-        { "nameKey": "item_seekh_kebab", "price": "17 CHF", "type": "non_veg", "description": "Hackfleisch mit Kräutern und Gewürzen gemischt, aufgespießt und über Holzkohle gegrillt." }
+        { "nameKey": "item_chicken_tikka", "price": "16 CHF", "type": "non_veg", "description": "Entbeintes Hähnchen in Gewürzen mariniert und im BBQ gegrillt." }
       ]
     },
     {
@@ -312,7 +311,6 @@
   "item_veg_samosa": "Gemüse Samosa (2 Stück)",
   "item_veg_pakora": "Gemüse Pakora",
   "item_chicken_tikka": "Hähnchen Tikka",
-  "item_seekh_kebab": "Seekh Kebab",
   "item_chilli_chicken": "Chilli Chicken",
   "item_bbq_basil_chicken_tikka": "BBQ Basilikum Chicken Tikka",
   "item_drums_of_heaven": "Drums of Heaven",
@@ -465,7 +463,7 @@
   "footer_quick_links": "Schnelle Links",
   "footer_visit_us": "Besuchen Sie uns",
   "footer_address": "Beitenwil 59, 3113 Rubigen, Schweiz",
-  "footer_phone": "+41 07 66 298876",
+  "footer_phone": "+41 76 629 88 76 / 031 839 24 40",
   "footer_email": "contact@kreuzpintli-swagat.ch",
   "footer_hours": "Montag - Samstag\n10:00 – 14:00\n17:00 – 22:00\n\nSonntag\nGeschlossen",
   "footer_hours_weekdays": "Montag – Samstag",

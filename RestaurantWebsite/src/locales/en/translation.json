@@ -121,8 +121,7 @@
         { "nameKey": "item_chicken_bbq_salad", "price": "9 CHF", "type": "non_veg", "description": "Cold chicken cubes served with cucumber, tomato, and salad leaves with dressing." },
         { "nameKey": "item_veg_samosa", "price": "8 CHF", "type": "veg", "description": "Crispy fried pastry filled with potatoes, green peas, paneer, and spices." },
         { "nameKey": "item_veg_pakora", "price": "10 CHF", "type": "veg", "description": "Deep-fried fritters made with onions, spinach, and potatoes in gram flour." },
-        { "nameKey": "item_chicken_tikka", "price": "16 CHF", "type": "non_veg", "description": "Boneless chicken marinated in spices and grilled in BBQ." },
-        { "nameKey": "item_seekh_kebab", "price": "17 CHF", "type": "non_veg", "description": "Minced lamb mixed with herbs and spices, skewered and grilled over charcoal." }
+        { "nameKey": "item_chicken_tikka", "price": "16 CHF", "type": "non_veg", "description": "Boneless chicken marinated in spices and grilled in BBQ." }
       ]
     },
     {
@@ -310,7 +309,6 @@
   "item_veg_samosa": "Veg Samosa (2 pcs)",
   "item_veg_pakora": "Veg Pakora",
   "item_chicken_tikka": "Chicken Tikka",
-  "item_seekh_kebab": "Seekh Kebab",
   "item_chilli_chicken": "Chilli Chicken",
   "item_bbq_basil_chicken_tikka": "BBQ Basil Chicken Tikka",
   "item_drums_of_heaven": "Drums of Heaven",
@@ -459,8 +457,8 @@
     "footer_visit_us": "Visit Us",
     "footer_address": "Beitenwil 59, 3113 Rubigen, Switzerland",
   
-    "footer_phone": "+41 07 66 298876",
-    "footer_phone_raw": "+410766298876",
+    "footer_phone": "+41 76 629 88 76 / 031 839 24 40",
+    "footer_phone_raw": "+41766298876",
   
     "footer_email": "contact@kreuzpintli-swagat.ch",
     "footer_hours": "Monday - Saturday\n10:00 – 14:00\n17:00 – 22:00\n\nSunday\nClosed",

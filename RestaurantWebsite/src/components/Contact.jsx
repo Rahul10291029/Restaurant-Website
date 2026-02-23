@@ -23,9 +23,11 @@ const Contact = () => {
   // ✅ Copy status
   const [copied, setCopied] = useState(false);
 
-  // ✅ Phone number (keep raw and formatted separately)
-  const rawPhone = "+41766298876"; // call-friendly (no spaces)
-  const displayPhone = "+41 76 629 8876"; // display-friendly
+  // ✅ Phone numbers
+  const phones = [
+    { raw: "+41766298876", display: "+41 76 629 8876" },
+    { raw: "0318392440", display: "031 839 24 40" }
+  ];
 
   // ✅ init EmailJS once (prevents "user id required" issues)
   useEffect(() => {
@@ -46,10 +48,10 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleCopyPhone = async () => {
+  const handleCopyPhone = async (text) => {
     try {
-      await navigator.clipboard.writeText(rawPhone);
-      setCopied(true);
+      await navigator.clipboard.writeText(text);
+      setCopied(text);
       setTimeout(() => setCopied(false), 1500);
     } catch (e) {
       alert("Copy not supported. Please copy manually.");
@@ -234,24 +236,28 @@ const Contact = () => {
               <p>📍 {t("footer_address")}</p>
 
               {/* CLICK TO CALL + COPY */}
-              <div className="flex items-center gap-3 flex-wrap">
-                <span className="text-lg">📞</span>
+              <div className="space-y-4">
+                {phones.map((phone, idx) => (
+                  <div key={idx} className="flex items-center gap-3 flex-wrap">
+                    <span className="text-lg">📞</span>
 
-                <a
-                  href={`tel:${rawPhone}`}
-                  className="font-semibold text-gray-900 underline underline-offset-4 hover:text-yellow-600 transition"
-                  title="Tap to call"
-                >
-                  {displayPhone}
-                </a>
+                    <a
+                      href={`tel:${phone.raw}`}
+                      className="font-semibold text-gray-900 underline underline-offset-4 hover:text-yellow-600 transition"
+                      title="Tap to call"
+                    >
+                      {phone.display}
+                    </a>
 
-                <button
-                  onClick={handleCopyPhone}
-                  type="button"
-                  className="px-3 py-1 rounded-lg border text-sm bg-white hover:bg-gray-50 shadow-sm transition"
-                >
-                  {copied ? "Copied ✅" : "Copy"}
-                </button>
+                    <button
+                      onClick={() => handleCopyPhone(phone.display)}
+                      type="button"
+                      className="px-3 py-1 rounded-lg border text-sm bg-white hover:bg-gray-50 shadow-sm transition"
+                    >
+                      {copied === phone.display ? "Copied ✅" : "Copy"}
+                    </button>
+                  </div>
+                ))}
               </div>
 
               {/* Email clickable */}
