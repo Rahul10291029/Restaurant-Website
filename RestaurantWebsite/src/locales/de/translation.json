@@ -29,6 +29,10 @@
   "news_article_title": "Indian Yaadein – Exzellenz in Bern",
   "news_article_text": "Wir freuen uns, Indian Yaadein vorzustellen, unser Partnerrestaurant im Herzen von Bern. Erleben Sie eine authentische kulinarische Reise voller traditioneller Aromen und moderner Eleganz. Besuchen Sie uns zum Mittagessen, Abendessen oder für private Feiern.",
   "news_article_cta": "Indian Yaadein Entdecken",
+  "news_article_2_title": "Restaurant Swagat bringt indische Currys nach Rubigen",
+  "news_article_2_text": "Im früheren Kreuz-Pintli in der Gemeinde Rubigen wird nun indisch gekocht. Doch der Koch bleibt beim Chili vorsichtig.",
+  "news_article_2_cta": "Artikel lesen",
+  "news_article_2_date": "Februar 2026",
 
 "heroTitleMain": "Kreuz Pintli Swagat",
 "heroTitleSub": "Ein Indisches Restaurant",
@@ -453,7 +457,7 @@
     "contact_form_error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.",
     "contact_form_submitting": "Ihre Nachricht wird gesendet...",
     "contact_reach_us_title": "So erreichen Sie uns",
-    "contact_hours": "Mo–Sa: 10:00–14:00 & 17:00–22:00 | Sonntag: Geschlossen"
+    "contact_hours": "Montag - Samstag\n10:00 – 14:00\n17:00 – 22:00\n\nSonntag\nGeschlossen"
 ,  
 
   "footer_title": "Kreuz Pintli Swagat",
@@ -463,7 +467,7 @@
   "footer_address": "Beitenwil 59, 3113 Rubigen, Schweiz",
   "footer_phone": "+41 07 66 298876",
   "footer_email": "contact@kreuzpintli-swagat.ch",
-  "footer_hours": "Mo–Sa: 10:00–14:00 & 17:00–22:00",
+  "footer_hours": "Montag - Samstag\n10:00 – 14:00\n17:00 – 22:00\n\nSonntag\nGeschlossen",
   "footer_hours_weekdays": "Montag – Samstag",
   "footer_hours_lunch": "10:00 – 14:00",
   "footer_hours_dinner": "17:00 – 22:00",

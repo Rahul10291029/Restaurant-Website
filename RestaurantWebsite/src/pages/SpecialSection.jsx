@@ -51,7 +51,7 @@ const SpecialsSection = () => {
 
               <div className="flex items-center justify-between">
                 <span className="text-black font-extrabold text-xl">
-                  €{(19.95 + i * 2.5).toFixed(2)}
+                  {(19.95 + i * 2.5).toFixed(2)} CHF
                 </span>
 
                 <span className="text-sm font-semibold text-yellow-700">

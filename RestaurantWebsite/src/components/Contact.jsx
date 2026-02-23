@@ -265,7 +265,7 @@ const Contact = () => {
                 </a>
               </p>
 
-              <p>🕒 {t("contact_hours")}</p>
+              <p className="whitespace-pre-line font-medium">🕒 {t("contact_hours")}</p>
             </div>
 
             <div className="mt-10 rounded-2xl overflow-hidden border">

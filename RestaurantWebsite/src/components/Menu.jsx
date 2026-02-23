@@ -264,13 +264,9 @@ const Menu = () => {
               </li>
               <li className="mt-1">
                 <span className="font-semibold text-amber-800">🕒 Opening Hours</span>
-                <ul className="mt-1 ml-6 space-y-0.5 text-sm text-gray-700">
-                  <li className="font-medium">{t("footer_hours_weekdays")}</li>
-                  <li>{t("footer_hours_lunch")}</li>
-                  <li>{t("footer_hours_dinner")}</li>
-                  <li className="mt-1 font-medium">{t("footer_hours_sunday")}</li>
-                  <li className="text-red-500 font-semibold">{t("footer_hours_sunday_status")}</li>
-                </ul>
+                <p className="mt-1 ml-6 whitespace-pre-line text-sm text-gray-700">
+                  {t("footer_hours")}
+                </p>
               </li>
             </ul>
           </div>

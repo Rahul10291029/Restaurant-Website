@@ -28,6 +28,10 @@
   "news_article_title": "Indian Yaadein – Excellence in Bern",
   "news_article_text": "We are thrilled to introduce Indian Yaadein, our sister concern in the heart of Bern. Experience an authentic culinary journey filled with traditional flavors and modern elegance. Join us for lunch, dinner, or private celebrations.",
   "news_article_cta": "Discover Indian Yaadein",
+  "news_article_2_title": "Restaurant Swagat brings Indian currys to Rubigen",
+  "news_article_2_text": "In the former Kreuz-Pintli in the municipality of Rubigen, Indian food is now being cooked. However, the chef remains cautious with the chili.",
+  "news_article_2_cta": "Read Article",
+  "news_article_2_date": "February 2026",
 
 "heroTitleMain": "Kreuz Pintli Swagat",
 "heroTitleSub": "An Indian Restaurant"
@@ -446,7 +450,7 @@
   "contact_form_error": "Something went wrong. Please try again later.",
   "contact_form_submitting": "Sending your message...",
   "contact_reach_us_title": "Reach Us",
-  "contact_hours": "Mon–Sat: 10:00–14:00 & 17:00–22:00 | Sunday: Closed",
+  "contact_hours": "Monday - Saturday\n10:00 – 14:00\n17:00 – 22:00\n\nSunday\nClosed",
 
   
     "footer_title": "Kreuz Pintli Swagat",
@@ -459,7 +463,7 @@
     "footer_phone_raw": "+410766298876",
   
     "footer_email": "contact@kreuzpintli-swagat.ch",
-    "footer_hours": "Mon–Sat: 10:00–14:00 & 17:00–22:00",
+    "footer_hours": "Monday - Saturday\n10:00 – 14:00\n17:00 – 22:00\n\nSunday\nClosed",
     "footer_hours_weekdays": "Monday – Saturday",
     "footer_hours_lunch": "10:00 – 14:00",
     "footer_hours_dinner": "17:00 – 22:00",
