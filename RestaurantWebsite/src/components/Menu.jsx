@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import bgImg from "../Images/bgImg.jpg";
 import DynamicMenuCard from "./DynamicMenuCard";
+import { jsPDF } from "jspdf";
 
 /* ── Triangle decorator ── */
 const Triangle = ({ position, isVisible }) => (
@@ -45,7 +46,150 @@ const FilterPill = ({ filter, active, onClick, label }) => {
 const Menu = () => {
   const { t } = useTranslation();
   const footerRef = useRef(null);
+  const menuRef = useRef(null);
   const [footerVisible, setFooterVisible] = useState(false);
+
+  const handleDownloadPdf = () => {
+    const pdf = new jsPDF({ unit: 'pt', format: 'a4' });
+    const A4_W = 595.28;
+    const A4_H = 841.89;
+    const MARGIN = 60;           // wider margins for premium look
+    const CONTENT_W = A4_W - MARGIN * 2;
+    const BOTTOM = A4_H - 55;
+
+    const BLACK  = [31,  41,  55];
+    const DARK   = [55,  65,  81];
+    const GRAY   = [107, 114, 128];
+    const LIGHT  = [209, 213, 219];
+
+    // ── Helpers ──────────────────────────────────────────
+    const setColor  = ([r, g, b]) => pdf.setTextColor(r, g, b);
+    const lineColor = ([r, g, b]) => pdf.setDrawColor(r, g, b);
+
+    const wrapText = (text) =>
+      pdf.splitTextToSize(text, CONTENT_W - 80); // leave space for price
+
+    // Estimate height of one category block
+    const estimateCatHeight = (category) => {
+      let h = 50; // title + underline + padding below
+      category.items.forEach(item => {
+        h += 26; // name + price row
+        if (item.description) {
+          const ls = pdf.splitTextToSize(item.description, CONTENT_W);
+          h += ls.length * 14 + 6;
+        }
+        h += 20; // gap between items
+      });
+      h += 24; // bottom gap after category
+      return h;
+    };
+
+    // Render one category, returns new Y position
+    const renderCategory = (category, startY) => {
+      let cy = startY;
+      const title = t(category.titleKey).toUpperCase();
+
+      // ── Category Title ──
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(14);
+      setColor(BLACK);
+      pdf.text(title, MARGIN, cy);
+      cy += 5;
+
+      // Underline
+      lineColor(LIGHT);
+      pdf.setLineWidth(0.5);
+      pdf.line(MARGIN, cy, MARGIN + CONTENT_W, cy);
+      cy += 18;
+
+      // ── Items ──
+      category.items.forEach((item, idx) => {
+        const name = item.nameKey ? t(item.nameKey) : item.name;
+
+        // Name
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(13);
+        setColor(DARK);
+        pdf.text(name, MARGIN, cy, { maxWidth: CONTENT_W - 90 });
+
+        // Price — always right aligned on same baseline
+        pdf.setFont('helvetica', 'bold');
+        pdf.setFontSize(13);
+        setColor(BLACK);
+        pdf.text(String(item.price), MARGIN + CONTENT_W, cy, { align: 'right' });
+        cy += 18;
+
+        // Description
+        if (item.description) {
+          pdf.setFont('helvetica', 'normal');
+          pdf.setFontSize(10.5);
+          setColor(GRAY);
+          const lines = pdf.splitTextToSize(item.description, CONTENT_W);
+          pdf.text(lines, MARGIN, cy);
+          cy += lines.length * 13 + 4;
+        }
+
+        cy += 22; // generous gap between dishes
+      });
+
+      cy += 20; // gap after category
+      return cy;
+    };
+
+    // ── Page Header ──────────────────────────────────────
+    const drawPageHeader = () => {
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(26);
+      setColor(BLACK);
+      pdf.text('KREUZ PINTLI SWAGAT', A4_W / 2, MARGIN, { align: 'center' });
+
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      setColor(GRAY);
+      pdf.text('— AUTHENTIC INDIAN MENU —', A4_W / 2, MARGIN + 18, { align: 'center' });
+
+      lineColor(LIGHT);
+      pdf.setLineWidth(0.6);
+      pdf.line(MARGIN, MARGIN + 28, A4_W - MARGIN, MARGIN + 28);
+    };
+
+    // ── Page Footer ──────────────────────────────────────
+    const drawFooter = (pageNum, total) => {
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(8);
+      setColor(GRAY);
+      pdf.text(
+        `Kreuz Pintli Swagat  ·  Page ${pageNum} of ${total}`,
+        A4_W / 2, A4_H - 22, { align: 'center' }
+      );
+    };
+
+    // ── Layout ───────────────────────────────────────────
+    drawPageHeader();
+    let y = MARGIN + 50; // start below header
+
+    menuCategories.forEach(category => {
+      const h = estimateCatHeight(category);
+
+      // Does this whole category fit on the current page?
+      if (y + h > BOTTOM) {
+        pdf.addPage();
+        y = MARGIN + 10;
+      }
+
+      y = renderCategory(category, y);
+    });
+
+    // ── Footers on all pages ──────────────────────────────
+    const total = pdf.getNumberOfPages();
+    for (let i = 1; i <= total; i++) {
+      pdf.setPage(i);
+      drawFooter(i, total);
+    }
+
+    pdf.save('Kreuz_Pintli_Swagat_Menu.pdf');
+  };
+
   const [activeFilter, setActiveFilter] = useState("all");
   const [visibleCards, setVisibleCards] = useState(new Set());
 
@@ -116,13 +260,12 @@ const Menu = () => {
           </p>
 
           <div className="flex items-center justify-center gap-4 mt-8 flex-wrap">
-            <a
-              href="/Downlod.pdf"
-              download
-              className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-7 py-3 rounded-full font-bold shadow-lg shadow-amber-900/40 transition-all duration-300 hover:scale-105"
+            <button
+              onClick={handleDownloadPdf}
+              className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white px-7 py-3 rounded-full font-bold shadow-lg shadow-amber-900/40 transition-all duration-300 hover:scale-105 cursor-pointer"
             >
               📄 {t("download_menu_pdf")}
-            </a>
+            </button>
           </div>
 
           {/* Decorative bottom line */}
@@ -134,6 +277,7 @@ const Menu = () => {
         </div>
       </section>
 
+      <div ref={menuRef} className="bg-[#faf9f6]">
       {/* ═══ SECTION INTRO ═══ */}
       <div className="text-center pt-16 pb-4 px-4">
         <p className="text-amber-600 font-semibold tracking-widest uppercase text-sm mb-2">
@@ -191,6 +335,8 @@ const Menu = () => {
           ))}
         </div>
       </div>
+      </div>
+
 
       {/* ═══ FOOTER ═══ */}
       <footer

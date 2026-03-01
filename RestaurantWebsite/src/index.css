@@ -33,3 +33,44 @@ body.modal-open {
 .animate-fadeInUp {
   animation: fadeInUp 0.5s ease both;
 }
+
+/* ===== PRINT & PDF EXPORT STYLES ===== */
+@media print {
+  /* Hide unnecessary elements on print */
+  nav, .hide-on-print {
+    display: none !important;
+  }
+  
+  /* Ensure backgrounds and colors are rendered in PDFs */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Reset layout constraints for proper pagination */
+  body, html, main {
+    height: auto !important;
+    overflow: visible !important;
+    background-color: #faf9f6 !important;
+  }
+
+  /* Prevent menu cards from being cut in half across pages */
+  .break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+
+/* Forcefully strip all oklab gradients, shadows, and borders for dom-to-image */
+.pdf-export-safe * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border: none !important;       /* Tailwind sets border-style:solid globally — this kills all black boxes */
+  outline: none !important;
+  border-radius: 0 !important;
+}
+
+.pdf-export-safe .card-header {
+  background-image: none !important;
+  background-color: #4a2c11 !important;
+}
