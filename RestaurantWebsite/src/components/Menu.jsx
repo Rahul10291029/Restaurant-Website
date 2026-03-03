@@ -66,8 +66,27 @@ const Menu = () => {
     const setColor  = ([r, g, b]) => pdf.setTextColor(r, g, b);
     const lineColor = ([r, g, b]) => pdf.setDrawColor(r, g, b);
 
+    // ── Character normaliser ─────────────────────────────
+    // jsPDF's built-in Helvetica only covers Latin-1 (cp1252 range).
+    // Characters outside that range silently render as &c&h&a&r& garbage.
+    // Map German umlauts, sharp-s, dashes, smart quotes → safe ASCII.
+    const toSafePdf = (str) => {
+      if (!str) return '';
+      return str
+        .replace(/\u00e4/g, 'ae').replace(/\u00c4/g, 'Ae')
+        .replace(/\u00f6/g, 'oe').replace(/\u00d6/g, 'Oe')
+        .replace(/\u00fc/g, 'ue').replace(/\u00dc/g, 'Ue')
+        .replace(/\u00df/g, 'ss')
+        .replace(/[\u2013\u2014]/g, '-')
+        .replace(/[\u2018\u2019]/g, "'")
+        .replace(/[\u201C\u201D]/g, '"')
+        .replace(/\u2026/g, '...')
+        .replace(/[^\x00-\xFF]/g, '');
+    };
+
     const wrapText = (text) =>
-      pdf.splitTextToSize(text, CONTENT_W - 80); // leave space for price
+      pdf.splitTextToSize(toSafePdf(text), CONTENT_W - 80);
+
 
     // Estimate height of one category block
     const estimateCatHeight = (category) => {
@@ -87,7 +106,7 @@ const Menu = () => {
     // Render one category, returns new Y position
     const renderCategory = (category, startY) => {
       let cy = startY;
-      const title = t(category.titleKey).toUpperCase();
+      const title = toSafePdf(t(category.titleKey)).toUpperCase();
 
       // ── Category Title ──
       pdf.setFont('helvetica', 'bold');
@@ -104,7 +123,7 @@ const Menu = () => {
 
       // ── Items ──
       category.items.forEach((item, idx) => {
-        const name = item.nameKey ? t(item.nameKey) : item.name;
+        const name = toSafePdf(item.nameKey ? t(item.nameKey) : item.name);
 
         // Name
         pdf.setFont('helvetica', 'bold');
@@ -124,7 +143,7 @@ const Menu = () => {
           pdf.setFont('helvetica', 'normal');
           pdf.setFontSize(10.5);
           setColor(GRAY);
-          const lines = pdf.splitTextToSize(item.description, CONTENT_W);
+          const lines = pdf.splitTextToSize(toSafePdf(item.description), CONTENT_W);
           pdf.text(lines, MARGIN, cy);
           cy += lines.length * 13 + 4;
         }
@@ -281,10 +300,10 @@ const Menu = () => {
       {/* ═══ SECTION INTRO ═══ */}
       <div className="text-center pt-16 pb-4 px-4">
         <p className="text-amber-600 font-semibold tracking-widest uppercase text-sm mb-2">
-          — Explore The —
+          — {t("menu_explore_the")} —
         </p>
         <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800">
-          Authentic Indian Menu
+          {t("menu_authentic_indian_menu")}
         </h2>
         <div className="flex items-center justify-center gap-3 mt-3">
           <div className="h-px w-12 bg-amber-300" />
@@ -312,13 +331,13 @@ const Menu = () => {
           <span className="inline-flex items-center justify-center w-4 h-4 rounded-sm border-2 border-green-600">
             <span className="w-2 h-2 rounded-full bg-green-600" />
           </span>
-          Vegetarian
+          {t("menuTags.veg")}
         </div>
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center justify-center w-4 h-4 rounded-sm border-2 border-red-600">
             <span className="w-2 h-2 rounded-full bg-red-600" />
           </span>
-          Non-Vegetarian
+          {t("menuTags.non_veg")}
         </div>
       </div>
 
@@ -419,7 +438,7 @@ const Menu = () => {
                 </a>
               </li>
               <li className="mt-1">
-                <span className="font-semibold text-amber-800">🕒 Opening Hours</span>
+                <span className="font-semibold text-amber-800">🕒 {t("footer_opening_hours")}</span>
                 <p className="mt-1 ml-6 whitespace-pre-line text-sm text-gray-700">
                   {t("footer_hours")}
                 </p>

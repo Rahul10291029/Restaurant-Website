@@ -37,6 +37,9 @@
   "heroSubtitle": "Erleben Sie authentische indische Küche — eine kulinarische Reise",
   "heroText": "Verwöhnen Sie Ihre Sinne mit unserer exquisiten Auswahl an traditionellen indischen Gerichten.",
   "download_menu_pdf": "Menü herunterladen",
+  "menu_explore_the": "Entdecken Sie",
+  "menu_authentic_indian_menu": "Authentische Indische Speisekarte",
+  "footer_opening_hours": "Öffnungszeiten",
 
   "menuItem_biryaniRice_title": "Biryani & Reis Speisekarte",
   "menuItem_biryaniRice_description": "Unsere Auswahl an duftenden Biryanis und köstlichen Reisgerichten, perfekt als Hauptgericht oder Beilage.",
@@ -191,7 +194,7 @@
       "titleKey": "menu_lamb_title",
       "type": "non_veg",
       "items": [
-        { "nameKey": "item_lamb_curry", "price": "29 CHF", "description": "Langsam gegarter zarter Lamm in einer tief gewürzten, aromatischen indischen Currysоße." },
+        { "nameKey": "item_lamb_curry", "price": "29 CHF", "description": "Langsam gegarter, zarter Lamm in einer tief gewürzten, aromatischen indischen Currysauce." },
         { "nameKey": "item_lamb_rogan_josh", "price": "29 CHF", "description": "Knochenloses Lammcurry mit Joghurt und einer aromatischen Mischung traditioneller Gewürze." },
         { "nameKey": "item_lamb_kadai", "price": "29 CHF", "description": "Langsam gegarte Lammstücke in einer Zwiebel-Tomaten-Sauce und mit Kadai-Masala." },
         { "nameKey": "item_lamb_korma", "price": "29 CHF", "description": "Lammstücke werden in einer leicht gewürzten, cremigen Curry-Sauce gekocht." },
