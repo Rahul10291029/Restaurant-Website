@@ -145,7 +145,7 @@
   "contact_form_error": "Une erreur s’est produite. Veuillez réessayer plus tard.",
   "contact_form_submitting": "Envoi en cours...",
   "contact_reach_us_title": "Nous contacter",
-  "contact_hours": "Lundi - Samedi\n10:00 – 14:00\n17:00 – 22:00\n\nDimanche\nFermé",
+  "contact_hours": "Samedi & Dimanche\n12:00 – 20:00\n\nLundi – Vendredi\n9:00 – 14:00\n17:00 – 22:00",
 
   "footer_title": "Swagat Restaurant Indien",
   "footer_description": "Découvrez le cœur de la cuisine indienne avec une hospitalité chaleureuse et des saveurs intemporelles depuis 1998.",
@@ -159,11 +159,16 @@
   "footer_phone_1_raw": "+41766298876",
   "footer_phone_2_raw": "+41318392440",
   "footer_email": "contact@kreuzpintli-swagat.ch",
-  "footer_hours": "Lundi - Samedi\n10:00 – 14:00\n17:00 – 22:00\n\nDimanche\nFermé",
-  "footer_hours_weekdays": "Lundi – Samedi",
-  "footer_hours_lunch": "10:00 – 14:00",
+  "footer_hours": "Samedi & Dimanche\n12:00 – 20:00\n\nLundi – Vendredi\n9:00 – 14:00\n17:00 – 22:00",
+  "footer_hours_weekdays": "Lundi – Vendredi",
+  "footer_hours_lunch": "9:00 – 14:00",
   "footer_hours_dinner": "17:00 – 22:00",
-  "footer_hours_sunday": "Dimanche",
-  "footer_hours_sunday_status": "Fermé",
-  "footer_rights": "Tous droits réservés."
+  "footer_hours_weekend": "Samedi & Dimanche",
+  "footer_hours_weekend_time": "12:00 – 20:00",
+  "footer_rights": "Tous droits réservés.",
+  "service_catering": "Service traiteur disponible",
+  "service_delivery": "Livraison à domicile",
+  "service_review": "Laisser un avis",
+  "contact_leave_review": "Laisser un avis ⭐",
+  "contact_rate_experience": "Évaluez votre expérience (facultatif)"
 }

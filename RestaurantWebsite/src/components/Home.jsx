@@ -147,6 +147,51 @@ const Home = () => {
   </div>
 </section>
 
+{/* ================= SERVICES HIGHLIGHTS ================= */}
+<section className="relative -mt-10 z-10 px-4 md:px-8">
+  <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
+    {/* Catering Service */}
+    <motion.div
+      whileHover={{ scale: 1.04, y: -4 }}
+      transition={{ type: "spring", stiffness: 300 }}
+      className="flex items-center gap-4 bg-gradient-to-br from-amber-50 to-yellow-100 border border-yellow-200 rounded-2xl shadow-lg px-6 py-5 cursor-pointer"
+    >
+      <span className="text-3xl">🍽️</span>
+      <div>
+        <p className="font-bold text-amber-900 text-lg">{t("service_catering")}</p>
+        <p className="text-sm text-amber-700/80">For events & celebrations</p>
+      </div>
+    </motion.div>
+
+    {/* Home Delivery */}
+    <motion.div
+      whileHover={{ scale: 1.04, y: -4 }}
+      transition={{ type: "spring", stiffness: 300 }}
+      className="flex items-center gap-4 bg-gradient-to-br from-green-50 to-emerald-100 border border-emerald-200 rounded-2xl shadow-lg px-6 py-5 cursor-pointer"
+    >
+      <span className="text-3xl">🚚</span>
+      <div>
+        <p className="font-bold text-emerald-900 text-lg">{t("service_delivery")}</p>
+        <p className="text-sm text-emerald-700/80">Fresh to your doorstep</p>
+      </div>
+    </motion.div>
+
+    {/* Leave a Review */}
+    <Link to="/contact?review=true">
+      <motion.div
+        whileHover={{ scale: 1.04, y: -4 }}
+        transition={{ type: "spring", stiffness: 300 }}
+        className="flex items-center gap-4 bg-gradient-to-br from-rose-50 to-pink-100 border border-pink-200 rounded-2xl shadow-lg px-6 py-5 cursor-pointer h-full"
+      >
+        <span className="text-3xl">⭐</span>
+        <div>
+          <p className="font-bold text-rose-900 text-lg">{t("service_review")}</p>
+          <p className="text-sm text-rose-700/80">Share your experience</p>
+        </div>
+      </motion.div>
+    </Link>
+  </div>
+</section>
 
         {/* ================= PHILOSOPHY (YOUR ORIGINAL LAYOUT + MOTION + IMAGES) ================= */}
         <section className="py-24 bg-white/60 backdrop-blur-sm">

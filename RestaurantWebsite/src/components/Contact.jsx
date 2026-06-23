@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { Star } from "lucide-react";
 
 const HERO_IMG = "/Contact.jpg";
 
@@ -17,6 +18,13 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  // ✅ Star Rating state
+  const [rating, setRating] = useState(0);
+  const [hoveredRating, setHoveredRating] = useState(0);
+  const location = useLocation();
+  const isReview = new URLSearchParams(location.search).get("review") === "true";
+  const formRef = useRef(null);
 
   // ✅ For faster hero image display
   const [heroLoaded, setHeroLoaded] = useState(false);
@@ -60,6 +68,15 @@ const Contact = () => {
     img.onerror = () => setHeroLoaded(true);
   }, []);
 
+  // ✅ Scroll to form if it's a review
+  useEffect(() => {
+    if (isReview && formRef.current) {
+      setTimeout(() => {
+        formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 500);
+    }
+  }, [isReview]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -88,11 +105,11 @@ const Contact = () => {
         // ✅ these must match your template variables
         from_name: formData.name,
         from_email: formData.email,
-        message: formData.message,
+        message: rating > 0 ? `[Rating: ${rating} Stars]\n\n${formData.message}` : formData.message,
 
         // ✅ add some fun extras (add these in template if you want)
-        subject: "📩 New message from website",
-        emoji_line: "✨ New Contact Request ✨",
+        subject: rating > 0 ? "⭐ New Review Submitted" : "📩 New message from website",
+        emoji_line: rating > 0 ? "⭐ Review Request ⭐" : "✨ New Contact Request ✨",
       };
 
       await emailjs.send(
@@ -110,6 +127,7 @@ const Contact = () => {
       });
 
       setFormData({ name: "", email: "", message: "" });
+      setRating(0);
     } catch (error) {
       console.error("EmailJS Error:", error);
       setSubmitStatus({
@@ -176,9 +194,9 @@ const Contact = () => {
       <section className="py-14 px-5 md:px-16">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10">
           {/* CONTACT FORM */}
-          <div className="bg-white p-7 sm:p-10 rounded-3xl shadow-xl border border-yellow-100">
+          <div ref={formRef} className="bg-white p-7 sm:p-10 rounded-3xl shadow-xl border border-yellow-100">
             <h2 className="text-2xl sm:text-3xl font-bold mb-8 border-b pb-4">
-              {t("contact_form_title") || "Send Us a Message 💬"}
+              {isReview ? (t("contact_leave_review") || "Leave a Review ⭐") : (t("contact_form_title") || "Send Us a Message 💬")}
             </h2>
 
             {submitStatus && (
@@ -194,6 +212,34 @@ const Contact = () => {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Star Rating UI */}
+              <div className="flex flex-col gap-2 mb-4">
+                <span className="text-sm font-semibold text-gray-700">
+                  {t("contact_rate_experience") || "Rate your experience (optional)"}
+                </span>
+                <div className="flex items-center gap-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => setRating(star)}
+                      onMouseEnter={() => setHoveredRating(star)}
+                      onMouseLeave={() => setHoveredRating(0)}
+                      className="focus:outline-none transition-transform hover:scale-110"
+                    >
+                      <Star
+                        size={32}
+                        className={`transition-colors duration-200 ${
+                          star <= (hoveredRating || rating)
+                            ? "fill-yellow-400 text-yellow-500"
+                            : "fill-gray-100 text-gray-300"
+                        }`}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <input
                 type="text"
                 name="name"

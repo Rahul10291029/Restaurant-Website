@@ -455,7 +455,7 @@
     "contact_form_error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut.",
     "contact_form_submitting": "Ihre Nachricht wird gesendet...",
     "contact_reach_us_title": "So erreichen Sie uns",
-    "contact_hours": "Montag - Samstag\n10:00 – 14:00\n17:00 – 22:00\n\nSonntag\nGeschlossen"
+    "contact_hours": "Samstag & Sonntag\n12:00 – 20:00\n\nMontag – Freitag\n9:00 – 14:00\n17:00 – 22:00"
 ,  
 
   "footer_title": "Kreuz Pintli Swagat",
@@ -470,13 +470,18 @@
   "footer_phone_1_raw": "+41766298876",
   "footer_phone_2_raw": "+41318392440",
   "footer_email": "contact@kreuzpintli-swagat.ch",
-  "footer_hours": "Montag - Samstag\n10:00 – 14:00\n17:00 – 22:00\n\nSonntag\nGeschlossen",
-  "footer_hours_weekdays": "Montag – Samstag",
-  "footer_hours_lunch": "10:00 – 14:00",
+  "footer_hours": "Samstag & Sonntag\n12:00 – 20:00\n\nMontag – Freitag\n9:00 – 14:00\n17:00 – 22:00",
+  "footer_hours_weekdays": "Montag – Freitag",
+  "footer_hours_lunch": "9:00 – 14:00",
   "footer_hours_dinner": "17:00 – 22:00",
-  "footer_hours_sunday": "Sonntag",
-  "footer_hours_sunday_status": "Geschlossen",
-  "footer_rights": "Alle Rechte vorbehalten."
+  "footer_hours_weekend": "Samstag & Sonntag",
+  "footer_hours_weekend_time": "12:00 – 20:00",
+  "footer_rights": "Alle Rechte vorbehalten.",
+  "service_catering": "Catering-Service verfügbar",
+  "service_delivery": "Hauslieferung",
+  "service_review": "Bewertung abgeben",
+  "contact_leave_review": "Bewertung abgeben ⭐",
+  "contact_rate_experience": "Bewerten Sie Ihre Erfahrung (optional)"
 
 ,
   "reservation_title": "Tisch reservieren",

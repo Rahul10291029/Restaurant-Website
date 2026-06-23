@@ -145,7 +145,7 @@
   "contact_form_error": "Algo salió mal. Por favor, inténtalo de nuevo más tarde.",
   "contact_form_submitting": "Enviando mensaje...",
   "contact_reach_us_title": "Contáctanos",
-  "contact_hours": "Lunes - Sábado\n10:00 – 14:00\n17:00 – 22:00\n\nDomingo\nCerrado",
+  "contact_hours": "Sábado & Domingo\n12:00 – 20:00\n\nLunes – Viernes\n9:00 – 14:00\n17:00 – 22:00",
 
   "footer_title": "Kreuz Pintli Swagat",
   "footer_description": "Experimente el corazón de la cocina india con una cálida hospitalidad y sabores atemporales desde 1998.",
@@ -159,11 +159,16 @@
   "footer_phone_1_raw": "+41766298876",
   "footer_phone_2_raw": "+41318392440",
   "footer_email": "contact@kreuzpintli-swagat.ch",
-  "footer_hours": "Lunes - Sábado\n10:00 – 14:00\n17:00 – 22:00\n\nDomingo\nCerrado",
-  "footer_hours_weekdays": "Lunes – Sábado",
-  "footer_hours_lunch": "10:00 – 14:00",
+  "footer_hours": "Sábado & Domingo\n12:00 – 20:00\n\nLunes – Viernes\n9:00 – 14:00\n17:00 – 22:00",
+  "footer_hours_weekdays": "Lunes – Viernes",
+  "footer_hours_lunch": "9:00 – 14:00",
   "footer_hours_dinner": "17:00 – 22:00",
-  "footer_hours_sunday": "Domingo",
-  "footer_hours_sunday_status": "Cerrado",
-  "footer_rights": "Todos los derechos reservados."
+  "footer_hours_weekend": "Sábado & Domingo",
+  "footer_hours_weekend_time": "12:00 – 20:00",
+  "footer_rights": "Todos los derechos reservados.",
+  "service_catering": "Servicio de catering disponible",
+  "service_delivery": "Entrega a domicilio",
+  "service_review": "Dejar una reseña",
+  "contact_leave_review": "Dejar una reseña ⭐",
+  "contact_rate_experience": "Califique su experiencia (opcional)"
 }
