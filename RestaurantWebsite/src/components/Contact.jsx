@@ -296,7 +296,17 @@ const Contact = () => {
             </h2>
 
             <div className="space-y-5 text-base sm:text-lg">
-              <p>📍 {t("footer_address")}</p>
+              <div className="flex items-center gap-3 flex-wrap">
+                <p>📍 {t("footer_address")}</p>
+                <a
+                  href="https://g.page/r/CSdHgH2CkN-dEAI/review"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-1 rounded-lg border text-sm bg-white hover:bg-gray-50 shadow-sm transition text-gray-800"
+                >
+                  Review Us
+                </a>
+              </div>
 
               {/* CLICK TO CALL + COPY */}
               <div className="space-y-4">
