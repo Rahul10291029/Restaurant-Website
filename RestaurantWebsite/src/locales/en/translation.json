@@ -302,7 +302,6 @@
   "item_chicken_bbq_salad": "Chicken BBQ Salad",
   "item_hari_bhari_tikki": "Hari Bhari Tikki",
   "item_punjabi_samosa": "Punjabi Samosa",
-  "item_mix_pakora": "Mix Pakora",
   "item_chilli_paneer": "Chilli Paneer",
   "item_paneer_pakora": "Paneer Pakora",
   "item_malai_paneer_tikka": "Malai Paneer Tikka (BBQ)",
@@ -448,7 +447,7 @@
   "contact_form_error": "Something went wrong. Please try again later.",
   "contact_form_submitting": "Sending your message...",
   "contact_reach_us_title": "Reach Us",
-  "contact_hours": "Saturday & Sunday\n12:00 PM – 8:00 PM\n\nMonday – Friday\n9:00 AM – 2:00 PM\n5:00 PM – 10:00 PM",
+  "contact_hours": "Saturday & Sunday\n5:00 PM – 9:00 PM\n\nMonday – Friday\n9:00 AM – 2:00 PM\n5:00 PM – 10:00 PM",
 
   
     "footer_title": "Kreuz Pintli Swagat",
@@ -465,12 +464,12 @@
     "footer_phone_2_raw": "+41318392440",
   
     "footer_email": "contact@kreuzpintli-swagat.ch",
-    "footer_hours": "Saturday & Sunday\n12:00 PM – 8:00 PM\n\nMonday – Friday\n9:00 AM – 2:00 PM\n5:00 PM – 10:00 PM",
+    "footer_hours": "Saturday & Sunday\n5:00 PM – 9:00 PM\n\nMonday – Friday\n9:00 AM – 2:00 PM\n5:00 PM – 10:00 PM",
     "footer_hours_weekdays": "Monday – Friday",
     "footer_hours_lunch": "9:00 AM – 2:00 PM",
     "footer_hours_dinner": "5:00 PM – 10:00 PM",
     "footer_hours_weekend": "Saturday & Sunday",
-    "footer_hours_weekend_time": "12:00 PM – 8:00 PM",
+    "footer_hours_weekend_time": "5:00 PM – 9:00 PM",
     "footer_rights": "All rights reserved.",
     "service_catering": "Catering Service Available",
     "service_delivery": "Home Delivery",
